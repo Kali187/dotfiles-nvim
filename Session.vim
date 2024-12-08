@@ -13,11 +13,10 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +196 ~/.zshrc
+badd +4 ~/.config/nvim/lua/plugins/alpha.lua
 argglobal
 %argdel
-$argadd ~/.zshrc
-edit ~/.zshrc
+edit ~/.config/nvim/lua/plugins/alpha.lua
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -28,14 +27,17 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-5,6fold
+4,12fold
+15,21fold
+3,22fold
+1,23fold
 let &fdl = &fdl
-let s:l = 196 - ((48 * winheight(0) + 26) / 53)
+let s:l = 4 - ((3 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 196
-normal! 058|
+keepjumps 4
+normal! 01|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
