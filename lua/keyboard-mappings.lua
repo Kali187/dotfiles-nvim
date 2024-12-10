@@ -13,6 +13,8 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
+
+
 -- Run format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 
@@ -23,6 +25,7 @@ mapx.nnoremap("<C-k>", "<C-w>k")
 mapx.nnoremap("<C-l>", "<C-w>l")
 
 -- Utils
+mapx.nnoremap("<leader>p", ":ProjectMgr<Cr>") 								   		-- Open project manager.
 mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>")                                     -- Toggle file explorer.
 mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>")                               -- Search for files.
 mapx.nnoremap("<C-s>", ":Outline<Cr>")                                            -- Show symbols outline.
