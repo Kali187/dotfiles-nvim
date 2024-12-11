@@ -222,10 +222,7 @@ local plugins = {
 		},
 		init = function() vim.g.barbar_auto_setup = false end,
 		opts = {
-			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-			-- animation = true,
-			-- insert_at_start = true,
-			-- …etc.
+
 		},
 		version = '^1.0.0', -- optional: only update when a new 1.x version is released
 	},
@@ -245,7 +242,15 @@ local plugins = {
 				}
 			}
 		} }
-	}
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		opts = function(_, opts)
+			return require("indent-rainbowline").make_opts(opts, require("astrocore").plugin_opts "indent-rainbowline.nvim")
+		end,
+		dependencies = {"TheGLander/indent-rainbowline.nvim"}
+	},
+
 
 }
 
