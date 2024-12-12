@@ -25,7 +25,6 @@ function M.setup()
 
 	dashboard.section.buttons.val = {
 		dashboard.button("s", "  Search", ":Telescope live_grep <CR>"),
-		dashboard.button("t", "  Toggle term", ":ToggleTerm<CR>"),
 		dashboard.button("p", "  Project Manager", ":ProjectMgr<CR>"),
 		dashboard.button("f", "󰱼  Find file", ":Telescope find_files <CR>"),
 		dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
