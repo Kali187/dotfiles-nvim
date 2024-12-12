@@ -24,32 +24,28 @@ function M.setup()
 	}
 
 	dashboard.section.buttons.val = {
-		dashboard.button("s", "  Search", ":Telescope live_grep <CR>"),
+		dashboard.button("s", "  Search", ":Telescope live_grep <CR>"),
 		dashboard.button("t", "  Toggle term", ":ToggleTerm<CR>"),
-		dashboard.button("p", "  Project Manager", ":ProjectMgr<CR>"),
-		dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-		dashboard.button(
-			"r",
-			"  Recently used files",
-			":Telescope oldfiles <CR>"
-		),
-		dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+		dashboard.button("p", "  Project Manager", ":ProjectMgr<CR>"),
+		dashboard.button("f", "󰱼  Find file", ":Telescope find_files <CR>"),
+		dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
+		dashboard.button("q", "󰈆  Quit Neovim", ":qa<CR>"),
 	}
 
 	local function footer()
 		-- Number of plugins
 		local datetime = os.date "%d-%m-%Y %H:%M:%S"
 		local plugins_text = "   "
-			.. stats.count
-			.. " plugins"
-			.. "   v"
-			.. vim.version().major
-			.. "."
-			.. vim.version().minor
-			.. "."
-			.. vim.version().patch
-			.. "   "
-			.. datetime
+				.. stats.count
+				.. " plugins"
+				.. "   v"
+				.. vim.version().major
+				.. "."
+				.. vim.version().minor
+				.. "."
+				.. vim.version().patch
+				.. "   "
+				.. datetime
 
 		-- Quote
 		local fortune = require "alpha.fortune"
