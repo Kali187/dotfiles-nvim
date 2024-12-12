@@ -21,6 +21,6 @@ require("nvim-tree").setup {
 }
 
 vim.cmd([[
-hi NvimTreeNormal guibg=#050515
-hi NvimTreeWinSeparator guibg=none guifg=#67F0AB
+	hi NvimTreeNormal guibg=#050515
+	hi NvimTreeWinSeparator guibg=none guifg=#67F0AB
 ]])

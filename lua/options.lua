@@ -5,7 +5,7 @@ local map = vim.api.nvim_set_keymap
 
 -- map the leader key
 map("n", " ", "", {})
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 vim.cmd "set inccommand=split"
 o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50" -- block in normal and beam cursor in insert mode
 o.updatetime = 300                                           -- faster completion
@@ -34,8 +34,8 @@ o.smartindent = true   -- make indenting smarter again
 o.splitbelow = true    -- force all horizontal splits to go below current window
 o.splitright = true    -- force all vertical splits to go to the right of current window
 o.expandtab = false    -- convert tabs to spaces
-o.shiftwidth = 4       -- the number of spaces inserted for each indentation
-o.tabstop = 4          -- how many columns a tab counts for
+o.shiftwidth = 2       -- the number of spaces inserted for each indentation
+o.tabstop = 2          -- how many columns a tab counts for
 o.termguicolors = true -- set term gui colors (most terminals support this)
 o.scrolloff = 3        -- Minimal number of screen lines to keep above and below the cursor
 o.sidescrolloff = 5    -- The minimal number of columns to scroll horizontally
