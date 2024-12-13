@@ -35,6 +35,7 @@ cmp.setup {
 		{ name = "nvim_lua" },
 		{ name = "dotenv" },
 		{ name = "treesitter" },
+		{ name = "snippy" },
 	},
 	window = {
 		completion = cmp.config.window.bordered(),

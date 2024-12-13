@@ -56,6 +56,8 @@ local plugins = {
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
+			"dcampos/nvim-snippy",
+			"dcampos/cmp-snippy"
 		},
 	},
 	{
