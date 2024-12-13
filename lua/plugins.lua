@@ -106,7 +106,9 @@ local plugins = {
 			require "plugin-configs.nvim-tree"
 		end,
 	},
-
+	{
+		"rrethy/vim-illuminate",
+	},
 	{
 		"saecki/crates.nvim",
 		tag = "stable",
