@@ -217,13 +217,12 @@ local plugins = {
 	{
 		'romgrk/barbar.nvim',
 		dependencies = {
-			'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-			'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+			'lewis6991/gitsigns.nvim',   -- OPTIONAL: for git status
+			'kyazdani42/nvim-web-devicons', -- OPTIONAL: for file icons
 		},
-		init = function() vim.g.barbar_auto_setup = false end,
-		opts = {
-
-		},
+		config = function()
+			require "plugin-configs.barbar"
+		end,
 		version = '^1.0.0', -- optional: only update when a new 1.x version is released
 	},
 	{
@@ -244,24 +243,6 @@ local plugins = {
 		} }
 	},
 }
-
-if vim.fn.has("android") ~= 1 then
-	table.insert(plugins, {
-		'codota/tabnine-nvim',
-		build = "./dl_binaries.sh",
-		config = function()
-			require('tabnine').setup({
-				disable_auto_comment = true,
-				accept_keymap = "<Tab>",
-				dismiss_keymap = "<C-]>",
-				debounce_ms = 800,
-				suggestion_color = { gui = "#808080", cterm = 244 },
-				exclude_filetypes = { "TelescopePrompt", "NvimTree" },
-				log_file_path = nil, -- absolute path to Tabnine log file
-			})
-		end
-	})
-end
 
 if vim.fn.has("macunix") == 1 then
 	table.insert(plugins, "sebdah/vim-delve")

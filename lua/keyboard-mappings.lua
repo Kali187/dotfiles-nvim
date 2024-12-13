@@ -8,6 +8,7 @@ vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "gr", vim.lsp.buf.references)
 
+
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
@@ -85,3 +86,13 @@ mapx.nnoremap(
 	"<cmd>lua vim.diagnostic.open_float()<CR>",
 	"Line Diagnostics"
 )
+
+-- Move to previous/next
+mapx.nnoremap('<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+mapx.nnoremap('<A-.>', '<Cmd>BufferNext<CR>', opts)
+
+-- Re-order to previous/next
+mapx.nnoremap('<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
+mapx.nnoremap('<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+
+--
