@@ -13,18 +13,25 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
+badd +22 lua/plugin-configs/dashboard.lua
 argglobal
 %argdel
+edit lua/plugin-configs/dashboard.lua
 argglobal
-enew
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=0
+setlocal fdl=2
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
+let s:l = 22 - ((21 * winheight(0) + 19) / 38)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 22
+normal! 043|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

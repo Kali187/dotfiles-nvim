@@ -1,14 +1,13 @@
 local cmp = require "cmp"
-local snippy = require('snippy')
 
 cmp.setup {
 	completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
 	experimental = { native_menu = false, ghost_text = false },
-	snippet = {
-		expand = function(args)
-			snippy.expand_snippet(args.body)
-		end,
-	},
+	-- snippet = {
+	-- 	expand = function(args)
+	-- 		snippy.expand_snippet(args.body)
+	-- 	end,
+	-- },
 	formatting = {
 		format = require("lspkind").cmp_format {
 			mode = "symbol_text",
@@ -35,7 +34,6 @@ cmp.setup {
 		{ name = "nvim_lua" },
 		{ name = "dotenv" },
 		{ name = "treesitter" },
-		{ name = "snippy" },
 	},
 	window = {
 		completion = cmp.config.window.bordered(),

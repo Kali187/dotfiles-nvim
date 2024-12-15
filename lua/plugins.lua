@@ -28,13 +28,6 @@ local plugins = {
 		end,
 	},
 	{
-		"dcampos/nvim-snippy",
-		dependencies = { "honza/vim-snippets" },
-		config = function()
-			require('snippy').setup {}
-		end
-	},
-	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		config = function()
@@ -56,8 +49,6 @@ local plugins = {
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
-			"dcampos/nvim-snippy",
-			"dcampos/cmp-snippy"
 		},
 	},
 	{
