@@ -16,6 +16,10 @@ local plugins = {
 			require "plugin-configs.lsp"
 		end,
 	},
+	{
+		"sphamba/smear-cursor.nvim",
+		opts = {},
+	},
 	"ray-x/lsp_signature.nvim",
 	{
 		"folke/noice.nvim",
