@@ -20,6 +20,12 @@ local plugins = {
 		"sphamba/smear-cursor.nvim",
 		opts = {},
 	},
+	{
+		'glepnir/galaxyline.nvim',
+		config = function()
+			require "plugin-configs.galaxyline"
+		end,
+	},
 	"ray-x/lsp_signature.nvim",
 	{
 		"folke/noice.nvim",
