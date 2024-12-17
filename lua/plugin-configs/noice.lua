@@ -16,11 +16,30 @@ require("noice").setup {
 		},
 	},
 	presets = {
-		bottom_search = false,      -- use a classic bottom cmdline for search
-		command_palette = true,     -- position the cmdline and popupmenu together
-		long_message_to_split = true, -- long messages will be sent to a split
-		inc_rename = true,          -- enables an input dialog for inc-rename.nvim
-		lsp_doc_border = true,      -- add a border to hover docs and signature help
+		bottom_search = false, -- use a classic bottom cmdline for search
+		command_palette = {
+			views = {
+				cmdline_popup = {
+					position = {
+						row = "50%",
+						col = "50%",
+					},
+					size = {
+						min_width = 60,
+						width = "auto",
+						height = "auto",
+					},
+				},
+				cmdline_popupmenu = {
+					position = {
+						row = "67%",
+						col = "50%",
+					},
+				},
+			},
+		},
 	},
-
+	long_message_to_split = true, -- long messages will be sent to a split
+	inc_rename = true,           -- enables an input dialog for inc-rename.nvim
+	lsp_doc_border = true,       -- add a border to hover docs and signature help
 }
