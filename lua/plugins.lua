@@ -84,8 +84,9 @@ local plugins = {
 		'nvimdev/lspsaga.nvim',
 		config = function()
 			require('lspsaga').setup {
-				icons = {
-					code_action_icon = ""
+				ui = {
+					code_action = "",
+					virtual_text = false
 				}
 			}
 		end,

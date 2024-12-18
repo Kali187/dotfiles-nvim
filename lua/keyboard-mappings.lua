@@ -87,14 +87,17 @@ mapx.nnoremap(
 	"Line Diagnostics"
 )
 
--- Move to previous/next
-mapx.nnoremap('<A-c>', '<Cmd>BufferClose<CR>', opts)
-mapx.nnoremap('<A-p>', '<Cmd>BufferPin<CR>', opts)
-mapx.nnoremap('<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-mapx.nnoremap('<A-.>', '<Cmd>BufferNext<CR>', opts)
+-- Close and pin buffer
+mapx.nnoremap('<leader>bc', '<Cmd>BufferClose<CR>', opts)
+mapx.nnoremap('<leader>bv', '<Cmd>BufferPin<CR>', opts)
+
+-- Switch to previous/next buffer
+mapx.nnoremap('<leader>b,', '<Cmd>BufferPrevious<CR>', opts)
+mapx.nnoremap('<leader>b.', '<Cmd>BufferNext<CR>', opts)
 
 -- Re-order to previous/next
-mapx.nnoremap('<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-mapx.nnoremap('<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+mapx.nnoremap('<leader>bm,', '<Cmd>BufferMovePrevious<CR>', opts)
+mapx.nnoremap('<leader>bm.', '<Cmd>BufferMoveNext<CR>', opts)
 
+--
 --
