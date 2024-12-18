@@ -88,6 +88,8 @@ mapx.nnoremap(
 )
 
 -- Move to previous/next
+mapx.nnoremap('<A-c>', '<Cmd>BufferClose<CR>', opts)
+mapx.nnoremap('<A-p>', '<Cmd>BufferPin<CR>', opts)
 mapx.nnoremap('<A-,>', '<Cmd>BufferPrevious<CR>', opts)
 mapx.nnoremap('<A-.>', '<Cmd>BufferNext<CR>', opts)
 
