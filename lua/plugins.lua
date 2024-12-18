@@ -83,7 +83,11 @@ local plugins = {
 	{
 		'nvimdev/lspsaga.nvim',
 		config = function()
-			require('lspsaga').setup {}
+			require('lspsaga').setup {
+				icons = {
+					code_action_icon = ""
+				}
+			}
 		end,
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter',
@@ -130,7 +134,7 @@ local plugins = {
 		end,
 	},
 	"tpope/vim-endwise",
-	"tpope/vim-fugitive",
+	-- "tpope/vim-fugitive",
 	"tpope/vim-surround",
 
 	-- Visual.
