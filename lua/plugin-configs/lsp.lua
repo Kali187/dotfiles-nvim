@@ -8,9 +8,9 @@ require("mason").setup {
 	}
 }
 local ensure_installed = { "lua_ls" }
-if not vim.fn.has("android") then
-	table.insert(ensure_installed, "rust_analyzer")
-end
+-- if not vim.fn.has("android") then
+-- 	table.insert(ensure_installed, "rust_analyzer")
+-- end
 require("mason-lspconfig").setup {
 	ensure_installed = ensure_installed
 }

@@ -85,8 +85,12 @@ local plugins = {
 		config = function()
 			require('lspsaga').setup {
 				ui = {
-					code_action = "",
 					virtual_text = false
+					code_action = '',
+				},
+				symbol_in_winbar = {
+					enable = true,
+					folder_level = 1
 				}
 			}
 		end,
