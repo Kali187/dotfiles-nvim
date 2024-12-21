@@ -105,4 +105,7 @@ mapx.nnoremap('<leader>bm,', '<Cmd>BufferMovePrevious<CR>', opts)
 mapx.nnoremap('<leader>bm.', '<Cmd>BufferMoveNext<CR>', opts)
 
 --
+mapx.nnoremap('<leader>wf', '<Cmd>SessionSearch<CR>', opts)
+mapx.nnoremap('<leader>ws', '<Cmd>SessionSave<CR>', opts)
+mapx.nnoremap('<leader>wa', '<Cmd>SessionToggleAutoSave<CR>', opts)
 --

@@ -23,7 +23,7 @@ local plugins = {
 	{
 		'glepnir/galaxyline.nvim',
 		config = function()
-			require "plugin-configs.galaxyline"
+			require "plugin-configs.galaxyline-bubbles"
 		end,
 	},
 	{

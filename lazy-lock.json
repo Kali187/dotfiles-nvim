@@ -1,6 +1,7 @@
 {
   "alpha-nvim": { "branch": "main", "commit": "de72250e054e5e691b9736ee30db72c65d560771" },
   "astrocore": { "branch": "main", "commit": "0fcaac66d115948605c14eaf45a41d3923eaafeb" },
+  "auto-session": { "branch": "main", "commit": "021b64ed7d4ac68a37be3ad28d8e1cba5bec582c" },
   "barbar.nvim": { "branch": "master", "commit": "5c0abe2331837dcd3830f7429ddb9b8340c9fa93" },
   "catppuccin": { "branch": "main", "commit": "faf15ab0201b564b6368ffa47b56feefc92ce3f4" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
@@ -55,7 +56,6 @@
   "tmux.nvim": { "branch": "main", "commit": "307bad95a1274f7288aaee09694c25c8cbcd6f1a" },
   "vim-delve": { "branch": "master", "commit": "41d6ad294fb6dd5090f5f938318fc4ed73b6e1ea" },
   "vim-endwise": { "branch": "master", "commit": "1d42c830d8a81958a6703cee8f4caece4b1b8423" },
-  "vim-fugitive": { "branch": "master", "commit": "320b18fba2a4f2fe3c8225c778c687e0d2620384" },
   "vim-illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "which-key.nvim": { "branch": "main", "commit": "9b365a6428a9633e3eeb34dbef1b791511c54f70" }
