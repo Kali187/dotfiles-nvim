@@ -26,6 +26,13 @@ local plugins = {
 			require "plugin-configs.galaxyline"
 		end,
 	},
+	{
+		'rmagatti/auto-session',
+		lazy = false,
+		config = function()
+			require "plugin-configs.auto-session"
+		end,
+	},
 	"ray-x/lsp_signature.nvim",
 	{
 		"folke/noice.nvim",
@@ -85,12 +92,12 @@ local plugins = {
 		config = function()
 			require('lspsaga').setup {
 				ui = {
-					virtual_text = false
+					virtual_text = false,
 					code_action = '',
 				},
 				symbol_in_winbar = {
 					enable = true,
-					folder_level = 1
+					folder_level = 1,
 				}
 			}
 		end,
