@@ -21,9 +21,21 @@ local plugins = {
 		opts = {},
 	},
 	{
-		'glepnir/galaxyline.nvim',
+		'freddiehaddad/feline.nvim',
 		config = function()
-			require "plugin-configs.galaxyline-bubbles"
+			require "plugin-configs.feline-one-monokai"
+		end,
+	},
+	-- {
+	-- 	'glepnir/galaxyline.nvim',
+	-- 	config = function()
+	-- 		require "plugin-configs.galaxyline-spaceline"
+	-- 	end,
+	-- },
+	{
+		'gorbit99/codewindow.nvim',
+		config = function()
+			require "plugin-configs.codewindow"
 		end,
 	},
 	{
