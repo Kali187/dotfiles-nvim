@@ -1,5 +1,5 @@
 local mapx = require("mapx").setup()
-local crates = require('crates')
+-- local crates = require('crates')
 
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
