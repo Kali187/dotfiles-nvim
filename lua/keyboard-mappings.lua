@@ -106,4 +106,11 @@ mapx.nnoremap('<leader>bm.', '<Cmd>BufferMoveNext<CR>', opts)
 mapx.nnoremap('<leader>wf', '<Cmd>SessionSearch<CR>', opts)
 mapx.nnoremap('<leader>ws', '<Cmd>SessionSave<CR>', opts)
 mapx.nnoremap('<leader>wa', '<Cmd>SessionToggleAutoSave<CR>', opts)
+
+-- Dashboard
+mapx.nnoremap('<leader>aa', '<Cmd>Alpha<CR>', opts)
+
+-- Neogit
+mapx.nnoremap('<leader>ng', '<Cmd>Neogit<CR>', opts)
+
 --
