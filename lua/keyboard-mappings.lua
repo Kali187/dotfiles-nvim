@@ -113,4 +113,10 @@ mapx.nnoremap('<leader>aa', '<Cmd>Alpha<CR>', opts)
 -- Neogit
 mapx.nnoremap('<leader>ng', '<Cmd>Neogit<CR>', opts)
 
+-- Harpoon
+
+-- mapx.nnoremap('<leader>hm', '<Cmd>lua require("harpoon.mark").add_file()<CR>', 'Harpoon - Add file', opts)
+-- mapx.nnoremap('<leader>ht', '<Cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'Harpoon - toggle UI', opts)
+-- mapx.nnoremap('<leader>h,', '<Cmd>lua require("harpoon.ui").nav_prev()<CR>', 'Harpoon - Navigate to previous', opts)
+-- mapx.nnoremap('<leader>h.', '<Cmd>lua require("harpoon.ui").nav_next()<CR>', 'Harpoon - Navigate to next', opts)
 --

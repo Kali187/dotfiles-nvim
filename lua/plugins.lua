@@ -27,6 +27,12 @@ local plugins = {
 		end,
 	},
 	-- {
+	-- 	'ThePrimeagen/harpoon',
+	-- 	config = function()
+	-- 		require "plugin-configs.harpoon"
+	-- 	end,
+	-- },
+	-- {
 	-- 	'glepnir/galaxyline.nvim',
 	-- 	config = function()
 	-- 		require "plugin-configs.galaxyline-spaceline"
