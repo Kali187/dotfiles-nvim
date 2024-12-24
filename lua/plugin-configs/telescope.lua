@@ -13,7 +13,11 @@ ts.setup {
 			-- telescope-undo.nvim config, see below
 			use_delta = true,
 			use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
-			side_by_side = false,
+			side_by_side = true,
+			layout_strategy = "vertical",
+			layout_config = {
+				preview_height = 0.8,
+			},
 			vim_diff_opts = {
 				ctxlen = vim.o.scrolloff,
 			},
