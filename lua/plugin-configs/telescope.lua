@@ -11,7 +11,8 @@ ts.setup {
 		packer = {
 			theme = "ivy",
 			layout_config = {
-				height = 0.5,
+				height = 0.66,
+				width = 0.66,
 			},
 		},
 	},

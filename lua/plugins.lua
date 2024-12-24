@@ -21,11 +21,20 @@ local plugins = {
 		opts = {},
 	},
 	{
-		'freddiehaddad/feline.nvim',
+		"freddiehaddad/feline.nvim",
 		config = function()
 			require "plugin-configs.feline-one-monokai"
 		end,
 	},
+	-- {
+	-- 	"nvimtools/none-ls.nvim",
+	-- 	config = function()
+	-- 		require "plugin-configs.none-ls"
+	-- 	end,
+	-- },
+	-- {
+	-- 	"nvimtools/none-ls-extras.nvim",
+	-- },
 	-- {
 	-- 	'ThePrimeagen/harpoon',
 	-- 	config = function()
@@ -39,13 +48,20 @@ local plugins = {
 	-- 	end,
 	-- },
 	{
-		'gorbit99/codewindow.nvim',
+		"gorbit99/codewindow.nvim",
 		config = function()
 			require "plugin-configs.codewindow"
 		end,
 	},
 	{
-		'rmagatti/auto-session',
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {},
+	},
+	{
+		"rmagatti/auto-session",
 		lazy = false,
 		config = function()
 			require "plugin-configs.auto-session"
@@ -96,8 +112,8 @@ local plugins = {
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			require('gitsigns').setup {}
-		end
+			require("gitsigns").setup {}
+		end,
 	},
 	{
 		"folke/which-key.nvim",
@@ -106,22 +122,22 @@ local plugins = {
 		end,
 	},
 	{
-		'nvimdev/lspsaga.nvim',
+		"nvimdev/lspsaga.nvim",
 		config = function()
-			require('lspsaga').setup {
+			require("lspsaga").setup {
 				ui = {
 					virtual_text = false,
-					code_action = '',
+					code_action = "",
 				},
 				symbol_in_winbar = {
 					enable = true,
 					folder_level = 1,
-				}
+				},
 			}
 		end,
 		dependencies = {
-			'nvim-treesitter/nvim-treesitter',
-		}
+			"nvim-treesitter/nvim-treesitter",
+		},
 	},
 	-- Window management
 	{
@@ -168,7 +184,7 @@ local plugins = {
 	"tpope/vim-surround",
 
 	-- Visual.
-	{ 'echasnovski/mini.icons', version = false },
+	{ "echasnovski/mini.icons", version = false },
 	{
 		"yamatsum/nvim-nonicons",
 		dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -187,7 +203,7 @@ local plugins = {
 		"ldelossa/nvim-dap-projects",
 		config = function()
 			require("nvim-dap-projects").search_project_config()
-		end
+		end,
 	},
 	{
 		"goolord/alpha-nvim",
@@ -210,14 +226,14 @@ local plugins = {
 		config = function()
 			require("catppuccin").setup {}
 			vim.cmd [[colorscheme catppuccin-mocha]]
-		end
+		end,
 	},
 
 	-- Debugging
 	"pest-parser/pest.vim",
 	{
 		"mrcjkb/rustaceanvim",
-		version = '^4',
+		version = "^4",
 		lazy = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -235,18 +251,18 @@ local plugins = {
 					},
 				},
 			}
-		end
+		end,
 	},
 	{
 		"mfussenegger/nvim-dap",
 		config = function()
 			require "plugin-configs.nvim-dap"
-		end
+		end,
 	},
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = {
-			"nvim-neotest/nvim-nio"
+			"nvim-neotest/nvim-nio",
 		},
 		config = function()
 			require "plugin-configs.nvim-dap-gui"
@@ -254,32 +270,34 @@ local plugins = {
 	},
 	"theHamsta/nvim-dap-virtual-text",
 	{
-		'romgrk/barbar.nvim',
+		"romgrk/barbar.nvim",
 		dependencies = {
-			'lewis6991/gitsigns.nvim',   -- OPTIONAL: for git status
-			'kyazdani42/nvim-web-devicons', -- OPTIONAL: for file icons
+			"lewis6991/gitsigns.nvim",   -- OPTIONAL: for git status
+			"kyazdani42/nvim-web-devicons", -- OPTIONAL: for file icons
 		},
 		config = function()
 			require "plugin-configs.barbar"
 		end,
-		version = '^1.0.0', -- optional: only update when a new 1.x version is released
+		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
 	{
 		"charludo/projectmgr.nvim",
 		lazy = false, -- important!
-		dependencies = { {
-			"AstroNvim/astrocore",
-			opts = {
-				mappings = {
-					n = {
-						["<Leader>P"] = {
-							"<Cmd>ProjectMgr<CR>",
-							desc = "Open ProjectMgr panel"
-						}
-					}
-				}
-			}
-		} }
+		dependencies = {
+			{
+				"AstroNvim/astrocore",
+				opts = {
+					mappings = {
+						n = {
+							["<Leader>P"] = {
+								"<Cmd>ProjectMgr<CR>",
+								desc = "Open ProjectMgr panel",
+							},
+						},
+					},
+				},
+			},
+		},
 	},
 	{
 		"NeogitOrg/neogit",
@@ -289,7 +307,7 @@ local plugins = {
 			-- Only one of these is needed.
 			"nvim-telescope/telescope.nvim", -- optional
 		},
-		config = true
+		config = true,
 	},
 	{
 		"kdheepak/lazygit.nvim",
@@ -306,17 +324,34 @@ local plugins = {
 			"nvim-lua/plenary.nvim",
 		},
 		config = function()
-			require("telescope").load_extension("lazygit")
+			require("telescope").load_extension "lazygit"
 		end,
 		-- setting the keybinding for LazyGit with 'keys' is recommended in
 		-- order to load the plugin when the command is run for the first time
 		keys = {
-			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-		}
-	}
+			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		},
+	},
+	-- {
+	-- 	"farias-hecdin/CSSVarViewer",
+	-- 	ft = "css",
+	-- 	-- If you want to configure some options, replace the previous line with:
+	-- 	config = function()
+	-- 		require "plugin-configs.CssVarViewer"
+	-- 	end,
+	-- },
+	-- {
+	-- 	"farias-hecdin/CSSVarHighlight",
+	-- 	ft = "css",
+	-- 	dependencies = { "echasnovski/mini.hipatterns" },
+	-- 	-- If you want to configure some options, replace the previous line with:
+	-- 	config = function()
+	-- 		require "plugin-configs.CssVarHighlight"
+	-- 	end,
+	-- },
 }
 
-if vim.fn.has("macunix") == 1 then
+if vim.fn.has "macunix" == 1 then
 	table.insert(plugins, "sebdah/vim-delve")
 	table.insert(plugins, "leoluz/nvim-dap-go")
 	table.insert(plugins, {
@@ -330,7 +365,7 @@ if vim.fn.has("macunix") == 1 then
 			require("go").setup()
 		end,
 		event = { "CmdlineEnter" },
-		ft = { "go", 'gomod' },
+		ft = { "go", "gomod" },
 	})
 end
 
