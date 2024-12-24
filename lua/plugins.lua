@@ -87,6 +87,14 @@ local plugins = {
 	},
 	"editorconfig/editorconfig-vim",
 	{
+		"folke/zen-mode.nvim",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		}
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		config = function()
 			require "plugin-configs.cmp"
@@ -182,7 +190,14 @@ local plugins = {
 	"tpope/vim-endwise",
 	-- "tpope/vim-fugitive",
 	"tpope/vim-surround",
-
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+		},
+	},
 	-- Visual.
 	{ "echasnovski/mini.icons", version = false },
 	{
@@ -194,6 +209,7 @@ local plugins = {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-dap.nvim",
+			"debugloop/telescope-undo.nvim",
 		},
 		config = function()
 			require "plugin-configs.telescope"
@@ -324,6 +340,7 @@ local plugins = {
 			"nvim-lua/plenary.nvim",
 		},
 
+		-- TODO: Clean up all plugins
 
 		config = function()
 			require("telescope").load_extension "lazygit"
@@ -335,12 +352,58 @@ local plugins = {
 		},
 	},
 	{
-		'echasnovski/mini.hipatterns',
-		version = false,
+		'HiPhish/rainbow-delimiters.nvim',
 		config = function()
-			require "plugin-configs.hipatterns"
+			require "plugin-configs.rainbow-delimiters"
 		end,
 	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			keywords = {
+				FIX = {
+					-- HACK: Just a test comment
+					icon = " ", -- icon used for the sign, and in search results
+					color = "error", -- can be a hex color, or a named color (see below)
+					alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+					-- signs = false, -- configure signs for some keywords individually
+				},
+				TODO = { icon = " ", color = "info" },
+				HACK = { icon = " ", color = "warning" },
+				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+				PERF = { icon = "󱑟 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+				NOTE = { icon = "󰎛 ", color = "hint", alt = { "INFO" } },
+				TEST = { icon = "󰙨 ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+			},
+			search = {
+				command = "rg",
+				args = {
+					-- "--color=never",
+					-- "--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+				},
+				-- regex that will be used to match keywords.
+				-- don't replace the (KEYWORDS) placeholder
+				pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+			},
+		}
+	},
+	{
+		"smjonas/inc-rename.nvim",
+		config = function()
+			require("inc_rename").setup()
+		end,
+	},
+	-- {
+	-- 	'echasnovski/mini.hipatterns',
+	-- 	version = false,
+	-- 	config = function()
+	-- 		require "plugin-configs.hipatterns"
+	-- 	end,
+	-- },
 	-- {
 	-- 	"fraso-dev/nvim-listchars",
 	-- 	opts = true,

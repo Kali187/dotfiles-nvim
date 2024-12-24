@@ -31,6 +31,13 @@ mapx.nnoremap("<C-s>", ":Lspsaga outline<Cr>")      -- Show symbols outline.
 mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")  -- Search in files.
 mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>")        -- Show workspace issues.
 
+mapx.nnoremap("tt", ":Trouble todo<Cr>")            -- Show todo comments
+mapx.nnoremap("tu", ":Telescope undo<Cr>")          -- Display undo tree
+mapx.nnoremap("tf", ":Telescope find_files<Cr>")    -- Findfiles
+mapx.nnoremap("tg", ":Telescope live_grep<Cr>")     --search in file
+mapx.nnoremap("tr", ":Telescope oldfiles<Cr>")      --recent files
+
+
 -- mapx.inoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" })           -- Debug go tests in insert mode.
 -- mapx.nnoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" })           -- Debug go tests in normal mode.
 --
