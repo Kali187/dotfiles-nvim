@@ -1,6 +1,4 @@
 {
-  "CSSVarHighlight": { "branch": "main", "commit": "df12358131e4a5f905488e247d2e999415f25c15" },
-  "CSSVarViewer": { "branch": "main", "commit": "6716e8634ba402cb9d0fa0cf98122ba724a6aed7" },
   "alpha-nvim": { "branch": "main", "commit": "de72250e054e5e691b9736ee30db72c65d560771" },
   "astrocore": { "branch": "main", "commit": "0fcaac66d115948605c14eaf45a41d3923eaafeb" },
   "auto-session": { "branch": "main", "commit": "021b64ed7d4ac68a37be3ad28d8e1cba5bec582c" },
@@ -35,8 +33,6 @@
   "mini.icons": { "branch": "main", "commit": "54686be7d58807906cb2c8c2216e0bf9c044f19a" },
   "neogit": { "branch": "master", "commit": "dc36aa4b1172189a2e80cbdbd4be2e884e60c09e" },
   "noice.nvim": { "branch": "main", "commit": "7b1960c48078a8b2fb44a89db82f4fa637b2d7c8" },
-  "none-ls-extras.nvim": { "branch": "main", "commit": "6557f20e631d2e9b2a9fd27a5c045d701a3a292c" },
-  "none-ls.nvim": { "branch": "main", "commit": "58866c670d68ef80397c317a3a1ee5f53ca646fd" },
   "nui.nvim": { "branch": "main", "commit": "a0fd35fcbb4cb479366f1dc5f20145fd718a3733" },
   "nvim-autopairs": { "branch": "master", "commit": "b464658e9b880f463b9f7e6ccddd93fb0013f559" },
   "nvim-cmp": { "branch": "main", "commit": "be7bd4c5f860c79da97af3a26d489af50babfd4b" },
@@ -45,6 +41,7 @@
   "nvim-dap-projects": { "branch": "main", "commit": "f319ffd99c6c8a0b930bcfc4bee0c751ffbf5808" },
   "nvim-dap-ui": { "branch": "master", "commit": "ffa89839f97bad360e78428d5c740fdad9a0ff02" },
   "nvim-dap-virtual-text": { "branch": "master", "commit": "76d80c3d171224315b61c006502a1e30c213a9ab" },
+  "nvim-listchars": { "branch": "main", "commit": "3e9d54b42b39332891c68214bdcb3b02caca0ab9" },
   "nvim-lspconfig": { "branch": "master", "commit": "dafd61d6533bd90ecf6e2a3a972298fdddc74d82" },
   "nvim-nio": { "branch": "master", "commit": "a428f309119086dc78dd4b19306d2d67be884eee" },
   "nvim-nonicons": { "branch": "main", "commit": "ceda07dc7339f35444b5f4c4016f76a9eb42ac16" },

@@ -323,6 +323,8 @@ local plugins = {
 			"nvim-telescope/telescope.nvim",
 			"nvim-lua/plenary.nvim",
 		},
+
+
 		config = function()
 			require("telescope").load_extension "lazygit"
 		end,
@@ -332,23 +334,22 @@ local plugins = {
 			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 		},
 	},
+	{
+		'echasnovski/mini.hipatterns',
+		version = false,
+		config = function()
+			require "plugin-configs.hipatterns"
+		end,
+	},
 	-- {
-	-- 	"farias-hecdin/CSSVarViewer",
-	-- 	ft = "css",
-	-- 	-- If you want to configure some options, replace the previous line with:
+	-- 	"fraso-dev/nvim-listchars",
+	-- 	opts = true,
+	-- 	event = "BufEnter",
 	-- 	config = function()
-	-- 		require "plugin-configs.CssVarViewer"
+	-- 		require "plugin-configs.listchars"
 	-- 	end,
 	-- },
-	-- {
-	-- 	"farias-hecdin/CSSVarHighlight",
-	-- 	ft = "css",
-	-- 	dependencies = { "echasnovski/mini.hipatterns" },
-	-- 	-- If you want to configure some options, replace the previous line with:
-	-- 	config = function()
-	-- 		require "plugin-configs.CssVarHighlight"
-	-- 	end,
-	-- },
+
 }
 
 if vim.fn.has "macunix" == 1 then

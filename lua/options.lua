@@ -48,9 +48,12 @@ o.fillchars = {
 	eob = " ", -- End-of-buffer: ~
 }
 vim.g.rainbow_active = 1
+
+local sp = "·"
 o.listchars = {
-	tab = "┆ ",
-	trail = "~",
+	tab = "┊ ",
+	trail = sp,
+
 }
 o.list = true
 o.shortmess = o.shortmess + "c" -- prevent "pattern not found" messages
@@ -71,7 +74,6 @@ o.wildignore = [[
 *.swp,.lock,.DS_Store,._*
 */tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
 ]]
-
 -- Register the AUGroups and autocommands
 local autoCommands = {
 	open_folds = {
