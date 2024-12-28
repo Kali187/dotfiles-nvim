@@ -199,7 +199,7 @@ local plugins = {
 		},
 	},
 	-- Visual.
-	{ "echasnovski/mini.icons", version = false },
+	{ "echasnovski/mini.icons",           version = false },
 	{
 		"yamatsum/nvim-nonicons",
 		dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -215,11 +215,17 @@ local plugins = {
 			require "plugin-configs.telescope"
 		end,
 	},
+	{ 'dmmulroy/ts-error-translator.nvim' },
 	{
 		"ldelossa/nvim-dap-projects",
 		config = function()
 			require("nvim-dap-projects").search_project_config()
 		end,
+	},
+	{
+		"rmagatti/goto-preview",
+		event = "BufEnter",
+		config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
 	},
 	{
 		"goolord/alpha-nvim",
