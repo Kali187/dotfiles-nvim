@@ -20,33 +20,49 @@ local plugins = {
 		"sphamba/smear-cursor.nvim",
 		opts = {},
 	},
+	'jghauser/mkdir.nvim',
+	{
+		"andythigpen/nvim-coverage",
+		version = "*",
+		config = function()
+			require("coverage").setup({
+				auto_reload = true,
+			})
+		end,
+	},
+	{
+		"otavioschwanck/arrow.nvim",
+		dependencies = {
+			{ "nvim-tree/nvim-web-devicons" },
+			-- or if using `mini.icons`
+			-- { "echasnovski/mini.icons" },
+		},
+		opts = {
+			show_icons = true,
+			leader_key = ';',     -- Recommended to be a single key
+			buffer_leader_key = ':', -- Per Buffer Mappings
+		}
+	},
+	{
+		"olrtg/nvim-emmet",
+		config = function()
+			vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
+		end,
+	},
 	{
 		"freddiehaddad/feline.nvim",
 		config = function()
 			require "plugin-configs.feline-one-monokai"
 		end,
 	},
-	-- {
-	-- 	"nvimtools/none-ls.nvim",
-	-- 	config = function()
-	-- 		require "plugin-configs.none-ls"
-	-- 	end,
-	-- },
-	-- {
-	-- 	"nvimtools/none-ls-extras.nvim",
-	-- },
-	-- {
-	-- 	'ThePrimeagen/harpoon',
-	-- 	config = function()
-	-- 		require "plugin-configs.harpoon"
-	-- 	end,
-	-- },
-	-- {
-	-- 	'glepnir/galaxyline.nvim',
-	-- 	config = function()
-	-- 		require "plugin-configs.galaxyline-spaceline"
-	-- 	end,
-	-- },
+	{
+		'b0o/incline.nvim',
+		config = function()
+			require('incline').setup()
+		end,
+		-- Optional: Lazy load Incline
+		--   event = 'VeryLazy',
+	},
 	{
 		"gorbit99/codewindow.nvim",
 		config = function()
