@@ -12,6 +12,8 @@ require("nvim-tree").setup {
 		exclude = { ".gitignore" },
 	},
 	view = {
+		adaptive_size = true,
+		width = 30,
 		float = {
 			open_win_config = {
 				border = "rounded"
