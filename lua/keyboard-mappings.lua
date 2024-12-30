@@ -24,18 +24,20 @@ mapx.nnoremap("<C-k>", "<C-w>k")
 mapx.nnoremap("<C-l>", "<C-w>l")
 
 -- Utils
-mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>")       -- Open project manager.
-mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>")       -- Toggle file explorer.
-mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>") -- Search for files.
-mapx.nnoremap("<C-s>", ":Lspsaga outline<Cr>")      -- Show symbols outline.
-mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")  -- Search in files.
-mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>")        -- Show workspace issues.
+mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>")                           -- Open project manager.
+mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>")                           -- Toggle file explorer.
+mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>")                     -- Search for files.
+mapx.nnoremap("<C-s>", ":Lspsaga outline<Cr>")                          -- Show symbols outline.
+mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")                      -- Search in files.
+mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>")                            -- Show workspace issues.
 
-mapx.nnoremap("tt", ":Trouble todo<Cr>")            -- Show todo comments
-mapx.nnoremap("tu", ":Telescope undo<Cr>")          -- Display undo tree
-mapx.nnoremap("tf", ":Telescope find_files<Cr>")    -- Findfiles
-mapx.nnoremap("tg", ":Telescope live_grep<Cr>")     --search in file
-mapx.nnoremap("tr", ":Telescope oldfiles<Cr>")      --recent files
+mapx.nnoremap("<leader>td", ":Trouble todo<Cr>")                        -- Show todo comments
+mapx.nnoremap("<leader>tu", ":Telescope undo<Cr>")                      -- Display undo tree
+mapx.nnoremap("<leader>tf", ":Telescope find_files<Cr>")                -- Find files
+mapx.nnoremap("<leader>tb", ":Telescope buffers<Cr>")                   -- Buffers
+mapx.nnoremap("<leader>tg", ":Telescope live_grep<Cr>")                 -- search in file
+mapx.nnoremap("<leader>to", ":Telescope oldfiles<Cr>")                  -- recent files
+mapx.nnoremap("<leader>tc", ":Telescope current_buffer_fuzzy_find<Cr>") -- fuzzy search in buffer
 
 
 -- mapx.inoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" })           -- Debug go tests in insert mode.

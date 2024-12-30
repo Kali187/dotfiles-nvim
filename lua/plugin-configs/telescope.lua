@@ -8,7 +8,6 @@ ts.setup {
 			theme = "dropdown",
 			layout_config = {
 				width = 0.8,
-				height = 0.2,
 			}
 		},
 	},
