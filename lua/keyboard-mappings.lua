@@ -25,11 +25,9 @@ mapx.nnoremap("<C-l>", "<C-w>l")
 
 -- Utils
 mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>")                           -- Open project manager.
-mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>")                           -- Toggle file explorer.
-mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>")                     -- Search for files.
-mapx.nnoremap("<C-s>", ":Lspsaga outline<Cr>")                          -- Show symbols outline.
-mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")                      -- Search in files.
-mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>")                            -- Show workspace issues.
+mapx.nnoremap("<C-e>", ":NvimTreeToggle<Cr>")                           -- Toggle file explorer.
+mapx.nnoremap("<C-o>", ":Lspsaga outline<Cr>")                          -- Show symbols outline.
+mapx.nnoremap("<leader>tt", ":TroubleToggle<Cr>")                       -- Show workspace issues.
 
 mapx.nnoremap("<leader>td", ":Trouble todo<Cr>")                        -- Show todo comments
 mapx.nnoremap("<leader>tu", ":Telescope undo<Cr>")                      -- Display undo tree
@@ -38,38 +36,6 @@ mapx.nnoremap("<leader>tb", ":Telescope buffers<Cr>")                   -- Buffe
 mapx.nnoremap("<leader>tg", ":Telescope live_grep<Cr>")                 -- search in file
 mapx.nnoremap("<leader>to", ":Telescope oldfiles<Cr>")                  -- recent files
 mapx.nnoremap("<leader>tc", ":Telescope current_buffer_fuzzy_find<Cr>") -- fuzzy search in buffer
-
-
--- mapx.inoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" })           -- Debug go tests in insert mode.
--- mapx.nnoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" })           -- Debug go tests in normal mode.
---
--- mapx.inoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })       -- Run go tests in insert mode.
--- mapx.nnoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })       -- Run go tests in normal mode.
---
--- mapx.inoremap("<F5>", "<cmd>:RustLsp debuggables<Cr>", "silent", { ft = "rust" }) -- Run Rust tests in insert mode.
--- mapx.nnoremap("<F5>", "<cmd>:RustLsp debuggables<Cr>", "silent", { ft = "rust" }) -- Run Rust tests in normal mode.
--- -- Define your keybindings
--- vim.keymap.set("n", "<leader>ct", crates.toggle, opts)
--- vim.keymap.set("n", "<leader>cr", crates.reload, opts)
---
--- vim.keymap.set("n", "<leader>cv", crates.show_versions_popup, opts)
--- vim.keymap.set("n", "<leader>cf", crates.show_features_popup, opts)
--- vim.keymap.set("n", "<leader>cd", crates.show_dependencies_popup, opts)
---
--- vim.keymap.set("n", "<leader>cu", crates.update_crate, opts)
--- vim.keymap.set("v", "<leader>cu", crates.update_crates, opts)
--- vim.keymap.set("n", "<leader>ca", crates.update_all_crates, opts)
--- vim.keymap.set("n", "<leader>cU", crates.upgrade_crate, opts)
--- vim.keymap.set("v", "<leader>cU", crates.upgrade_crates, opts)
--- vim.keymap.set("n", "<leader>cA", crates.upgrade_all_crates, opts)
---
--- vim.keymap.set("n", "<leader>cx", crates.expand_plain_crate_to_inline_table, opts)
--- vim.keymap.set("n", "<leader>cX", crates.extract_crate_into_table, opts)
---
--- vim.keymap.set("n", "<leader>cH", crates.open_homepage, opts)
--- vim.keymap.set("n", "<leader>cR", crates.open_repository, opts)
--- vim.keymap.set("n", "<leader>cD", crates.open_documentation, opts)
--- vim.keymap.set("n", "<leader>cC", crates.open_crates_io, opts)
 
 -- LspSaga calls
 mapx.nnoremap("<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
