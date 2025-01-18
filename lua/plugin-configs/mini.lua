@@ -7,7 +7,27 @@ require('mini.cursorword').setup()
 require('mini.files').setup()
 require('mini.icons').setup()
 -- require('mini.indentscope').setup()
-require('mini.move').setup()
+require('mini.move').setup({
+	mappings = {
+		-- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+		left = '<leader>mh',
+		right = '<leader>ml',
+		down = '<leader>mj',
+		up = '<leader>mk',
+
+		-- Move current line in Normal mode
+		line_left = '<leader>mh',
+		line_right = '<leader>ml',
+		line_down = '<leader>mj',
+		line_up = '<leader>mk',
+	},
+
+	-- Options which control moving behavior
+	options = {
+		-- Automatically reindent selection during linewise vertical move
+		reindent_linewise = true,
+	},
+})
 require('mini.operators').setup()
 require('mini.pairs').setup()
 require('mini.surround').setup()
