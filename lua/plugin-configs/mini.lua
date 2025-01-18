@@ -2,7 +2,7 @@ require('mini.ai').setup()
 require('mini.align').setup()
 require('mini.bracketed').setup()
 require('mini.comment').setup()
-require('mini.completion').setup()
+-- require('mini.completion').setup()
 require('mini.cursorword').setup()
 require('mini.files').setup()
 require('mini.icons').setup()
@@ -14,14 +14,12 @@ require('mini.move').setup({
 		right = '<leader>ml',
 		down = '<leader>mj',
 		up = '<leader>mk',
-
 		-- Move current line in Normal mode
 		line_left = '<leader>mh',
 		line_right = '<leader>ml',
 		line_down = '<leader>mj',
 		line_up = '<leader>mk',
 	},
-
 	-- Options which control moving behavior
 	options = {
 		-- Automatically reindent selection during linewise vertical move
@@ -30,7 +28,20 @@ require('mini.move').setup({
 })
 require('mini.operators').setup()
 require('mini.pairs').setup()
-require('mini.surround').setup()
+require('mini.surround').setup({
+	mappings = {
+		add = '<leader>sa',          -- Add surrounding in Normal and Visual modes
+		delete = '<leader>sd',       -- Delete surrounding
+		find = '<leader>sf',         -- Find surrounding (to the right)
+		find_left = '<leader>sF',    -- Find surrounding (to the left)
+		highlight = '<leader>sh',    -- Highlight surrounding
+		replace = '<leader>sr',      -- Replace surrounding
+		update_n_lines = '<leader>sn', -- Update `n_lines`
+
+		suffix_last = 'l',           -- Suffix to search with :"prev": method
+		suffix_next = 'n',           -- Suffix to search with "next" method
+	},
+})
 require('mini.splitjoin').setup()
 local hipatterns = require('mini.hipatterns')
 hipatterns.setup({
