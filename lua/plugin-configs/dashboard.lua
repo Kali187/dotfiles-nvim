@@ -39,18 +39,15 @@ function M.setup()
 	local function footer()
 		-- Number of plugins
 		local datetime = os.date "%d-%m-%Y %H:%M:%S"
-		local plugins_text = "  "
-				.. stats.count
-				.. " plugins"
-				.. " v"
+		local plugins_text = "v"
 				.. vim.version().major
 				.. "."
 				.. vim.version().minor
 				.. "."
 				.. vim.version().patch
-				.. "  "
-				.. datetime
-
+				.. "  "
+				.. stats.count
+				.. " plugins"
 		-- Quote
 		local fortune = require "alpha.fortune"
 		local quote = table.concat(fortune(), "\n")

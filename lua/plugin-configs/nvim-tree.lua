@@ -12,7 +12,7 @@ require("nvim-tree").setup {
 		exclude = { ".gitignore" },
 	},
 	view = {
-		adaptive_size = true,
+		adaptive_size = false,
 		width = 30,
 		float = {
 			open_win_config = {
@@ -23,6 +23,6 @@ require("nvim-tree").setup {
 }
 
 vim.cmd([[
-	hi NvimTreeNormal guibg=#050515
-	hi NvimTreeWinSeparator guibg=none guifg=#67F0AB
+	hi NvimTreeNormal guibg=#080808,
+	hi NvimTreeWinSeparator guibg=none guifg=#666666
 ]])

@@ -33,9 +33,9 @@ local plugins = {
 	{
 		"otavioschwanck/arrow.nvim",
 		dependencies = {
-			{ "nvim-tree/nvim-web-devicons" },
+			-- { "nvim-tree/nvim-web-devicons" },
 			-- or if using `mini.icons`
-			-- { "echasnovski/mini.icons" },
+			{ "echasnovski/mini.icons" },
 		},
 		opts = {
 			show_icons = true,
@@ -102,14 +102,14 @@ local plugins = {
 		end,
 	},
 	"editorconfig/editorconfig-vim",
-	{
-		"folke/zen-mode.nvim",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		}
-	},
+	-- {
+	-- 	"folke/zen-mode.nvim",
+	-- 	opts = {
+	-- 		-- your configuration comes here
+	-- 		-- or leave it empty to use the default settings
+	-- 		-- refer to the configuration section below
+	-- 	}
+	-- },
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
@@ -191,12 +191,12 @@ local plugins = {
 			require("crates").setup()
 		end,
 	},
-	{
-		"windwp/nvim-autopairs",
-		config = function()
-			require "plugin-configs.autopairs"
-		end,
-	},
+	-- {
+	-- 	"windwp/nvim-autopairs",
+	-- 	config = function()
+	-- 		require "plugin-configs.autopairs"
+	-- 	end,
+	-- },
 	{
 		"hedyhli/outline.nvim",
 		config = function()
@@ -205,7 +205,7 @@ local plugins = {
 	},
 	"tpope/vim-endwise",
 	-- "tpope/vim-fugitive",
-	"tpope/vim-surround",
+	-- "tpope/vim-surround",
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -215,7 +215,15 @@ local plugins = {
 		},
 	},
 	-- Visual.
-	{ "echasnovski/mini.icons",           version = false },
+
+	{
+		'echasnovski/mini.nvim',
+		version = false,
+		config = function()
+			require "plugin-configs.mini"
+		end,
+
+	},
 	{
 		"yamatsum/nvim-nonicons",
 		dependencies = { "kyazdani42/nvim-web-devicons" },

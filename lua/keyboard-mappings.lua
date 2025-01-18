@@ -10,8 +10,6 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references)
 
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 -- Run format on save
@@ -36,6 +34,9 @@ mapx.nnoremap("<leader>tb", ":Telescope buffers<Cr>")                   -- Buffe
 mapx.nnoremap("<leader>tg", ":Telescope live_grep<Cr>")                 -- search in file
 mapx.nnoremap("<leader>to", ":Telescope oldfiles<Cr>")                  -- recent files
 mapx.nnoremap("<leader>tc", ":Telescope current_buffer_fuzzy_find<Cr>") -- fuzzy search in buffer
+
+mapx.nnoremap("<M-f>", ":lua MiniFiles.open()<Cr>")                     -- Mini files manager
+
 
 -- LspSaga calls
 mapx.nnoremap("<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
