@@ -16,37 +16,41 @@ local plugins = {
 			require "plugin-configs.lsp"
 		end,
 	},
-	{
-		"sphamba/smear-cursor.nvim",
-		opts = {},
-	},
-	'jghauser/mkdir.nvim',
+	"jghauser/mkdir.nvim",
 	{
 		"andythigpen/nvim-coverage",
 		version = "*",
 		config = function()
-			require("coverage").setup({
+			require("coverage").setup {
 				auto_reload = true,
-			})
+			}
 		end,
+	},
+	{ "mg979/vim-visual-multi" },
+	{
+		"ibhagwan/fzf-lua",
+		dependencies = { "echasnovski/mini.icons" },
+		opts = {},
 	},
 	{
 		"otavioschwanck/arrow.nvim",
 		dependencies = {
-			-- { "nvim-tree/nvim-web-devicons" },
-			-- or if using `mini.icons`
 			{ "echasnovski/mini.icons" },
 		},
 		opts = {
 			show_icons = true,
-			leader_key = ';',     -- Recommended to be a single key
-			buffer_leader_key = '§', -- Per Buffer Mappings
-		}
+			leader_key = ";",     -- Recommended to be a single key
+			buffer_leader_key = "§", -- Per Buffer Mappings
+		},
 	},
 	{
 		"olrtg/nvim-emmet",
 		config = function()
-			vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
+			vim.keymap.set(
+				{ "n", "v" },
+				"<leader>xe",
+				require("nvim-emmet").wrap_with_abbreviation
+			)
 		end,
 	},
 	{
@@ -55,13 +59,18 @@ local plugins = {
 			require "plugin-configs.feline-one-monokai"
 		end,
 	},
+	-- {
+	-- 	"b0o/incline.nvim",
+	-- 	config = function()
+	-- 		require("incline").setup()
+	-- 	end,
+	-- 	-- Optional: Lazy load Incline
+	-- 	--   event = 'VeryLazy',
+	-- },
 	{
-		'b0o/incline.nvim',
-		config = function()
-			require('incline').setup()
-		end,
-		-- Optional: Lazy load Incline
-		--   event = 'VeryLazy',
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 	{
 		"gorbit99/codewindow.nvim",
@@ -83,7 +92,6 @@ local plugins = {
 			require "plugin-configs.auto-session"
 		end,
 	},
-	"ray-x/lsp_signature.nvim",
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -101,15 +109,8 @@ local plugins = {
 			require "plugin-configs.treesitter"
 		end,
 	},
+	"nvim-treesitter/nvim-treesitter-textobjects",
 	"editorconfig/editorconfig-vim",
-	-- {
-	-- 	"folke/zen-mode.nvim",
-	-- 	opts = {
-	-- 		-- your configuration comes here
-	-- 		-- or leave it empty to use the default settings
-	-- 		-- refer to the configuration section below
-	-- 	}
-	-- },
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
@@ -124,6 +125,21 @@ local plugins = {
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"petertriho/cmp-git",
+			"rcarriga/cmp-dap",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			},
+			{
+				"tzachar/fuzzy.nvim",
+				dependencies = { "nvim-telescope/telescope-fzf-native.nvim" },
+			},
+			{
+				"tzachar/cmp-fuzzy-path",
+				dependencies = "tzachar/fuzzy.nvim",
+			},
 		},
 	},
 	{
@@ -151,6 +167,7 @@ local plugins = {
 			require("lspsaga").setup {
 				ui = {
 					virtual_text = false,
+					sign = false,
 					code_action = "",
 				},
 				symbol_in_winbar = {
@@ -204,8 +221,6 @@ local plugins = {
 		end,
 	},
 	"tpope/vim-endwise",
-	-- "tpope/vim-fugitive",
-	-- "tpope/vim-surround",
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -213,16 +228,57 @@ local plugins = {
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
 		},
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+		},
 	},
 	-- Visual.
-
+	"neovim/nvim-lspconfig",
 	{
-		'echasnovski/mini.nvim',
+		"nvimtools/none-ls.nvim",
+		dependencies = {
+			"nvimtools/none-ls-extras.nvim",
+		},
+		config = function()
+			require "plugin-configs.none-ls"
+		end,
+	},
+	"MunifTanjim/prettier.nvim",
+	{
+		"echasnovski/mini.nvim",
 		version = false,
 		config = function()
 			require "plugin-configs.mini"
 		end,
-
 	},
 	{
 		"yamatsum/nvim-nonicons",
@@ -239,7 +295,7 @@ local plugins = {
 			require "plugin-configs.telescope"
 		end,
 	},
-	{ 'dmmulroy/ts-error-translator.nvim' },
+	-- { "dmmulroy/ts-error-translator.nvim" },
 	{
 		"ldelossa/nvim-dap-projects",
 		config = function()
@@ -257,14 +313,14 @@ local plugins = {
 			require("plugin-configs.dashboard").setup {}
 		end,
 	},
-	{
-		"rcarriga/nvim-notify",
-		config = function()
-			local notify = require "notify"
-			notify.setup {}
-			vim.notify = notify
-		end,
-	},
+	-- {
+	-- 	"rcarriga/nvim-notify",
+	-- 	config = function()
+	-- 		local notify = require "notify"
+	-- 		notify.setup {}
+	-- 		vim.notify = notify
+	-- 	end,
+	-- },
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -272,31 +328,6 @@ local plugins = {
 		config = function()
 			require("catppuccin").setup {}
 			vim.cmd [[colorscheme catppuccin-mocha]]
-		end,
-	},
-
-	-- Debugging
-	"pest-parser/pest.vim",
-	{
-		"mrcjkb/rustaceanvim",
-		version = "^4",
-		lazy = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"mfussenegger/nvim-dap",
-		},
-		ft = { "rust" },
-		config = function()
-			vim.g.rustaceanvim = {
-				inlay_hints = {
-					highlight = "NonText",
-				},
-				tools = {
-					hover_actions = {
-						auto_focus = true,
-					},
-				},
-			}
 		end,
 	},
 	{
@@ -375,14 +406,12 @@ local plugins = {
 		config = function()
 			require("telescope").load_extension "lazygit"
 		end,
-		-- setting the keybinding for LazyGit with 'keys' is recommended in
-		-- order to load the plugin when the command is run for the first time
 		keys = {
 			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 		},
 	},
 	{
-		'HiPhish/rainbow-delimiters.nvim',
+		"HiPhish/rainbow-delimiters.nvim",
 		config = function()
 			require "plugin-configs.rainbow-delimiters"
 		end,
@@ -404,7 +433,11 @@ local plugins = {
 				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 				PERF = { icon = "󱑟 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
 				NOTE = { icon = "󰎛 ", color = "hint", alt = { "INFO" } },
-				TEST = { icon = "󰙨 ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+				TEST = {
+					icon = "󰙨 ",
+					color = "test",
+					alt = { "TESTING", "PASSED", "FAILED" },
+				},
 			},
 			search = {
 				command = "rg",
@@ -419,7 +452,7 @@ local plugins = {
 				-- don't replace the (KEYWORDS) placeholder
 				pattern = [[\b(KEYWORDS):]], -- ripgrep regex
 			},
-		}
+		},
 	},
 	{
 		"smjonas/inc-rename.nvim",
@@ -427,22 +460,6 @@ local plugins = {
 			require("inc_rename").setup()
 		end,
 	},
-	-- {
-	-- 	'echasnovski/mini.hipatterns',
-	-- 	version = false,
-	-- 	config = function()
-	-- 		require "plugin-configs.hipatterns"
-	-- 	end,
-	-- },
-	-- {
-	-- 	"fraso-dev/nvim-listchars",
-	-- 	opts = true,
-	-- 	event = "BufEnter",
-	-- 	config = function()
-	-- 		require "plugin-configs.listchars"
-	-- 	end,
-	-- },
-
 }
 
 if vim.fn.has "macunix" == 1 then
