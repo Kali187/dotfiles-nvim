@@ -3,11 +3,6 @@ local cmp = require "cmp"
 cmp.setup {
 	completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
 	experimental = { native_menu = false, ghost_text = false },
-	-- snippet = {
-	-- 	expand = function(args)
-	-- 		snippy.expand_snippet(args.body)
-	-- 	end,
-	-- },
 	formatting = {
 		format = require("lspkind").cmp_format {
 			mode = "symbol_text",
@@ -37,26 +32,3 @@ cmp.setup {
 		documentation = cmp.config.window.bordered(),
 	},
 }
-
--- Use buffer source for `/`
--- cmp.setup.cmdline("/", {
--- 	sources = {
--- 		{ name = "buffer" },
--- 	},
--- })
---
--- -- Use cmdline & path source for ':'
--- cmp.setup.cmdline(":", {
--- 	sources = cmp.config.sources({
--- 		{ name = "path" },
--- 	}, {
--- 		{ name = "cmdline" },
--- 	}),
--- })
-
--- Auto pairs
--- local cmp_autopairs = require "nvim-autopairs.completion.cmp"
--- cmp.event:on(
--- 	"confirm_done",
--- 	cmp_autopairs.on_confirm_done { map_char = { tex = "" } }
--- )

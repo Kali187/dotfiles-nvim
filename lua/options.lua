@@ -81,7 +81,8 @@ o.wildignore = [[
 -- Register the AUGroups and autocommands
 local autoCommands = {
 	open_folds = {
-		{ "BufEnter", "*", "normal zx zR" },
+		{ "BufWritePost", "*", "normal zx zR" },
+		{ "BufEnter",     "*", "normal zx zR" },
 	},
 	-- format on write.
 	format_on_write = {

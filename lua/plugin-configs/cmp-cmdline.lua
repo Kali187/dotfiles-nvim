@@ -15,20 +15,19 @@ local common_mappings = {
 			local fn = cmp.mapping.complete()
 			if cmp.visible() then
 				fn = cmp.mapping.select_next_item(select_opts)
-				-- fn = cmp.mapping.confirm({ select = false })
 			end
 			fn()
 		end,
 	},
-	-- ['<S-Tab>'] = {
-	-- 	c = function()
-	-- 		local fn = cmp.mapping.complete()
-	-- 		if cmp.visible() then
-	-- 			fn = cmp.mapping.select_prev_item(select_opts)
-	-- 		end
-	-- 		fn()
-	-- 	end,
-	-- },
+	['<S-Tab>'] = {
+		c = function()
+			local fn = cmp.mapping.complete()
+			if cmp.visible() then
+				fn = cmp.mapping.select_prev_item(select_opts)
+			end
+			fn()
+		end,
+	},
 	['<C-e>'] = {
 		c = function(fallback)
 			local fn = fallback
@@ -53,7 +52,10 @@ local common_mappings = {
 				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Down>', true, false, true), 'n', true)
 			end
 			if cmp.visible() then
-				fn = cmp.mapping.select_next_item(select_opts)
+				fn = function()
+					local selectNext = cmp.mapping.select_next_item(select_opts)
+					selectNext()
+				end
 			end
 			fn()
 		end,
@@ -181,6 +183,7 @@ cmp.setup.cmdline('?', {
 cmp.setup.cmdline(':', {
 	---@diagnostic disable-next-line: missing-fields
 	completion = {
+		completeopt = "menu,menuone,insert",
 		autocomplete = false,
 	},
 	view = {

@@ -49,7 +49,7 @@ mapx.nnoremap("<leader>tsfr", ":TSToolsFileReferences<Cr>")
 mapx.nnoremap("<leader>tsfa", ":TSToolsFixAll<Cr>")
 mapx.nnoremap("<leader>tsrf", ":TSToolsRenameFile<Cr>")
 
-mapx.nnoremap("<M-f>", ":lua MiniFiles.open()<Cr>") -- Mini files manager
+-- mapx.nnoremap("<M-f>", ":lua MiniFiles.open()<Cr>") -- Mini files manager
 
 -- LspSaga calls
 mapx.nnoremap("<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
