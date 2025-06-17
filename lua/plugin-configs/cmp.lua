@@ -27,11 +27,8 @@ cmp.setup {
 		},
 	},
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
 		{ name = "buffer" },
 		{ name = "path" },
-		{ name = "nvim_lua" },
 		{ name = "dotenv" },
 		{ name = "treesitter" },
 	},
@@ -42,20 +39,20 @@ cmp.setup {
 }
 
 -- Use buffer source for `/`
-cmp.setup.cmdline("/", {
-	sources = {
-		{ name = "buffer" },
-	},
-})
-
--- Use cmdline & path source for ':'
-cmp.setup.cmdline(":", {
-	sources = cmp.config.sources({
-		{ name = "path" },
-	}, {
-		{ name = "cmdline" },
-	}),
-})
+-- cmp.setup.cmdline("/", {
+-- 	sources = {
+-- 		{ name = "buffer" },
+-- 	},
+-- })
+--
+-- -- Use cmdline & path source for ':'
+-- cmp.setup.cmdline(":", {
+-- 	sources = cmp.config.sources({
+-- 		{ name = "path" },
+-- 	}, {
+-- 		{ name = "cmdline" },
+-- 	}),
+-- })
 
 -- Auto pairs
 -- local cmp_autopairs = require "nvim-autopairs.completion.cmp"

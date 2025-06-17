@@ -21,7 +21,7 @@ require("barbar").setup {
 			[vim.diagnostic.severity.HINT] = { enabled = true },
 		},
 		filetype = {
-			custom_colors = false,
+			custom_colors = true,
 			enabled = true,
 		},
 		modified = { button = "●" },

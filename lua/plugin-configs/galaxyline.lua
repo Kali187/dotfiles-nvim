@@ -41,7 +41,7 @@ gls.left[2] = {
 			vim.api.nvim_command(
 				"hi GalaxyViMode guifg=" .. mode_color[vim.fn.mode()]
 			)
-			return "  "
+			return vim.fn.mode() .. " "
 		end,
 		highlight = { colors.red, colors.bg, "bold" },
 	},
@@ -58,11 +58,16 @@ gls.left[4] = {
 }
 
 gls.left[5] = {
-	FileName = {
-		provider = "FileName",
+	FilePath = {
+		provider = "FilePath",
 		condition = condition.buffer_not_empty,
-		highlight = { colors.magenta, colors.bg, "bold" },
+		highlight = { colors.magenta, colors.bg },
 	},
+	-- FileName = {
+	-- 	provider = "FileName",
+	-- 	condition = condition.buffer_not_empty,
+	-- 	highlight = { colors.magenta, colors.bg, "bold" },
+	-- },
 }
 
 gls.left[6] = {
@@ -115,7 +120,7 @@ gls.left[12] = {
 			end
 			return true
 		end,
-		icon = "  LSP: ",
+		icon = " LSP: ",
 		highlight = { colors.blue, colors.bg },
 	},
 }
@@ -137,10 +142,19 @@ gls.right[4] = {
 		provider = "GitBranch",
 		condition = condition.check_git_workspace,
 		highlight = { colors.violet, colors.bg, "bold" },
+		icon = " "
 	},
 }
 
 gls.right[5] = {
+	RainbowBlue = {
+		provider = function()
+			return " "
+		end,
+	},
+}
+
+gls.right[6] = {
 	DiffAdd = {
 		provider = "DiffAdd",
 		condition = condition.hide_in_width,
@@ -148,7 +162,7 @@ gls.right[5] = {
 		highlight = { colors.green, colors.bg },
 	},
 }
-gls.right[6] = {
+gls.right[7] = {
 	DiffModified = {
 		provider = "DiffModified",
 		condition = condition.hide_in_width,
@@ -156,7 +170,7 @@ gls.right[6] = {
 		highlight = { colors.orange, colors.bg },
 	},
 }
-gls.right[7] = {
+gls.right[8] = {
 	DiffRemove = {
 		provider = "DiffRemove",
 		condition = condition.hide_in_width,
@@ -165,7 +179,7 @@ gls.right[7] = {
 	},
 }
 
-gls.right[8] = {
+gls.right[9] = {
 	RainbowBlue = {
 		provider = function()
 			return " ▊"

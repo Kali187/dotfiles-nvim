@@ -1,13 +1,9 @@
 require("mini.ai").setup()
 require("mini.align").setup()
-require("mini.animate").setup()
 require("mini.bracketed").setup()
 require("mini.comment").setup()
--- require('mini.completion').setup()
 require("mini.cursorword").setup()
-require("mini.files").setup()
 require("mini.icons").setup()
--- require('mini.indentscope').setup()
 require("mini.move").setup {
 	mappings = {
 		-- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
@@ -30,7 +26,6 @@ require("mini.move").setup {
 require("mini.operators").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
--- *Something* to "test" *surround*
 require("mini.splitjoin").setup()
 local hipatterns = require "mini.hipatterns"
 hipatterns.setup {
