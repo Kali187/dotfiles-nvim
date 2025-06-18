@@ -2,9 +2,9 @@ local M = {}
 
 function M.setup()
 	local status_ok, alpha = pcall(require, "alpha")
-	if not status_ok then
-		return
-	end
+	-- if not status_ok then
+	-- 	return
+	-- end
 
 	local stats = require("lazy").stats()
 
@@ -28,28 +28,26 @@ function M.setup()
 	}
 
 	dashboard.section.buttons.val = {
-		dashboard.button("s", "  Search", ":Telescope live_grep <CR>"),
 		dashboard.button("p", "  Project Manager", ":ProjectMgr<CR>"),
-		dashboard.button("f", "󰱼  Find file", ":Telescope find_files <CR>"),
-		dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
+		dashboard.button("w", "  Saved Sessions", ":SessionSearch<CR>"),
+		dashboard.button("s", "  Search", ":Telescope live_grep <CR>"),
+		dashboard.button("f", "󰮗  Find file", ":Telescope find_files <CR>"),
+		dashboard.button("r", "󰮳  Recently used files", ":Telescope oldfiles <CR>"),
 		dashboard.button("q", "󰈆  Quit Neovim", ":qa<CR>"),
 	}
 
 	local function footer()
 		-- Number of plugins
 		local datetime = os.date "%d-%m-%Y %H:%M:%S"
-		local plugins_text = "  "
-				.. stats.count
-				.. " plugins"
-				.. " v"
+		local plugins_text = "v"
 				.. vim.version().major
 				.. "."
 				.. vim.version().minor
 				.. "."
 				.. vim.version().patch
-				.. "  "
-				.. datetime
-
+				.. "  "
+				.. stats.count
+				.. " plugins"
 		-- Quote
 		local fortune = require "alpha.fortune"
 		local quote = table.concat(fortune(), "\n")

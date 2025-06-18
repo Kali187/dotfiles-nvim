@@ -2,7 +2,10 @@ local AUGroups = require "augroups"
 local o = vim.opt
 local fn = vim.fn
 local map = vim.api.nvim_set_keymap
-
+vim.diagnostic.config({
+	-- Use the default configuration
+	virtual_lines = true
+})
 -- map the leader key
 map("n", " ", "", {})
 vim.g.mapleader = " "
@@ -41,23 +44,27 @@ o.scrolloff = 3        -- Minimal number of screen lines to keep above and below
 o.sidescrolloff = 5    -- The minimal number of columns to scroll horizontally
 o.hlsearch = true      -- highlight all matches on previous search pattern
 o.ignorecase = true    -- ignore case in search patterns
-o.foldenable = true    -- disable folding; enable with zi
+o.foldenable = false   -- disable folding; enable with zi
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 o.fillchars = {
-	eob = " ", -- End-of-buffer: ~
+	eob = "·", -- End-of-buffer: ~
 }
 vim.g.rainbow_active = 1
+
+local sp = "·"
 o.listchars = {
-	tab = "┆ ",
-	trail = "~",
+	tab = " ",
+	trail = sp,
 }
 o.list = true
 o.shortmess = o.shortmess + "c" -- prevent "pattern not found" messages
 o.wildmode = "full"
 o.lazyredraw = false
-o.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- A comma separated list of options for Insert mode completion
-o.wildignorecase = true                                       -- When set case is ignored when completing file names and directories
+-- A comma separated list of options for Insert mode completion
+o.completeopt = { "menu", "menuone", "noselect", "noinsert" }
+-- When set case is ignored when completing file names and directories
+o.wildignorecase = true
 o.wildignore = [[
 .git,.hg,.svn
 *.aux,*.out,*.toc
@@ -71,11 +78,11 @@ o.wildignore = [[
 *.swp,.lock,.DS_Store,._*
 */tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
 ]]
-
 -- Register the AUGroups and autocommands
 local autoCommands = {
 	open_folds = {
-		{ "BufEnter", "*", "normal zx zR" },
+		{ "BufWritePost", "*", "normal zx zR" },
+		{ "BufEnter",     "*", "normal zx zR" },
 	},
 	-- format on write.
 	format_on_write = {

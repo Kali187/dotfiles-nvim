@@ -1,5 +1,5 @@
 local mapx = require("mapx").setup()
-local crates = require('crates')
+-- local crates = require('crates')
 
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
@@ -8,13 +8,8 @@ vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "gr", vim.lsp.buf.references)
 
-
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
-
-
 
 -- Run format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
@@ -25,49 +20,40 @@ mapx.nnoremap("<C-j>", "<C-w>j")
 mapx.nnoremap("<C-k>", "<C-w>k")
 mapx.nnoremap("<C-l>", "<C-w>l")
 
--- Utils
-mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>")       -- Open project manager.
-mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>")       -- Toggle file explorer.
-mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>") -- Search for files.
-mapx.nnoremap("<C-s>", ":Lspsaga outline<Cr>")      -- Show symbols outline.
-mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")  -- Search in files.
-mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>")        -- Show workspace issues.
 
--- mapx.inoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" })           -- Debug go tests in insert mode.
--- mapx.nnoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" })           -- Debug go tests in normal mode.
---
--- mapx.inoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })       -- Run go tests in insert mode.
--- mapx.nnoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })       -- Run go tests in normal mode.
---
--- mapx.inoremap("<F5>", "<cmd>:RustLsp debuggables<Cr>", "silent", { ft = "rust" }) -- Run Rust tests in insert mode.
--- mapx.nnoremap("<F5>", "<cmd>:RustLsp debuggables<Cr>", "silent", { ft = "rust" }) -- Run Rust tests in normal mode.
--- -- Define your keybindings
--- vim.keymap.set("n", "<leader>ct", crates.toggle, opts)
--- vim.keymap.set("n", "<leader>cr", crates.reload, opts)
---
--- vim.keymap.set("n", "<leader>cv", crates.show_versions_popup, opts)
--- vim.keymap.set("n", "<leader>cf", crates.show_features_popup, opts)
--- vim.keymap.set("n", "<leader>cd", crates.show_dependencies_popup, opts)
---
--- vim.keymap.set("n", "<leader>cu", crates.update_crate, opts)
--- vim.keymap.set("v", "<leader>cu", crates.update_crates, opts)
--- vim.keymap.set("n", "<leader>ca", crates.update_all_crates, opts)
--- vim.keymap.set("n", "<leader>cU", crates.upgrade_crate, opts)
--- vim.keymap.set("v", "<leader>cU", crates.upgrade_crates, opts)
--- vim.keymap.set("n", "<leader>cA", crates.upgrade_all_crates, opts)
---
--- vim.keymap.set("n", "<leader>cx", crates.expand_plain_crate_to_inline_table, opts)
--- vim.keymap.set("n", "<leader>cX", crates.extract_crate_into_table, opts)
---
--- vim.keymap.set("n", "<leader>cH", crates.open_homepage, opts)
--- vim.keymap.set("n", "<leader>cR", crates.open_repository, opts)
--- vim.keymap.set("n", "<leader>cD", crates.open_documentation, opts)
--- vim.keymap.set("n", "<leader>cC", crates.open_crates_io, opts)
+mapx.noremap('<leader>y', '"+y', 'Yank to clipboard') -- E.g: <leader>yy will yank current line to os clipboard
+mapx.noremap('<leader>Y', '"+y$', 'Yank until EOL to clipboard')
+
+mapx.noremap('<leader>p', '"+p', 'Paste after cursor from clipboard')
+mapx.noremap('<leader>P', '"+P', 'Paste before cursor from clipboard')
+-- Utils
+mapx.nnoremap("<leader>PM", ":ProjectMgr<Cr>")                          -- Open project manager.
+mapx.nnoremap("<C-e>", ":NvimTreeToggle<Cr>")                           -- Toggle file explorer.
+mapx.nnoremap("<C-o>", ":Lspsaga outline<Cr>")                          -- Show symbols outline.
+
+mapx.nnoremap("<leader>tu", ":Telescope undo<Cr>")                      -- Display undo tree
+mapx.nnoremap("<leader>tf", ":Telescope find_files<Cr>")                -- Find files
+mapx.nnoremap("<leader>tb", ":Telescope buffers<Cr>")                   -- Buffers
+mapx.nnoremap("<leader>tg", ":Telescope live_grep<Cr>")                 -- search in file
+mapx.nnoremap("<leader>to", ":Telescope oldfiles<Cr>")                  -- recent files
+mapx.nnoremap("<leader>tc", ":Telescope current_buffer_fuzzy_find<Cr>") -- fuzzy search in buffer
+mapx.nnoremap("<leader>td", ":Telescope diagnostics<Cr>")               -- fuzzy search in buffer
+
+mapx.nnoremap("<leader>tsia", ":TSToolsAddMissingImports<Cr>")
+mapx.nnoremap("<leader>tsir", ":TSToolsRemoveUnusedImports<Cr>")
+mapx.nnoremap("<leader>tsio", ":TSToolsOrganizeImports<Cr>")
+mapx.nnoremap("<leader>tsis", ":TSToolsSortImports<Cr>")
+mapx.nnoremap("<leader>tsru", ":TSToolsRemoveUnused<Cr>")
+mapx.nnoremap("<leader>tsgs", ":TSToolsGoToSourceDefinition<Cr>")
+mapx.nnoremap("<leader>tsfr", ":TSToolsFileReferences<Cr>")
+mapx.nnoremap("<leader>tsfa", ":TSToolsFixAll<Cr>")
+mapx.nnoremap("<leader>tsrf", ":TSToolsRenameFile<Cr>")
+
+-- mapx.nnoremap("<M-f>", ":lua MiniFiles.open()<Cr>") -- Mini files manager
 
 -- LspSaga calls
 mapx.nnoremap("<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
 mapx.nnoremap("<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
-
 
 mapx.nnoremap("<C-A>", "<cmd>LspRestart<CR>")
 mapx.nnoremap("<C-wq>", "<cmd>bd<CR>")
@@ -92,17 +78,60 @@ mapx.nnoremap(
 	"Line Diagnostics"
 )
 
+mapx.nnoremap("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 -- Close and pin buffer
-mapx.nnoremap('<leader>bc', '<Cmd>BufferClose<CR>', opts)
-mapx.nnoremap('<leader>bv', '<Cmd>BufferPin<CR>', opts)
+mapx.nnoremap("<leader>bc", "<Cmd>BufferClose<CR>", opts)
+mapx.nnoremap("<leader>bv", "<Cmd>BufferPin<CR>", opts)
 
 -- Switch to previous/next buffer
-mapx.nnoremap('<leader>b,', '<Cmd>BufferPrevious<CR>', opts)
-mapx.nnoremap('<leader>b.', '<Cmd>BufferNext<CR>', opts)
+mapx.nnoremap("<leader>b,", "<Cmd>BufferPrevious<CR>", opts)
+mapx.nnoremap("<leader>b.", "<Cmd>BufferNext<CR>", opts)
 
 -- Re-order to previous/next
-mapx.nnoremap('<leader>bm,', '<Cmd>BufferMovePrevious<CR>', opts)
-mapx.nnoremap('<leader>bm.', '<Cmd>BufferMoveNext<CR>', opts)
+mapx.nnoremap("<leader>bm,", "<Cmd>BufferMovePrevious<CR>", opts)
+mapx.nnoremap("<leader>bm.", "<Cmd>BufferMoveNext<CR>", opts)
 
 --
---
+mapx.nnoremap("<leader>wf", "<Cmd>SessionSearch<CR>", opts)
+mapx.nnoremap("<leader>ws", "<Cmd>SessionSave<CR>", opts)
+mapx.nnoremap("<leader>wa", "<Cmd>SessionToggleAutoSave<CR>", opts)
+
+-- Dashboard
+mapx.nnoremap("<leader>aa", "<Cmd>Alpha<CR>", opts)
+
+-- Neogit
+mapx.nnoremap("<leader>ng", "<Cmd>Neogit<CR>", opts)
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP actions",
+	callback = function()
+		local bufmap = function(mode, lhs, rhs)
+			local opts = { buffer = true }
+			vim.keymap.set(mode, lhs, rhs, opts)
+		end
+		-- Displays hover information about the symbol under the cursor
+		bufmap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
+		-- Jump to the definition
+		bufmap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
+		-- Jump to declaration
+		bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>")
+		-- Lists all the implementations for the symbol under the cursor
+		bufmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>")
+		-- Jumps to the definition of the type symbol
+		bufmap("n", "td", "<cmd>lua vim.lsp.buf.type_definition()<cr>")
+		-- Lists all the references
+		bufmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>")
+		-- Displays a function's signature information
+		bufmap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+		-- Renames all references to the symbol under the cursor
+		bufmap("n", "gsr", "<cmd>lua vim.lsp.buf.rename()<cr>")
+		-- Selects a code action available at the current cursor position
+		bufmap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
+		-- Show diagnostics in a floating window
+		bufmap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
+		-- Move to the previous diagnostic
+		bufmap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
+		-- Move to the next diagnostic
+		bufmap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+	end,
+})
