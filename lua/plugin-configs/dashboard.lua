@@ -31,6 +31,7 @@ function M.setup()
 		dashboard.button("p", "  Project Manager", ":ProjectMgr<CR>"),
 		dashboard.button("w", "  Saved Sessions", ":SessionSearch<CR>"),
 		dashboard.button("s", "  Search", ":Telescope live_grep <CR>"),
+		dashboard.button("b", "󰮗  Browse files", ":Telescope file_browser <CR>"),
 		dashboard.button("f", "󰮗  Find file", ":Telescope find_files <CR>"),
 		dashboard.button("r", "󰮳  Recently used files", ":Telescope oldfiles <CR>"),
 		dashboard.button("q", "󰈆  Quit Neovim", ":qa<CR>"),
@@ -38,7 +39,6 @@ function M.setup()
 
 	local function footer()
 		-- Number of plugins
-		local datetime = os.date "%d-%m-%Y %H:%M:%S"
 		local plugins_text = "v"
 				.. vim.version().major
 				.. "."

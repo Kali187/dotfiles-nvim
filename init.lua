@@ -40,3 +40,15 @@ local function setup_lsp()
 end
 
 setup_lsp()
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		-- Only open Alpha if no file is passed to nvim
+		if vim.fn.argc() == 0 then
+			-- require("alpha").start()
+			require("nvim-tree").start()
+		end
+	end
+})
+
+vim.opt.termguicolors = true
