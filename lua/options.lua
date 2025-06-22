@@ -17,6 +17,7 @@ o.ttimeoutlen = 0                                            -- Time in millisec
 o.backup = false                                             -- creates a backup file
 o.swapfile = false                                           -- enable/disable swap file creation
 o.mouse = "a"
+o.wrap = false
 o.mousefocus = true
 o.dir = fn.stdpath "data" .. "/swp"         -- swap file directory
 o.undofile = true                           -- enable/disable undo file creation

@@ -6,7 +6,7 @@ local lualine = require('lualine')
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-	bg       = '#202328',
+	bg       = '#060606',
 	fg       = '#bbc2cf',
 	yellow   = '#ECBE7B',
 	cyan     = '#008080',
@@ -37,8 +37,8 @@ local conditions = {
 local config = {
 	options = {
 		-- Disable sections and component separators
-		component_separators = '·',
-		section_separators = '|',
+		component_separators = '|',
+		section_separators = '*',
 		theme = {
 			-- We are going to use lualine_c an lualine_x as left and
 			-- right section. Both are highlighted by c theme .  So we
@@ -78,18 +78,18 @@ local function ins_right(component)
 	table.insert(config.sections.lualine_x, component)
 end
 
-ins_left {
-	function()
-		return '▊'
-	end,
-	color = { fg = colors.yellow },   -- Sets highlighting of component
-	padding = { left = 0, right = 1 }, -- We don't need space before this
-}
+-- ins_left {
+-- 	function()
+-- 		return '▊'
+-- 	end,
+-- 	color = { fg = colors.yellow },   -- Sets highlighting of component
+-- 	padding = { left = 0, right = 1 }, -- We don't need space before this
+-- }
 
 ins_left {
 	-- mode component
 	function()
-		return ''
+		return ' ' .. vim.fn.mode()
 	end,
 	color = function()
 		-- auto change color according to neovims mode
@@ -128,6 +128,13 @@ ins_left {
 
 ins_left {
 	'filename',
+	path = 0,
+	symbols = {
+		modified = '[+]',      -- Text to show when the file is modified.
+		readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+		unnamed = '[ No Name ]', -- Text to show for unnamed buffers.
+		newfile = '[ New ]',   -- Text to show for newly created file before first write
+	},
 	cond = conditions.buffer_not_empty,
 	color = { fg = colors.magenta, gui = 'bold' },
 }
@@ -173,7 +180,7 @@ ins_left {
 		return msg
 	end,
 	icon = ' LSP:',
-	color = { fg = '#ffffff', gui = 'bold' },
+	color = { fg = colors.green, },
 }
 
 -- Add components to right sections
@@ -181,41 +188,47 @@ ins_right {
 	'o:encoding',      -- option component same as &encoding in viml
 	fmt = string.upper, -- I'm not sure why it's upper case either ;)
 	cond = conditions.hide_in_width,
-	color = { fg = colors.green, gui = 'bold' },
+	color = { fg = colors.green },
 }
 
 ins_right {
 	'fileformat',
 	fmt = string.upper,
-	icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-	color = { fg = colors.green, gui = 'bold' },
+	-- icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+	icons_enabled = true,
+	symbols = {
+		unix = 'Unix: LF',
+		dos = 'Win: CRLF',
+		mac = 'Mac: CR',
+	},
+	color = { fg = colors.green },
 }
 
 ins_right {
 	'branch',
 	icon = '',
-	color = { fg = colors.violet, gui = 'bold' },
+	color = { fg = colors.blue, gui = 'bold' },
 }
 
 ins_right {
 	'diff',
 	-- Is it me or the symbol for modified us really weird
-	symbols = { added = ' ', modified = ' ', removed = ' ' },
+	symbols = { added = '+ ', modified = '~ ', removed = '- ' },
 	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.orange },
-		removed = { fg = colors.red },
+		added = { fg = colors.green, },
+		modified = { fg = colors.orange, },
+		removed = { fg = colors.red, },
 	},
 	cond = conditions.hide_in_width,
 }
 
-ins_right {
-	function()
-		return '▊'
-	end,
-	color = { fg = colors.yellow },
-	padding = { left = 1 },
-}
+-- ins_right {
+-- 	function()
+-- 		return '▊'
+-- 	end,
+-- 	color = { fg = colors.yellow },
+-- 	padding = { left = 1 },
+-- }
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)

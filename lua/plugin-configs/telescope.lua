@@ -17,14 +17,8 @@ ts.setup {
 	extensions = {
 		undo = {
 			theme = "ivy",
-			-- telescope-undo.nvim config, see below
 			use_delta = true,
 			use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
-			-- side_by_side = true,
-			-- layout_strategy = "vertical",
-			-- layout_config = {
-			-- 	preview_height = 0.8,
-			-- },
 			vim_diff_opts = {
 				ctxlen = vim.o.scrolloff,
 			},
@@ -38,6 +32,15 @@ ts.setup {
 				height = 0.66,
 				width = 0.66,
 			},
+		},
+		file_browser = {
+			theme = "dropdown",
+			layout_config = {
+				width = 0.6,
+				height = 0.6,
+				mirror = false,
+			},
+			display_stat = { date = false, size = true, mode = true },
 		},
 	},
 	dap = {},

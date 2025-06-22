@@ -20,24 +20,22 @@ mapx.nnoremap("<C-j>", "<C-w>j")
 mapx.nnoremap("<C-k>", "<C-w>k")
 mapx.nnoremap("<C-l>", "<C-w>l")
 
+mapx.noremap('<leader>ww', '<Cmd>set wrap!<CR>', 'Word Wrap Toggle') -- E.g: <leader>yy will yank current line to os clipboard
 
-mapx.noremap('<leader>y', '"+y', 'Yank to clipboard') -- E.g: <leader>yy will yank current line to os clipboard
-mapx.noremap('<leader>Y', '"+y$', 'Yank until EOL to clipboard')
-
-mapx.noremap('<leader>p', '"+p', 'Paste after cursor from clipboard')
-mapx.noremap('<leader>P', '"+P', 'Paste before cursor from clipboard')
 -- Utils
-mapx.nnoremap("<leader>PM", ":ProjectMgr<Cr>")                          -- Open project manager.
-mapx.nnoremap("<C-e>", ":NvimTreeToggle<Cr>")                           -- Toggle file explorer.
-mapx.nnoremap("<C-o>", ":Lspsaga outline<Cr>")                          -- Show symbols outline.
+mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>")                                            -- Open project manager.
+mapx.nnoremap("<C-e>", ":NvimTreeToggle<Cr>")                                             -- Toggle file explorer.
+mapx.nnoremap("<C-o>", ":Lspsaga outline<Cr>")                                            -- Show symbols outline.
 
-mapx.nnoremap("<leader>tu", ":Telescope undo<Cr>")                      -- Display undo tree
-mapx.nnoremap("<leader>tf", ":Telescope find_files<Cr>")                -- Find files
-mapx.nnoremap("<leader>tb", ":Telescope buffers<Cr>")                   -- Buffers
-mapx.nnoremap("<leader>tg", ":Telescope live_grep<Cr>")                 -- search in file
-mapx.nnoremap("<leader>to", ":Telescope oldfiles<Cr>")                  -- recent files
-mapx.nnoremap("<leader>tc", ":Telescope current_buffer_fuzzy_find<Cr>") -- fuzzy search in buffer
-mapx.nnoremap("<leader>td", ":Telescope diagnostics<Cr>")               -- fuzzy search in buffer
+mapx.nnoremap("<leader>tee", ":Telescope file_browser<Cr>")                               -- Display undo tree
+mapx.nnoremap("<leader>tec", ":Telescope file_browser path=%:p:h select_buffer=true<Cr>") -- Display undo tree
+mapx.nnoremap("<leader>tu", ":Telescope undo<Cr>")                                        -- Display undo tree
+mapx.nnoremap("<leader>tf", ":Telescope find_files<Cr>")                                  -- Find files
+mapx.nnoremap("<leader>tb", ":Telescope buffers<Cr>")                                     -- Buffers
+mapx.nnoremap("<leader>tg", ":Telescope live_grep<Cr>")                                   -- search in file
+mapx.nnoremap("<leader>to", ":Telescope oldfiles<Cr>")                                    -- recent files
+mapx.nnoremap("<leader>tc", ":Telescope current_buffer_fuzzy_find<Cr>")                   -- fuzzy search in buffer
+mapx.nnoremap("<leader>td", ":Telescope diagnostics<Cr>")                                 -- fuzzy search in buffer
 
 mapx.nnoremap("<leader>tsia", ":TSToolsAddMissingImports<Cr>")
 mapx.nnoremap("<leader>tsir", ":TSToolsRemoveUnusedImports<Cr>")
@@ -80,21 +78,32 @@ mapx.nnoremap(
 
 mapx.nnoremap("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 -- Close and pin buffer
-mapx.nnoremap("<leader>bc", "<Cmd>BufferClose<CR>", opts)
+mapx.nnoremap("<leader>bcc", "<Cmd>BufferClose<CR>", opts)
+mapx.nnoremap("<leader>bc[", "<Cmd>BufferCloseBuffersLeft<CR>", opts)
+mapx.nnoremap("<leader>bc]", "<Cmd>BufferCloseBuffersRight<CR>", opts)
+mapx.nnoremap("<leader>bco", "<Cmd>BufferCloseAllButCurrent<CR>", opts)
 mapx.nnoremap("<leader>bv", "<Cmd>BufferPin<CR>", opts)
 
 -- Switch to previous/next buffer
 mapx.nnoremap("<leader>b,", "<Cmd>BufferPrevious<CR>", opts)
 mapx.nnoremap("<leader>b.", "<Cmd>BufferNext<CR>", opts)
+mapx.nnoremap("<leader>b[", "<Cmd>BufferPrevious<CR>", opts)
+mapx.nnoremap("<leader>b]", "<Cmd>BufferNext<CR>", opts)
 
 -- Re-order to previous/next
 mapx.nnoremap("<leader>bm,", "<Cmd>BufferMovePrevious<CR>", opts)
 mapx.nnoremap("<leader>bm.", "<Cmd>BufferMoveNext<CR>", opts)
+mapx.nnoremap("<leader>bm[", "<Cmd>BufferMovePrevious<CR>", opts)
+mapx.nnoremap("<leader>bm]", "<Cmd>BufferMoveNext<CR>", opts)
 
 --
 mapx.nnoremap("<leader>wf", "<Cmd>SessionSearch<CR>", opts)
 mapx.nnoremap("<leader>ws", "<Cmd>SessionSave<CR>", opts)
 mapx.nnoremap("<leader>wa", "<Cmd>SessionToggleAutoSave<CR>", opts)
+
+
+-- Registers
+mapx.nnoremap("\"\"", "<Cmd>Registers<CR>", opts)
 
 -- Dashboard
 mapx.nnoremap("<leader>aa", "<Cmd>Alpha<CR>", opts)
