@@ -9,6 +9,13 @@ local plugins = { -- Editor support.
 	},
 	"jghauser/mkdir.nvim",
 	{
+		'kosayoda/nvim-lightbulb',
+		config = function()
+			require "plugin-configs.lightbulb"
+		end
+
+	},
+	{
 		"andythigpen/nvim-coverage",
 		version = "*",
 		config = function()
@@ -18,6 +25,8 @@ local plugins = { -- Editor support.
 		end
 	},
 	{ "mg979/vim-visual-multi" },
+	{ "tpope/vim-surround" },
+	{ "tpope/vim-characterize" },
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "echasnovski/mini.icons" },
@@ -28,8 +37,8 @@ local plugins = { -- Editor support.
 		dependencies = { { "echasnovski/mini.icons" } },
 		opts = {
 			show_icons = true,
-			leader_key = ";",    -- Recommended to be a single key
-			buffer_leader_key = "§" -- Per Buffer Mappings
+			leader_key = "a;",    -- Recommended to be a single key
+			buffer_leader_key = "a'" -- Per Buffer Mappings
 		}
 	},
 	{
@@ -46,18 +55,87 @@ local plugins = { -- Editor support.
 			require "plugin-configs.lualine-evil"
 		end
 	},
-	{
-		"b0o/incline.nvim",
-		config = function()
-			require("incline").setup()
-		end,
-		-- Optional: Lazy load Incline
-		event = 'VeryLazy',
-	},
+	-- {
+	-- 	"b0o/incline.nvim",
+	-- 	config = function()
+	-- 		require("incline").setup()
+	-- 	end,
+	-- 	-- Optional: Lazy load Incline
+	-- 	event = 'VeryLazy',
+	-- },
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {}
+		ft = {
+			"typescript",
+			"typescriptreact",
+			-- "javascript",
+			-- "javascriptreact",
+		},
+
+		config = function(_, opts)
+			local api = require("typescript-tools.api")
+
+			opts.handlers = {
+				["textDocument/publishDiagnostics"] = api.filter_diagnostics({
+					80001, -- Ignore this might be converted to a ES export
+				}),
+			}
+
+			require("typescript-tools").setup(opts)
+		end,
+		opts = {
+			expose_as_code_action = "all",
+			complete_function_calls = false,
+			jsx_close_tag = {
+				enable = true,
+				filetypes = { "typescriptreact" },
+			},
+			on_attach = function(config, bufNr)
+				vim.keymap.set(
+					{ "n", "v" },
+					"<leader>ttio",
+					":TSToolsOrganizeImports<CR>",
+					{ desc = "Imports Organize", silent = true, buffer = bufNr }
+				)
+
+				vim.keymap.set(
+					{ "n", "v" },
+					"<leader>ttis",
+					":TSToolsSortImports<CR>",
+					{ desc = "Imports Sort", silent = true, buffer = bufNr }
+				)
+
+				vim.keymap.set(
+					{ "n", "v" },
+					"<leader>ttir",
+					":TSToolsRemoveUnusedImports<CR>",
+					{
+						desc = "Imports remove unused",
+						silent = true,
+						buffer = bufNr,
+					}
+				)
+
+				vim.keymap.set(
+					{ "n", "v" },
+					"<leader>ttia",
+					":TSToolsAddMissingImports<CR>",
+					{
+						desc = "Imports Add All missing",
+						silent = true,
+						buffer = bufNr,
+					}
+				)
+
+				vim.keymap.set(
+					{ "n", "v" },
+					"<leader>ttrf",
+					":TSToolsRenameFile<CR>",
+					{ desc = "Rename File", silent = true, buffer = bufNr }
+				)
+			end,
+		},
 	},
 	{
 		"gorbit99/codewindow.nvim",
@@ -99,15 +177,9 @@ local plugins = { -- Editor support.
 
 	{
 		'saghen/blink.cmp',
-		-- optional: provides snippets for the snippet source
 		dependencies = { 'rafamadriz/friendly-snippets' },
 
-		-- use a release tag to download pre-built binaries
 		version = '1.*',
-		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-		-- build = 'cargo build --release',
-		-- If you use nix, you can build from source using latest nightly rust with:
-		-- build = 'nix run .#build-plugin',
 
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
@@ -127,25 +199,16 @@ local plugins = { -- Editor support.
 			keymap = { preset = 'enter' },
 
 			appearance = {
-				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-				-- Adjusts spacing to ensure icons are aligned
 				nerd_font_variant = 'mono'
 			},
 
 			-- (Default) Only show the documentation popup when manually triggered
 			completion = { documentation = { auto_show = true } },
 
-			-- Default list of enabled providers defined so that you can extend it
-			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
 				default = { 'lsp', 'path', 'snippets', 'buffer' },
 			},
 
-			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-			--
-			-- See the fuzzy documentation for more information
 			fuzzy = { implementation = "prefer_rust_with_warning" }
 		},
 		opts_extend = { "sources.default" }
@@ -166,34 +229,61 @@ local plugins = { -- Editor support.
 	{
 		"folke/which-key.nvim",
 		config = function()
-			require("which-key").setup {}
-		end
-	},
-	{
-		"nvimdev/lspsaga.nvim",
-		config = function()
-			require("lspsaga").setup {
-				ui = {
-					virtual_text = false,
-					sign = false,
-					code_action = ""
+			require("which-key").setup {
+				win = {
+					title = false,
 				},
-				symbol_in_winbar = {
-					enable = false,
-					folder_level = 1
+				plugins = {
+					marks = true,
+					registers = true,
 				}
 			}
-		end,
-		dependencies = { "nvim-treesitter/nvim-treesitter" }
-	},
-	--
-	-- Window management
-	{
-		"aserowy/tmux.nvim",
-		config = function()
-			require "plugin-configs.tmux"
 		end
 	},
+	-- {
+	-- 	"rachartier/tiny-code-action.nvim",
+	-- 	dependencies = {
+	-- 		{ "nvim-lua/plenary.nvim" },
+	--
+	-- 		-- optional picker via telescope
+	-- 		{ "nvim-telescope/telescope.nvim" },
+	-- 		-- optional picker via fzf-lua
+	-- 		{ "ibhagwan/fzf-lua" },
+	-- 		-- .. or via snacks
+	-- 		{
+	-- 			"folke/snacks.nvim",
+	-- 			opts = {
+	-- 				terminal = {},
+	-- 			}
+	-- 		}
+	-- 	},
+	-- 	event = "LspAttach",
+	-- 	opts = {},
+	-- },
+	-- {
+	-- 	"nvimdev/lspsaga.nvim",
+	-- 	config = function()
+	-- 		require("lspsaga").setup {
+	-- 			ui = {
+	-- 				virtual_text = true,
+	-- 				sign = false,
+	-- 			},
+	-- 			symbol_in_winbar = {
+	-- 				enable = false,
+	-- 				folder_level = 1
+	-- 			}
+	-- 		}
+	-- 	end,
+	-- 	dependencies = { "nvim-treesitter/nvim-treesitter" }
+	-- },
+	--
+	-- Window management
+	-- {
+	-- 	"aserowy/tmux.nvim",
+	-- 	config = function()
+	-- 		require "plugin-configs.tmux"
+	-- 	end
+	-- },
 	-- File management.
 	{
 		"kyazdani42/nvim-tree.lua",
@@ -205,6 +295,8 @@ local plugins = { -- Editor support.
 	{
 		"hedyhli/outline.nvim",
 		config = function()
+			vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>",
+				{ desc = "Toggle Outline" })
 			require("outline").setup {}
 		end
 	},
@@ -225,11 +317,11 @@ local plugins = { -- Editor support.
 			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 			desc = "Buffer Diagnostics (Trouble)"
 		}, {
-			"<leader>cs",
+			"<leader>xs",
 			"<cmd>Trouble symbols toggle focus=false<cr>",
 			desc = "Symbols (Trouble)"
 		}, {
-			"<leader>cl",
+			"<leader>xc",
 			"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
 			desc = "LSP Definitions / references / ... (Trouble)"
 		}, {
@@ -298,15 +390,28 @@ local plugins = { -- Editor support.
 			vim.notify = notify
 		end
 	},
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		priority = 1000,
-		config = function()
-			require("catppuccin").setup {}
-			vim.cmd [[colorscheme catppuccin-mocha]]
-		end
-	},
+
+
+	-- =======================================================================
+	-- themes
+	-- =======================================================================
+
+	-- { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
+
+	{ "rebelot/kanagawa.nvim" },
+
+	-- {
+	-- 	"catppuccin/nvim",
+	-- 	name = "catppuccin",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("catppuccin").setup {}
+	-- 		vim.cmd [[colorscheme catppuccin-mocha]]
+	-- 	end
+	-- },
+	--
+	--
+	--
 	{
 		"mfussenegger/nvim-dap",
 		config = function()
@@ -463,13 +568,13 @@ local plugins = { -- Editor support.
 			event = "VeryLazy",
 			opts = {},
 		},
-		{ 'prichrd/netrw.nvim',      opts = {} },
-		{
-			"tversteeg/registers.nvim",
-			config = function()
-				require "plugin-configs.registers"
-			end
-		},
+		-- { 'prichrd/netrw.nvim',      opts = {} },
+		-- {
+		-- 	"tversteeg/registers.nvim",
+		-- 	config = function()
+		-- 		require "plugin-configs.registers"
+		-- 	end
+		-- },
 
 
 		{

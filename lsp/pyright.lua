@@ -27,6 +27,7 @@ return {
 				autoSearchPaths = true,
 				useLibraryCodeForTypes = true,
 				diagnosticMode = "openFilesOnly",
+				extraPaths = { "/opt/homebrew/bin/python3/" }
 			},
 		},
 	},

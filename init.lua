@@ -23,6 +23,9 @@ require("lazy").setup(plugins, {
 
 require("mason").setup()
 
+-- vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme kanagawa]])
+
 local function setup_lsp()
 	local lsp_dir = vim.fn.stdpath("config") .. "/lsp"
 	local lsp_servers = {}
@@ -45,8 +48,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		-- Only open Alpha if no file is passed to nvim
 		if vim.fn.argc() == 0 then
-			-- require("alpha").start()
-			require("nvim-tree").start()
+			require("alpha").start()
+			-- require("nvim-tree").start()
 		end
 	end
 })
