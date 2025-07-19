@@ -9,9 +9,9 @@ return {
 		"javascript",
 		"javascript.jsx",
 		"javascriptreact",
-		"typescript",
-		"typescript.tsx",
-		"typescriptreact",
+		-- "typescript",
+		-- "typescript.tsx",
+		-- "typescriptreact",
 	},
 	root_markers = {
 		".eslintrc",
