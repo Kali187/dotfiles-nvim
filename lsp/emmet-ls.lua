@@ -1,18 +1,18 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/emmet_language_server.lua
 
 return {
-	cmd = { "emmet-language-server", "--stdio" },
+	cmd = { "emmet-ls", "--stdio" },
 	filetypes = {
 		"css",
 		"eruby",
 		"html",
 		"htmldjango",
-		-- "javascriptreact",
+		"javascriptreact",
 		"less",
 		"pug",
 		"sass",
 		"scss",
-		-- "typescriptreact",
+		"typescriptreact",
 		"htmlangular",
 	},
 	root_markers = { ".git" },

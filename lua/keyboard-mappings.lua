@@ -32,8 +32,8 @@ mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>", "Project manager") -- Open project
 -- mapx.nnoremap("<C-o>", ":Lspsaga outline<Cr>")                                            -- Show symbols outline.
 
 mapx.nnoremap("<C-e>", ":Explore<Cr>", "Explorer")                                                      -- Display undo tree
-mapx.nnoremap("<leader>tee", ":Telescope file_browser<Cr>", "Telescope - File browser")                 -- Display undo tree
-mapx.nnoremap("<leader>tec", ":Telescope file_browser path=%:p:h select_buffer=true<Cr>",
+mapx.nnoremap("<leader>te", ":Telescope file_browser<Cr>", "Telescope - File browser")                  -- Display undo tree
+mapx.nnoremap("<leader>tE", ":Telescope file_browser path=%:p:h select_buffer=true<Cr>",
 	"Telescope - File browser in current folder")                                                         -- Display undo tree
 mapx.nnoremap("<leader>tn", ":NoiceTelescope<Cr>", "Telescope - Notifications")                         -- Display undo tree
 mapx.nnoremap("<leader>t:", ":Telescope commands<Cr>", "Telescope - Commands")                          -- Display undo tree
