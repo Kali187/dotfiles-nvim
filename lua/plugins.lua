@@ -202,12 +202,12 @@ local plugins = { -- Editor support.
 		}
 	end
 }, {
-	"kyazdani42/nvim-tree.lua",
-	dependencies = { "kyazdani42/nvim-web-devicons" },
-	config = function()
-		require "plugin-configs.nvim-tree"
-	end
-}, {
+	-- 	"kyazdani42/nvim-tree.lua",
+	-- 	dependencies = { "kyazdani42/nvim-web-devicons" },
+	-- 	config = function()
+	-- 		require "plugin-configs.nvim-tree"
+	-- 	end
+	-- }, {
 	"hedyhli/outline.nvim",
 	config = function()
 		vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", {

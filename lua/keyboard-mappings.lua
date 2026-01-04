@@ -27,10 +27,11 @@ mapx.noremap('<leader>ww', '<Cmd>set wrap!<CR>', "Word Wrap Toggle") -- E.g: <le
 mapx.nnoremap("<leader>nh", "<Cmd>noh", "Clear search res. highlight")
 
 -- Utils
-mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>", "Project manager")  -- Open project manager.
-mapx.nnoremap("<C-e>", ":NvimTreeToggle<Cr>", "Nvim Tree toggle") -- Toggle file explorer.
+mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>", "Project manager") -- Open project manager.
+-- mapx.nnoremap("<C-e>", ":NvimTreeToggle<Cr>", "Nvim Tree toggle") -- Toggle file explorer.
 -- mapx.nnoremap("<C-o>", ":Lspsaga outline<Cr>")                                            -- Show symbols outline.
 
+mapx.nnoremap("<C-e>", ":Explore<Cr>", "Explorer")                                                      -- Display undo tree
 mapx.nnoremap("<leader>tee", ":Telescope file_browser<Cr>", "Telescope - File browser")                 -- Display undo tree
 mapx.nnoremap("<leader>tec", ":Telescope file_browser path=%:p:h select_buffer=true<Cr>",
 	"Telescope - File browser in current folder")                                                         -- Display undo tree
