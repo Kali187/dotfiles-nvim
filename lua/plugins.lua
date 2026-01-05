@@ -46,64 +46,73 @@ local plugins = { -- Editor support.
 	config = function()
 		require "plugin-configs.lualine-evil"
 	end
-}, {
-	"pmizio/typescript-tools.nvim",
-	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-	ft = { "typescript", "typescriptreact" -- "javascript",
-		-- "javascriptreact",
+},
+
+	{
+		"aznhe21/actions-preview.nvim",
+		config = function()
+			require "plugin-configs.actions-preview"
+		end,
 	},
 
-	config = function(_, opts)
-		local api = require("typescript-tools.api")
-
-		opts.handlers = {
-			["textDocument/publishDiagnostics"] = api.filter_diagnostics(
-				{ 80001 -- Ignore this might be converted to a ES export
-				})
-		}
-
-		require("typescript-tools").setup(opts)
-	end,
-	opts = {
-		expose_as_code_action = "all",
-		complete_function_calls = false,
-		jsx_close_tag = {
-			enable = true,
-			filetypes = { "typescriptreact" }
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		ft = { "typescript", "typescriptreact" -- "javascript",
+			-- "javascriptreact",
 		},
-		on_attach = function(config, bufNr)
-			vim.keymap.set({ "n", "v" }, "<leader>ttio", ":TSToolsOrganizeImports<CR>", {
-				desc = "Imports Organize",
-				silent = true,
-				buffer = bufNr
-			})
 
-			vim.keymap.set({ "n", "v" }, "<leader>ttis", ":TSToolsSortImports<CR>", {
-				desc = "Imports Sort",
-				silent = true,
-				buffer = bufNr
-			})
+		config = function(_, opts)
+			local api = require("typescript-tools.api")
 
-			vim.keymap.set({ "n", "v" }, "<leader>ttir", ":TSToolsRemoveUnusedImports<CR>", {
-				desc = "Imports remove unused",
-				silent = true,
-				buffer = bufNr
-			})
+			opts.handlers = {
+				["textDocument/publishDiagnostics"] = api.filter_diagnostics(
+					{ 80001 -- Ignore this might be converted to a ES export
+					})
+			}
 
-			vim.keymap.set({ "n", "v" }, "<leader>ttia", ":TSToolsAddMissingImports<CR>", {
-				desc = "Imports Add All missing",
-				silent = true,
-				buffer = bufNr
-			})
+			require("typescript-tools").setup(opts)
+		end,
+		opts = {
+			expose_as_code_action = "all",
+			complete_function_calls = false,
+			jsx_close_tag = {
+				enable = true,
+				filetypes = { "typescriptreact" }
+			},
+			on_attach = function(config, bufNr)
+				vim.keymap.set({ "n", "v" }, "<leader>ttio", ":TSToolsOrganizeImports<CR>", {
+					desc = "Imports Organize",
+					silent = true,
+					buffer = bufNr
+				})
 
-			vim.keymap.set({ "n", "v" }, "<leader>ttrf", ":TSToolsRenameFile<CR>", {
-				desc = "Rename File",
-				silent = true,
-				buffer = bufNr
-			})
-		end
-	}
-}, {
+				vim.keymap.set({ "n", "v" }, "<leader>ttis", ":TSToolsSortImports<CR>", {
+					desc = "Imports Sort",
+					silent = true,
+					buffer = bufNr
+				})
+
+				vim.keymap.set({ "n", "v" }, "<leader>ttir", ":TSToolsRemoveUnusedImports<CR>", {
+					desc = "Imports remove unused",
+					silent = true,
+					buffer = bufNr
+				})
+
+				vim.keymap.set({ "n", "v" }, "<leader>ttia", ":TSToolsAddMissingImports<CR>", {
+					desc = "Imports Add All missing",
+					silent = true,
+					buffer = bufNr
+				})
+
+				vim.keymap.set({ "n", "v" }, "<leader>ttrf", ":TSToolsRenameFile<CR>", {
+					desc = "Rename File",
+					silent = true,
+					buffer = bufNr
+				})
+			end
+		}
+	}, {
 	"gorbit99/codewindow.nvim",
 	config = function()
 		require "plugin-configs.codewindow"
@@ -313,7 +322,7 @@ local plugins = { -- Editor support.
 	config = function()
 		require "plugin-configs.barbar"
 	end,
-	version = "^1.0.0" -- optional: only update when a new 1.x version is released
+	version = "^1.0.0" -- optional: only update when a new 1.x version is release
 }, "theHamsta/nvim-dap-virtual-text",
 	{
 		"rachartier/tiny-code-action.nvim",
@@ -321,36 +330,64 @@ local plugins = { -- Editor support.
 			{ "nvim-lua/plenary.nvim" },
 
 			-- optional picker via telescope
-			{ "nvim-telescope/telescope.nvim" },
+			-- { "nvim-telescope/telescope.nvim" },
 			-- optional picker via fzf-lua
-			{ "ibhagwan/fzf-lua" },
+			-- { "ibhagwan/fzf-lua" },
 			-- .. or via snacks
-			{
-				"folke/snacks.nvim",
-				opts = {
-					terminal = {},
-				}
-			}
+			-- {
+			-- 	"folke/snacks.nvim",
+			-- 	opts = {
+			-- 		terminal = {},
+			-- 	}
+			-- }
 		},
 		event = "LspAttach",
-		opts = {},
-	}, {
-	"charludo/projectmgr.nvim",
-	lazy = false, -- important!
-	dependencies = { {
-		"AstroNvim/astrocore",
 		opts = {
-			mappings = {
-				n = {
-					["<Leader>P"] = {
-						"<Cmd>ProjectMgr<CR>",
-						desc = "Open ProjectMgr panel"
+			keymaps = {
+				disable_defaults = true,
+				visual = {
+					["<leader>ca"] = "code_action",
+				},
+				normal = {
+					["<leader>ca"] = "code_action",
+				},
+			},
+			notify = {
+				enabled = true,
+				on_empty = true,
+			},
+			signs = {
+				quickfix = { "", { link = "DiagnosticWarning" } },
+				others = { "", { link = "DiagnosticWarning" } },
+				refactor = { "", { link = "DiagnosticInfo" } },
+				["refactor.move"] = { "󰪹", { link = "DiagnosticInfo" } },
+				["refactor.extract"] = { "", { link = "DiagnosticError" } },
+				["source.organizeImports"] = { "", { link = "DiagnosticWarning" } },
+				["source.fixAll"] = { "󰃢", { link = "DiagnosticError" } },
+				["source"] = { "", { link = "DiagnosticError" } },
+				["rename"] = { "󰑕", { link = "DiagnosticWarning" } },
+				["codeAction"] = { "", { link = "DiagnosticWarning" } },
+			},
+
+		},
+	},
+	{
+		"charludo/projectmgr.nvim",
+		lazy = false, -- important!
+		dependencies = { {
+			"AstroNvim/astrocore",
+			opts = {
+				mappings = {
+					n = {
+						["<Leader>P"] = {
+							"<Cmd>ProjectMgr<CR>",
+							desc = "Open ProjectMgr panel"
+						}
 					}
 				}
 			}
-		}
-	} }
-}, {
+		} }
+	}, {
 	"NeogitOrg/neogit",
 	dependencies = { "nvim-lua/plenary.nvim", -- required
 		"sindrets/diffview.nvim",              -- optional - Diff integration

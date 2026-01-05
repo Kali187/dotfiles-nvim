@@ -95,7 +95,9 @@ mapx.nnoremap(
 	"Line Diagnostics"
 )
 
--- mapx.nnoremap("<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+vim.keymap.set({ "n", "x" }, "ca", function()
+	require('actions-preview').code_actions()
+end, { noremap = true, silent = true })
 
 vim.keymap.set({ "n", "x" }, "cc", function()
 	require("tiny-code-action").code_action()
@@ -156,7 +158,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Renames all references to the symbol under the cursor
 		bufmap("n", "gsr", "<cmd>lua vim.lsp.buf.rename()<cr>")
 		-- Selects a code action available at the current cursor position
-		bufmap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
+		-- bufmap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<cr>")
 		-- Show diagnostics in a floating window
 		bufmap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
 		-- Move to the previous diagnostic

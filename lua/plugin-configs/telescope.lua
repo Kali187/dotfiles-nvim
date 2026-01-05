@@ -12,7 +12,10 @@ ts.setup {
 		},
 		live_grep = {
 			theme = "ivy",
-		}
+		},
+		code_actions = {
+			theme = "ivy",
+		},
 	},
 	extensions = {
 		undo = {
