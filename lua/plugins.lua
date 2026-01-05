@@ -290,9 +290,7 @@ local plugins = { -- Editor support.
 	config = function()
 		local notify = require "notify"
 		notify.setup {
-
-			background_colour = "#000000"
-
+			background_colour = "#222222"
 		}
 		vim.notify = notify
 	end
@@ -325,52 +323,48 @@ local plugins = { -- Editor support.
 	version = "^1.0.0" -- optional: only update when a new 1.x version is release
 }, "theHamsta/nvim-dap-virtual-text",
 	{
-		"rachartier/tiny-code-action.nvim",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
-
-			-- optional picker via telescope
-			-- { "nvim-telescope/telescope.nvim" },
-			-- optional picker via fzf-lua
-			-- { "ibhagwan/fzf-lua" },
-			-- .. or via snacks
-			-- {
-			-- 	"folke/snacks.nvim",
-			-- 	opts = {
-			-- 		terminal = {},
-			-- 	}
-			-- }
-		},
-		event = "LspAttach",
-		opts = {
-			keymaps = {
-				disable_defaults = true,
-				visual = {
-					["<leader>ca"] = "code_action",
-				},
-				normal = {
-					["<leader>ca"] = "code_action",
-				},
-			},
-			notify = {
-				enabled = true,
-				on_empty = true,
-			},
-			signs = {
-				quickfix = { "", { link = "DiagnosticWarning" } },
-				others = { "", { link = "DiagnosticWarning" } },
-				refactor = { "", { link = "DiagnosticInfo" } },
-				["refactor.move"] = { "󰪹", { link = "DiagnosticInfo" } },
-				["refactor.extract"] = { "", { link = "DiagnosticError" } },
-				["source.organizeImports"] = { "", { link = "DiagnosticWarning" } },
-				["source.fixAll"] = { "󰃢", { link = "DiagnosticError" } },
-				["source"] = { "", { link = "DiagnosticError" } },
-				["rename"] = { "󰑕", { link = "DiagnosticWarning" } },
-				["codeAction"] = { "", { link = "DiagnosticWarning" } },
-			},
-
-		},
+		"sindrets/diffview.nvim",
+		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+	}, {
+	"rachartier/tiny-code-action.nvim",
+	dependencies = {
+		{ "nvim-lua/plenary.nvim" },
+		-- optional picker via telescope
+		-- { "nvim-telescope/telescope.nvim" },
+		-- optional picker via fzf-lua
+		-- { "ibhagwan/fzf-lua" },
+		-- .. or via snacks
 	},
+	event = "LspAttach",
+	opts = {
+		keymaps = {
+			disable_defaults = true,
+			visual = {
+				["<leader>ca"] = "code_action",
+			},
+			normal = {
+				["<leader>ca"] = "code_action",
+			},
+		},
+		notify = {
+			enabled = true,
+			on_empty = true,
+		},
+		signs = {
+			quickfix = { "", { link = "DiagnosticWarning" } },
+			others = { "", { link = "DiagnosticWarning" } },
+			refactor = { "", { link = "DiagnosticInfo" } },
+			["refactor.move"] = { "󰪹", { link = "DiagnosticInfo" } },
+			["refactor.extract"] = { "", { link = "DiagnosticError" } },
+			["source.organizeImports"] = { "", { link = "DiagnosticWarning" } },
+			["source.fixAll"] = { "󰃢", { link = "DiagnosticError" } },
+			["source"] = { "", { link = "DiagnosticError" } },
+			["rename"] = { "󰑕", { link = "DiagnosticWarning" } },
+			["codeAction"] = { "", { link = "DiagnosticWarning" } },
+		},
+
+	},
+},
 	{
 		"charludo/projectmgr.nvim",
 		lazy = false, -- important!
@@ -394,7 +388,18 @@ local plugins = { -- Editor support.
 		-- Only one of these is needed.
 		"nvim-telescope/telescope.nvim"        -- optional
 	},
-	config = true
+	config = function()
+		require("neogit").setup({
+			kind = "split", -- opens neogit in a split
+			signs = {
+				-- { CLOSED, OPENED }
+				section = { "", "" },
+				item = { "", "" },
+				hunk = { "", "" },
+			},
+			integrations = { diffview = true }, -- adds integration with diffview.nvim
+		})
+	end,
 }, {
 	"kdheepak/lazygit.nvim",
 	lazy = true,
