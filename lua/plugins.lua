@@ -314,7 +314,27 @@ local plugins = { -- Editor support.
 		require "plugin-configs.barbar"
 	end,
 	version = "^1.0.0" -- optional: only update when a new 1.x version is released
-}, "theHamsta/nvim-dap-virtual-text", {
+}, "theHamsta/nvim-dap-virtual-text",
+	{
+		"rachartier/tiny-code-action.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim" },
+
+			-- optional picker via telescope
+			{ "nvim-telescope/telescope.nvim" },
+			-- optional picker via fzf-lua
+			{ "ibhagwan/fzf-lua" },
+			-- .. or via snacks
+			{
+				"folke/snacks.nvim",
+				opts = {
+					terminal = {},
+				}
+			}
+		},
+		event = "LspAttach",
+		opts = {},
+	}, {
 	"charludo/projectmgr.nvim",
 	lazy = false, -- important!
 	dependencies = { {

@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+	---@diagnostic disable-next-line: unused-local
 	local status_ok, alpha = pcall(require, "alpha")
 	-- if not status_ok then
 	-- 	return
@@ -57,10 +58,10 @@ function M.setup()
 
 	dashboard.section.footer.val = footer()
 
+	-- Highlighting
 	dashboard.section.footer.opts.hl = "Type"
 	dashboard.section.header.opts.hl = "Include"
 	dashboard.section.buttons.opts.hl = "Keyword"
-
 	-- dashboard.opts.opts.noautocmd = true
 	alpha.setup(dashboard.opts)
 end
