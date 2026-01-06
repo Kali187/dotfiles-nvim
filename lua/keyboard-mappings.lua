@@ -26,6 +26,8 @@ mapx.nnoremap("<C-l>", "<C-w>l")
 mapx.noremap('<leader>ww', '<Cmd>set wrap!<CR>', "Word Wrap Toggle") -- E.g: <leader>yy will yank current line to os clipboard
 mapx.nnoremap("<leader>nh", "<Cmd>noh", "Clear search res. highlight")
 
+mapx.nnoremap("<leader>dde", "<cmd>lua Snacks.dim.enable()<CR>")
+
 -- Utils
 mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>", "Project manager") -- Open project manager.
 -- mapx.nnoremap("<C-e>", ":NvimTreeToggle<Cr>", "Nvim Tree toggle") -- Toggle file explorer.
@@ -70,6 +72,8 @@ mapx.nnoremap("<leader>tltd", ":Telescope lsp_type_definitions<Cr>", "Telescope 
 -- LspSaga calls
 mapx.nnoremap("<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
 mapx.nnoremap("<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+
+
 
 mapx.nnoremap("<C-A>", "<cmd>LspRestart<CR>")
 mapx.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Diagnostics - Previous")

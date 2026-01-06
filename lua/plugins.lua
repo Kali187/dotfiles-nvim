@@ -11,7 +11,9 @@ local plugins = {
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
-			-- bigfile = { enabled = true },
+			git = { enabled = true },
+			gitbrowse = { enabled = true },
+			dim = { enabled = true },
 			dashboard = require("plugin-configs.snacks-dashboard"),
 			-- explorer = { enabled = true },
 			-- indent = { enabled = true },
@@ -21,7 +23,20 @@ local plugins = {
 			-- quickfile = { enabled = true },
 			-- scope = { enabled = true },
 			-- scroll = { enabled = true },
-			-- statuscolumn = { enabled = true },
+			statuscolumn = {
+				enabled = true,
+				left = { "mark", "sign" }, -- priority of signs on the left (high to low)
+				right = { "fold", "git" }, -- priority of signs on the right (high to low)
+				folds = {
+					open = false,        -- show open fold icons
+					git_hl = false,      -- use Git Signs hl for fold icons
+				},
+				git = {
+					-- patterns to match Git signs
+					patterns = { "GitSign", "MiniDiffSign" },
+				},
+				refresh = 50, -- refresh at most every 50ms
+			},
 			-- words = { enabled = true },
 		},
 	},
