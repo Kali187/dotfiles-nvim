@@ -1,7 +1,44 @@
-local plugins = { -- Editor support.
+local plugins = {
+	-- Editor support.
 	-- The next few plugins are really the IDE feel.
+	{ 'github/copilot.vim' },
 	{
-		'github/copilot.vim',
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			git = { enabled = true },
+			gitbrowse = { enabled = true },
+			dim = { enabled = true },
+			dashboard = require("plugin-configs.snacks-dashboard"),
+			-- explorer = { enabled = true },
+			-- indent = { enabled = true },
+			-- input = { enabled = true },
+			-- picker = { enabled = true },
+			-- notifier = { enabled = true },
+			-- quickfile = { enabled = true },
+			-- scope = { enabled = true },
+			-- scroll = { enabled = true },
+			statuscolumn = {
+				enabled = true,
+				left = { "mark", "sign" }, -- priority of signs on the left (high to low)
+				right = { "fold", "git" }, -- priority of signs on the right (high to low)
+				folds = {
+					open = false,        -- show open fold icons
+					git_hl = false,      -- use Git Signs hl for fold icons
+				},
+				git = {
+					-- patterns to match Git signs
+					patterns = { "GitSign", "MiniDiffSign" },
+				},
+				refresh = 50, -- refresh at most every 50ms
+			},
+			-- words = { enabled = true },
+		},
 	},
 	{
 		"williamboman/mason.nvim",
@@ -9,52 +46,71 @@ local plugins = { -- Editor support.
 			require "plugin-configs.mason"
 		end,
 		run = ":MasonUpdate" -- :MasonUpdate updates registry contents
-	}, "jghauser/mkdir.nvim", {
-	'kosayoda/nvim-lightbulb',
-	config = function()
-		require "plugin-configs.lightbulb"
-	end
+	},
+	{
+		"jghauser/mkdir.nvim"
+	},
+	{
+		'kosayoda/nvim-lightbulb',
+		config = function()
+			require "plugin-configs.lightbulb"
+		end
 
-}, {
-	"andythigpen/nvim-coverage",
-	version = "*",
-	config = function()
-		require("coverage").setup {
-			auto_reload = true
+	},
+	{
+		"andythigpen/nvim-coverage",
+		version = "*",
+		config = function()
+			require("coverage").setup {
+				auto_reload = true
+			}
+		end
+	},
+	{
+		"mg979/vim-visual-multi"
+	},
+	{
+		"tpope/vim-surround"
+	},
+	{
+		"tpope/vim-characterize"
+	},
+	{
+		"ibhagwan/fzf-lua",
+		dependencies = { "echasnovski/mini.icons" },
+		opts = {}
+	},
+	{
+		"otavioschwanck/arrow.nvim",
+		dependencies = { { "echasnovski/mini.icons" } },
+		opts = {
+			show_icons = true,
+			leader_key = "a;",    -- Recommended to be a single key
+			buffer_leader_key = "a'" -- Per Buffer Mappings
 		}
-	end
-}, { "mg979/vim-visual-multi" }, { "tpope/vim-surround" }, { "tpope/vim-characterize" }, {
-	"ibhagwan/fzf-lua",
-	dependencies = { "echasnovski/mini.icons" },
-	opts = {}
-}, {
-	"otavioschwanck/arrow.nvim",
-	dependencies = { { "echasnovski/mini.icons" } },
-	opts = {
-		show_icons = true,
-		leader_key = "a;",     -- Recommended to be a single key
-		buffer_leader_key = "a'" -- Per Buffer Mappings
-	}
-}, {
-	"olrtg/nvim-emmet",
-	config = function()
-		vim.keymap.set({ "n", "v" }, "<leader>xe", require("nvim-emmet").wrap_with_abbreviation)
-	end
-}, { 'famiu/bufdelete.nvim' }, {
-	'nvim-lualine/lualine.nvim',
-	dependencies = { 'nvim-tree/nvim-web-devicons' },
-	config = function()
-		require "plugin-configs.lualine-evil"
-	end
-},
-
+	},
+	{
+		"olrtg/nvim-emmet",
+		config = function()
+			vim.keymap.set({ "n", "v" }, "<leader>xe", require("nvim-emmet").wrap_with_abbreviation)
+		end
+	},
+	{
+		'famiu/bufdelete.nvim'
+	},
+	{
+		'nvim-lualine/lualine.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function()
+			require "plugin-configs.lualine-evil"
+		end
+	},
 	{
 		"aznhe21/actions-preview.nvim",
 		config = function()
 			require "plugin-configs.actions-preview"
-		end,
+		end
 	},
-
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -112,259 +168,295 @@ local plugins = { -- Editor support.
 				})
 			end
 		}
-	}, {
-	"gorbit99/codewindow.nvim",
-	config = function()
-		require "plugin-configs.codewindow"
-	end
-}, {
-	"lukas-reineke/indent-blankline.nvim",
-	main = "ibl",
-	---@module "ibl"
-	---@type ibl.config
-	opts = {}
-}, {
-	"rmagatti/auto-session",
-	lazy = false,
-	config = function()
-		require "plugin-configs.auto-session"
-	end
-}, {
-	"folke/noice.nvim",
-	event = "VeryLazy",
-	dependencies = { "MunifTanjim/nui.nvim" },
-	config = function()
-		require "plugin-configs.noice"
-	end
-}, {
-	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
-	config = function()
-		require "plugin-configs.treesitter"
-	end
-}, "nvim-treesitter/nvim-treesitter-textobjects", "editorconfig/editorconfig-vim", {
-	'saghen/blink.cmp',
-	dependencies = { 'rafamadriz/friendly-snippets' },
-
-	version = '1.*',
-
-	---@module 'blink.cmp'
-	---@type blink.cmp.Config
-	opts = {
-		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-		-- 'super-tab' for mappings similar to vscode (tab to accept)
-		-- 'enter' for enter to accept
-		-- 'none' for no mappings
-		--
-		-- All presets have the following mappings:
-		-- C-space: Open menu or open docs if already open
-		-- C-n/C-p or Up/Down: Select next/previous item
-		-- C-e: Hide menu
-		-- C-k: Toggle signature help (if signature.enabled = true)
-		--
-		-- See :h blink-cmp-config-keymap for defining your own keymap
-		keymap = {
-			preset = 'enter'
-		},
-
-		appearance = {
-			nerd_font_variant = 'mono'
-		},
-
-		-- (Default) Only show the documentation popup when manually triggered
-		completion = {
-			documentation = {
-				auto_show = true
-			}
-		},
-
-		sources = {
-			default = { 'lsp', 'path', 'snippets', 'buffer' }
-		},
-
-		fuzzy = {
-			implementation = "prefer_rust_with_warning"
-		}
 	},
-	opts_extend = { "sources.default" }
-}, {
-	"b0o/mapx.nvim",
-	config = function()
-		require "keyboard-mappings"
-	end
-}, "f-person/git-blame.nvim", {
-	"lewis6991/gitsigns.nvim",
-	config = function()
-		require("gitsigns").setup {}
-	end
-}, {
-	"folke/which-key.nvim",
-	config = function()
-		require("which-key").setup {
-			win = {
-				title = false
+	{
+		"gorbit99/codewindow.nvim",
+		config = function()
+			require "plugin-configs.codewindow"
+		end
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {}
+	},
+	{
+		"rmagatti/auto-session",
+		lazy = false,
+		config = function()
+			require "plugin-configs.auto-session"
+		end
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		config = function()
+			require "plugin-configs.noice"
+		end
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			require "plugin-configs.treesitter"
+		end
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects"
+	},
+	{
+		"editorconfig/editorconfig-vim"
+	},
+	{
+		'saghen/blink.cmp',
+		dependencies = { 'rafamadriz/friendly-snippets' },
+
+		version = '1.*',
+
+		---@type blink.cmp.Config
+		opts = {
+			keymap = {
+				preset = 'enter'
 			},
-			plugins = {
-				marks = true,
-				registers = true
+
+			appearance = {
+				nerd_font_variant = 'mono'
+			},
+
+			-- (Default) Only show the documentation popup when manually triggered
+			completion = {
+				documentation = {
+					auto_show = true
+				}
+			},
+
+			sources = {
+				default = { 'lsp', 'path', 'snippets', 'buffer' }
+			},
+
+			fuzzy = {
+				implementation = "prefer_rust_with_warning"
 			}
-		}
-	end
-}, {
-	-- 	"kyazdani42/nvim-tree.lua",
-	-- 	dependencies = { "kyazdani42/nvim-web-devicons" },
-	-- 	config = function()
-	-- 		require "plugin-configs.nvim-tree"
-	-- 	end
-	-- }, {
-	"hedyhli/outline.nvim",
-	config = function()
-		vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", {
-			desc = "Toggle Outline"
-		})
-		require("outline").setup {}
-	end
-}, "tpope/vim-endwise", {
-	"folke/trouble.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
-	opts = {
-		-- your configuration comes here
-		-- or leave it empty to use the default settings
+		},
+		opts_extend = { "sources.default" }
 	},
-	keys = { {
-		"<leader>xx",
-		"<cmd>Trouble diagnostics toggle<cr>",
-		desc = "Diagnostics (Trouble)"
-	}, {
-		"<leader>xX",
-		"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-		desc = "Buffer Diagnostics (Trouble)"
-	}, {
-		"<leader>xs",
-		"<cmd>Trouble symbols toggle focus=false<cr>",
-		desc = "Symbols (Trouble)"
-	}, {
-		"<leader>xc",
-		"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-		desc = "LSP Definitions / references / ... (Trouble)"
-	}, {
-		"<leader>xL",
-		"<cmd>Trouble loclist toggle<cr>",
-		desc = "Location List (Trouble)"
-	}, {
-		"<leader>xQ",
-		"<cmd>Trouble qflist toggle<cr>",
-		desc = "Quickfix List (Trouble)"
-	} }
-}, "MunifTanjim/prettier.nvim", {
+	{
+		"b0o/mapx.nvim",
+		config = function()
+			require "keyboard-mappings"
+		end
+	},
+	{
+		"f-person/git-blame.nvim"
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup {}
+		end
+	},
+	{
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup {
+				win = {
+					title = false
+				},
+				plugins = {
+					marks = true,
+					registers = true
+				}
+			}
+		end
+	},
+	{
+		"hedyhli/outline.nvim",
+		config = function()
+			vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", {
+				desc = "Toggle Outline"
+			})
+			require("outline").setup {}
+		end
+	},
+	{
+		"tpope/vim-endwise"
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+		},
+		keys = { {
+			"<leader>xx",
+			"<cmd>Trouble diagnostics toggle<cr>",
+			desc = "Diagnostics (Trouble)"
+		}, {
+			"<leader>xX",
+			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+			desc = "Buffer Diagnostics (Trouble)"
+		}, {
+			"<leader>xs",
+			"<cmd>Trouble symbols toggle focus=false<cr>",
+			desc = "Symbols (Trouble)"
+		}, {
+			"<leader>xc",
+			"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+			desc = "LSP Definitions / references / ... (Trouble)"
+		}, {
+			"<leader>xL",
+			"<cmd>Trouble loclist toggle<cr>",
+			desc = "Location List (Trouble)"
+		}, {
+			"<leader>xQ",
+			"<cmd>Trouble qflist toggle<cr>",
+			desc = "Quickfix List (Trouble)"
+		} }
+	}, "MunifTanjim/prettier.nvim", {
 	"echasnovski/mini.nvim",
 	version = false,
 	config = function()
 		require "plugin-configs.mini"
 	end
-}, {
-	"yamatsum/nvim-nonicons",
-	dependencies = { "kyazdani42/nvim-web-devicons" }
-}, {
-	"nvim-telescope/telescope.nvim",
-	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-dap.nvim", "debugloop/telescope-undo.nvim" },
-	config = function()
-		require "plugin-configs.telescope"
-	end
-}, {
-	"ldelossa/nvim-dap-projects",
-	config = function()
-		require("nvim-dap-projects").search_project_config()
-	end
-}, {
-	"rmagatti/goto-preview",
-	event = "BufEnter",
-	config = true -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
-}, {
-	"goolord/alpha-nvim",
-	config = function()
-		require("plugin-configs.dashboard").setup()
-	end
-}, {
-	"rcarriga/nvim-notify",
-	config = function()
-		local notify = require "notify"
-		notify.setup {
-			background_colour = "#222222"
-		}
-		vim.notify = notify
-	end
-}, { "rebelot/kanagawa.nvim" }, {
-	"mfussenegger/nvim-dap",
-	dependencies = {
+},
+	{
+		"yamatsum/nvim-nonicons",
+		dependencies = { "kyazdani42/nvim-web-devicons" }
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope-dap.nvim", "debugloop/telescope-undo.nvim" },
+		config = function()
+			require "plugin-configs.telescope"
+		end
+	},
+	{
+		"ldelossa/nvim-dap-projects",
+		config = function()
+			require("nvim-dap-projects").search_project_config()
+		end
+	},
+	{
+		"rmagatti/goto-preview",
+		event = "BufEnter",
+		config = true -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
+	},
+	{
+		"goolord/alpha-nvim",
+		config = function()
+			require("plugin-configs.dashboard").setup()
+		end
+	},
+	{
+		"rcarriga/nvim-notify",
+		config = function()
+			local notify = require "notify"
+			notify.setup {
+				background_colour = "#222222"
+			}
+			vim.notify = notify
+		end
+	},
+	{
+		"rebelot/kanagawa.nvim"
+	},
+	{
+		"mfussenegger/nvim-dap",
+		dependencies = { "rcarriga/nvim-dap-ui" },
+		keys = { { "<leader>ddt", function()
+			require('dap').toggle_breakpoint()
+		end }, { "<leader>ddc", function()
+			require('dap').continue()
+		end } },
+		config = function()
+			require "plugin-configs.nvim-dap"
+		end
+	},
+	{
 		"rcarriga/nvim-dap-ui",
+		dependencies = { "nvim-neotest/nvim-nio" },
+		config = function()
+			require "plugin-configs.nvim-dap-gui"
+		end
 	},
-	keys = {
-		{ "<leader>ddt", function() require('dap').toggle_breakpoint() end },
-		{ "<leader>ddc", function() require('dap').continue() end },
+	{
+		"romgrk/barbar.nvim",
+		dependencies = { "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+			"kyazdani42/nvim-web-devicons"          -- OPTIONAL: for file icons
+		},
+		config = function()
+			require "plugin-configs.barbar"
+		end,
+		version = "^1.0.0" -- optional: only update when a new 1.x version is release
 	},
-	config = function()
-		require "plugin-configs.nvim-dap"
-	end
-}, {
-	"rcarriga/nvim-dap-ui",
-	dependencies = { "nvim-neotest/nvim-nio" },
-	config = function()
-		require "plugin-configs.nvim-dap-gui"
-	end
-}, {
-	"romgrk/barbar.nvim",
-	dependencies = { "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
-		"kyazdani42/nvim-web-devicons"           -- OPTIONAL: for file icons
+	{ "theHamsta/nvim-dap-virtual-text"
 	},
-	config = function()
-		require "plugin-configs.barbar"
-	end,
-	version = "^1.0.0" -- optional: only update when a new 1.x version is release
-}, "theHamsta/nvim-dap-virtual-text",
 	{
 		"sindrets/diffview.nvim",
-		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-	}, {
-	"rachartier/tiny-code-action.nvim",
-	dependencies = {
-		{ "nvim-lua/plenary.nvim" },
-		-- optional picker via telescope
-		-- { "nvim-telescope/telescope.nvim" },
-		-- optional picker via fzf-lua
-		-- { "ibhagwan/fzf-lua" },
-		-- .. or via snacks
+		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" }
 	},
-	event = "LspAttach",
-	opts = {
-		keymaps = {
-			disable_defaults = true,
-			visual = {
-				["<leader>ca"] = "code_action",
+	{
+		"rachartier/tiny-code-action.nvim",
+		dependencies = { { "nvim-lua/plenary.nvim" } -- optional picker via telescope
+			-- { "nvim-telescope/telescope.nvim" },
+			-- optional picker via fzf-lua
+			-- { "ibhagwan/fzf-lua" },
+			-- .. or via snacks
+		},
+		event = "LspAttach",
+		opts = {
+			keymaps = {
+				disable_defaults = true,
+				visual = {
+					["<leader>ca"] = "code_action"
+				},
+				normal = {
+					["<leader>ca"] = "code_action"
+				}
 			},
-			normal = {
-				["<leader>ca"] = "code_action",
+			notify = {
+				enabled = true,
+				on_empty = true
 			},
-		},
-		notify = {
-			enabled = true,
-			on_empty = true,
-		},
-		signs = {
-			quickfix = { "", { link = "DiagnosticWarning" } },
-			others = { "", { link = "DiagnosticWarning" } },
-			refactor = { "", { link = "DiagnosticInfo" } },
-			["refactor.move"] = { "󰪹", { link = "DiagnosticInfo" } },
-			["refactor.extract"] = { "", { link = "DiagnosticError" } },
-			["source.organizeImports"] = { "", { link = "DiagnosticWarning" } },
-			["source.fixAll"] = { "󰃢", { link = "DiagnosticError" } },
-			["source"] = { "", { link = "DiagnosticError" } },
-			["rename"] = { "󰑕", { link = "DiagnosticWarning" } },
-			["codeAction"] = { "", { link = "DiagnosticWarning" } },
-		},
+			signs = {
+				quickfix = { "", {
+					link = "DiagnosticWarning"
+				} },
+				others = { "", {
+					link = "DiagnosticWarning"
+				} },
+				refactor = { "", {
+					link = "DiagnosticInfo"
+				} },
+				["refactor.move"] = { "󰪹", {
+					link = "DiagnosticInfo"
+				} },
+				["refactor.extract"] = { "", {
+					link = "DiagnosticError"
+				} },
+				["source.organizeImports"] = { "", {
+					link = "DiagnosticWarning"
+				} },
+				["source.fixAll"] = { "󰃢", {
+					link = "DiagnosticError"
+				} },
+				["source"] = { "", {
+					link = "DiagnosticError"
+				} },
+				["rename"] = { "󰑕", {
+					link = "DiagnosticWarning"
+				} },
+				["codeAction"] = { "", {
+					link = "DiagnosticWarning"
+				} }
+			}
 
+		}
 	},
-},
 	{
 		"charludo/projectmgr.nvim",
 		lazy = false, -- important!
@@ -381,139 +473,152 @@ local plugins = { -- Editor support.
 				}
 			}
 		} }
-	}, {
-	"NeogitOrg/neogit",
-	dependencies = { "nvim-lua/plenary.nvim", -- required
-		"sindrets/diffview.nvim",              -- optional - Diff integration
-		-- Only one of these is needed.
-		"nvim-telescope/telescope.nvim"        -- optional
 	},
-	config = function()
-		require("neogit").setup({
-			kind = "split", -- opens neogit in a split
-			signs = {
-				-- { CLOSED, OPENED }
-				section = { "", "" },
-				item = { "", "" },
-				hunk = { "", "" },
-			},
-			integrations = { diffview = true }, -- adds integration with diffview.nvim
-		})
-	end,
-}, {
-	"kdheepak/lazygit.nvim",
-	lazy = true,
-	cmd = { "LazyGit", "LazyGitConfig", "LazyGitCurrentFile", "LazyGitFilter", "LazyGitFilterCurrentFile" },
-	dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-
-	-- TODO: Clean up all plugins
-
-	config = function()
-		require("telescope").load_extension "lazygit"
-	end,
-	keys = { {
-		"<leader>lg",
-		"<cmd>LazyGit<cr>",
-		desc = "LazyGit"
-	} }
-}, {
-	"nvim-telescope/telescope-file-browser.nvim",
-	dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-}, {
-	"folke/todo-comments.nvim",
-	dependencies = { "nvim-lua/plenary.nvim" },
-	opts = {
-		keywords = {
-			FIX = {
-				-- HACK: Just a test comment
-				icon = " ", -- icon used for the sign, and in search results
-				color = "error", -- can be a hex color, or a named color (see below)
-				alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } -- a set of other keywords that all map to this FIX keywords
-				-- signs = false, -- configure signs for some keywords individually
-			},
-			TODO = {
-				icon = " ",
-				color = "info"
-			},
-			HACK = {
-				icon = " ",
-				color = "warning"
-			},
-			WARN = {
-				icon = " ",
-				color = "warning",
-				alt = { "WARNING", "XXX" }
-			},
-			PERF = {
-				icon = "󱑟 ",
-				alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" }
-			},
-			NOTE = {
-				icon = "󰎛 ",
-				color = "hint",
-				alt = { "INFO" }
-			},
-			TEST = {
-				icon = "󰙨 ",
-				color = "test",
-				alt = { "TESTING", "PASSED", "FAILED" }
-			}
+	{
+		"NeogitOrg/neogit",
+		dependencies = { "nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim",             -- optional - Diff integration
+			-- Only one of these is needed.
+			"nvim-telescope/telescope.nvim"       -- optional
 		},
-		search = {
-			command = "rg",
-			args = { -- "--color=never",
-				-- "--no-heading",
-				"--with-filename", "--line-number", "--column" },
-			-- regex that will be used to match keywords.
-			-- don't replace the (KEYWORDS) placeholder
-			pattern = [[\b(KEYWORDS):]] -- ripgrep regex
-		}
-	}
-}, {
-	"utilyre/barbecue.nvim",
-	name = "barbecue",
-	version = "*",
-	dependencies = { "SmiteshP/nvim-navic", "nvim-tree/nvim-web-devicons" -- optional dependency
+		config = function()
+			require("neogit").setup({
+				kind = "split", -- opens neogit in a split
+				signs = {
+					-- { CLOSED, OPENED }
+					section = { "", "" },
+					item = { "", "" },
+					hunk = { "", "" }
+				},
+				integrations = {
+					diffview = true
+				} -- adds integration with diffview.nvim
+			})
+		end
 	},
-	opts = {
-		-- configurations go here
-		theme = {
-			normal = {
-				fg = "#737aa2",
-				bg = "#060606"
+	{
+		"kdheepak/lazygit.nvim",
+		lazy = true,
+		cmd = { "LazyGit", "LazyGitConfig", "LazyGitCurrentFile", "LazyGitFilter", "LazyGitFilterCurrentFile" },
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+
+		-- TODO: Clean up all plugins
+
+		config = function()
+			require("telescope").load_extension "lazygit"
+		end,
+		keys = { {
+			"<leader>lg",
+			"<cmd>LazyGit<cr>",
+			desc = "LazyGit"
+		} }
+	},
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			keywords = {
+				FIX = {
+					-- HACK: Just a test comment
+					icon = " ", -- icon used for the sign, and in search results
+					color = "error", -- can be a hex color, or a named color (see below)
+					alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } -- a set of other keywords that all map to this FIX keywords
+					-- signs = false, -- configure signs for some keywords individually
+				},
+				TODO = {
+					icon = " ",
+					color = "info"
+				},
+				HACK = {
+					icon = " ",
+					color = "warning"
+				},
+				WARN = {
+					icon = " ",
+					color = "warning",
+					alt = { "WARNING", "XXX" }
+				},
+				PERF = {
+					icon = "󱑟 ",
+					alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" }
+				},
+				NOTE = {
+					icon = "󰎛 ",
+					color = "hint",
+					alt = { "INFO" }
+				},
+				TEST = {
+					icon = "󰙨 ",
+					color = "test",
+					alt = { "TESTING", "PASSED", "FAILED" }
+				}
 			},
-			dirname = {
-				fg = "#737aa2"
-			},
-			basename = {
-				bold = true
+			search = {
+				command = "rg",
+				args = { -- "--color=never",
+					-- "--no-heading",
+					"--with-filename", "--line-number", "--column" },
+				-- regex that will be used to match keywords.
+				-- don't replace the (KEYWORDS) placeholder
+				pattern = [[\b(KEYWORDS):]] -- ripgrep regex
 			}
 		}
-	}
-}, {
-	"chentoast/marks.nvim",
-	event = "VeryLazy",
-	opts = {}
-}, {
-	'prichrd/netrw.nvim',
-	opts = {}
-}, {
-	"NStefan002/screenkey.nvim",
-	lazy = false,
-	version = "*" -- or branch = "main", to use the latest commit
-}, {
-	"mistricky/codesnap.nvim",
-	build = "make"
-}, {
-	'mawkler/jsx-element.nvim',
-	dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-treesitter/nvim-treesitter-textobjects' },
-	ft = { 'typescriptreact', 'javascriptreact', 'javascript' },
-	opts = {}
-}, {
-	"smjonas/inc-rename.nvim",
-	config = function()
-		require("inc_rename").setup()
-	end
-} }
+	},
+	{
+		"utilyre/barbecue.nvim",
+		name = "barbecue",
+		version = "*",
+		dependencies = { "SmiteshP/nvim-navic", "nvim-tree/nvim-web-devicons" -- optional dependency
+		},
+		opts = {
+			-- configurations go here
+			theme = {
+				normal = {
+					fg = "#737aa2",
+					bg = "#060606"
+				},
+				dirname = {
+					fg = "#737aa2"
+				},
+				basename = {
+					bold = true
+				}
+			}
+		}
+	},
+	{
+		"chentoast/marks.nvim",
+		event = "VeryLazy",
+		opts = {}
+	},
+	{
+		'prichrd/netrw.nvim',
+		opts = {}
+	},
+	{
+		"NStefan002/screenkey.nvim",
+		lazy = false,
+		version = "*" -- or branch = "main", to use the latest commit
+	},
+	{
+		"mistricky/codesnap.nvim",
+		build = "make"
+	},
+	{
+		'mawkler/jsx-element.nvim',
+		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-treesitter/nvim-treesitter-textobjects' },
+		ft = { 'typescriptreact', 'javascriptreact', 'javascript' },
+		opts = {}
+	},
+	{
+		"smjonas/inc-rename.nvim",
+		config = function()
+			require("inc_rename").setup()
+		end
+	} }
 
 return plugins
