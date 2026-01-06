@@ -130,6 +130,9 @@ mapx.nnoremap("<leader>wa", "<Cmd>SessionToggleAutoSave<CR>", opts)
 
 -- Dashboard
 mapx.nnoremap("<leader>aa", "<Cmd>Alpha<CR>", opts)
+vim.keymap.set({ "n", "x" }, "ad", function()
+	require("snacks").dashboard.open()
+end, { noremap = true, silent = true })
 
 -- Neogit
 mapx.nnoremap("<leader>ng", "<Cmd>Neogit<CR>", opts)

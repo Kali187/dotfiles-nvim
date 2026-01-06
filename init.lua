@@ -46,7 +46,8 @@ setup_lsp()
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
-		require("alpha").start()
+		require("snacks").dashboard.open()
+		-- require("alpha").start()
 	end
 })
 

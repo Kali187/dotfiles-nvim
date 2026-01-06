@@ -3,6 +3,29 @@ local plugins = {
 	-- The next few plugins are really the IDE feel.
 	{ 'github/copilot.vim' },
 	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			-- bigfile = { enabled = true },
+			dashboard = require("plugin-configs.snacks-dashboard"),
+			-- explorer = { enabled = true },
+			-- indent = { enabled = true },
+			-- input = { enabled = true },
+			-- picker = { enabled = true },
+			-- notifier = { enabled = true },
+			-- quickfile = { enabled = true },
+			-- scope = { enabled = true },
+			-- scroll = { enabled = true },
+			-- statuscolumn = { enabled = true },
+			-- words = { enabled = true },
+		},
+	},
+	{
 		"williamboman/mason.nvim",
 		config = function()
 			require "plugin-configs.mason"
@@ -47,8 +70,8 @@ local plugins = {
 		dependencies = { { "echasnovski/mini.icons" } },
 		opts = {
 			show_icons = true,
-			leader_key = "a;",         -- Recommended to be a single key
-			buffer_leader_key = "a'"   -- Per Buffer Mappings
+			leader_key = "a;",    -- Recommended to be a single key
+			buffer_leader_key = "a'" -- Per Buffer Mappings
 		}
 	},
 	{
@@ -85,7 +108,7 @@ local plugins = {
 
 			opts.handlers = {
 				["textDocument/publishDiagnostics"] = api.filter_diagnostics(
-					{ 80001      -- Ignore this might be converted to a ES export
+					{ 80001 -- Ignore this might be converted to a ES export
 					})
 			}
 
@@ -348,7 +371,7 @@ local plugins = {
 	{
 		"romgrk/barbar.nvim",
 		dependencies = { "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
-			"kyazdani42/nvim-web-devicons"           -- OPTIONAL: for file icons
+			"kyazdani42/nvim-web-devicons"          -- OPTIONAL: for file icons
 		},
 		config = function()
 			require "plugin-configs.barbar"
@@ -439,13 +462,13 @@ local plugins = {
 	{
 		"NeogitOrg/neogit",
 		dependencies = { "nvim-lua/plenary.nvim", -- required
-			"sindrets/diffview.nvim",              -- optional - Diff integration
+			"sindrets/diffview.nvim",             -- optional - Diff integration
 			-- Only one of these is needed.
-			"nvim-telescope/telescope.nvim"        -- optional
+			"nvim-telescope/telescope.nvim"       -- optional
 		},
 		config = function()
 			require("neogit").setup({
-				kind = "split",     -- opens neogit in a split
+				kind = "split", -- opens neogit in a split
 				signs = {
 					-- { CLOSED, OPENED }
 					section = { "", "" },
@@ -454,7 +477,7 @@ local plugins = {
 				},
 				integrations = {
 					diffview = true
-				}     -- adds integration with diffview.nvim
+				} -- adds integration with diffview.nvim
 			})
 		end
 	},
@@ -521,12 +544,12 @@ local plugins = {
 			},
 			search = {
 				command = "rg",
-				args = {     -- "--color=never",
+				args = { -- "--color=never",
 					-- "--no-heading",
 					"--with-filename", "--line-number", "--column" },
 				-- regex that will be used to match keywords.
 				-- don't replace the (KEYWORDS) placeholder
-				pattern = [[\b(KEYWORDS):]]     -- ripgrep regex
+				pattern = [[\b(KEYWORDS):]] -- ripgrep regex
 			}
 		}
 	},
