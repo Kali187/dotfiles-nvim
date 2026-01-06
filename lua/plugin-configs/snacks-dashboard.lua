@@ -17,7 +17,7 @@ return {
 				indent = 5,
 			}
 		end,
-		{ pane = 2, icon = " ", title = "Projects", section = "projects", indent = 3, padding = 1 },
+		-- { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 3, padding = 1 },
 		{ pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 3, padding = 1 },
 		function()
 			local in_git = Snacks.git.get_root() ~= nil
