@@ -483,7 +483,7 @@ local plugins = {
 		},
 		config = function()
 			require("neogit").setup({
-				kind = "split", -- opens neogit in a split
+				kind = "floating", -- opens neogit in a split
 				signs = {
 					-- { CLOSED, OPENED }
 					section = { "", "" },
