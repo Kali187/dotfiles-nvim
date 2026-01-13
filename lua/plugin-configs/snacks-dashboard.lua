@@ -31,9 +31,7 @@ return {
 				indent = 5,
 			}
 		end,
-		{ pane = 2, section = "terminal", cmd = "fortune -s | cowsay", hl = "header", padding = 1, indent = 8 },
-		-- { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 3, padding = 1 },
 		{ pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 3, padding = 1 },
-
+		{ pane = 2, icon = " ", title = "Projects", section = "projects", indent = 3, padding = 1 },
 	},
 }
