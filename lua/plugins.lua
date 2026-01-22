@@ -11,9 +11,9 @@ local plugins = {
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
-			git = { enabled = true },
-			gitbrowse = { enabled = true },
-			dim = { enabled = true },
+			-- git = { enabled = true },
+			-- gitbrowse = { enabled = true },
+			-- dim = { enabled = true },
 			dashboard = require("plugin-configs.snacks-dashboard"),
 			-- explorer = { enabled = true },
 			-- indent = { enabled = true },
