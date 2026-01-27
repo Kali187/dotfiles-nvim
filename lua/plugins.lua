@@ -6,23 +6,13 @@ local plugins = {
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
+		---@diagnostic disable-next-line: undefined-doc-name
 		---@type snacks.Config
 		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-			-- git = { enabled = true },
-			-- gitbrowse = { enabled = true },
-			-- dim = { enabled = true },
+			git = { enabled = true },
+			gitbrowse = { enabled = true },
+			dim = { enabled = true },
 			dashboard = require("plugin-configs.snacks-dashboard"),
-			-- explorer = { enabled = true },
-			-- indent = { enabled = true },
-			-- input = { enabled = true },
-			-- picker = { enabled = true },
-			-- notifier = { enabled = true },
-			-- quickfile = { enabled = true },
-			-- scope = { enabled = true },
-			-- scroll = { enabled = true },
 			statuscolumn = {
 				enabled = true,
 				left = { "mark", "sign" }, -- priority of signs on the left (high to low)
@@ -32,12 +22,23 @@ local plugins = {
 					git_hl = false,      -- use Git Signs hl for fold icons
 				},
 				git = {
-					-- patterns to match Git signs
 					patterns = { "GitSign", "MiniDiffSign" },
 				},
 				refresh = 50, -- refresh at most every 50ms
 			},
-			-- words = { enabled = true },
+		},
+	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		---@type Flash.Config
+		opts = {},
+		keys = {
+			{ "<leader>fs", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+			{ "<leader>fS", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+			{ "<leader>fr", mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+			{ "<leader>fR", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+			{ "<c-s>",      mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
 		},
 	},
 	{
@@ -136,6 +137,7 @@ local plugins = {
 				enable = true,
 				filetypes = { "typescriptreact" }
 			},
+			---@diagnostic disable-next-line: unused-local
 			on_attach = function(config, bufNr)
 				vim.keymap.set({ "n", "v" }, "<leader>ttio", ":TSToolsOrganizeImports<CR>", {
 					desc = "Imports Organize",
@@ -179,6 +181,7 @@ local plugins = {
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		---@module "ibl"
+		---@diagnostic disable-next-line: undefined-doc-name
 		---@type ibl.config
 		opts = {}
 	},
@@ -216,6 +219,7 @@ local plugins = {
 
 		version = '1.*',
 
+		---@diagnostic disable-next-line: undefined-doc-name
 		---@type blink.cmp.Config
 		opts = {
 			keymap = {
@@ -505,6 +509,7 @@ local plugins = {
 		-- TODO: Clean up all plugins
 
 		config = function()
+			---@diagnostic disable-next-line: different-requires
 			require("telescope").load_extension "lazygit"
 		end,
 		keys = { {
