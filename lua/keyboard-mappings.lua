@@ -16,7 +16,7 @@ mapx.nnoremap("<C-l>", "<C-w>l") -- Move to right window
 
 -- Some small tooling
 mapx.noremap('<leader>ww', '<Cmd>set wrap!<CR>', "Word Wrap Toggle") -- E.g: <leader>yy will yank current line to os clipboard
-mapx.nnoremap("<leader>nh", "<Cmd>noh", "Clear search res. highlight")
+mapx.nnoremap("<leader>nn", "<Cmd>noh<CR>", "Clear search highlight")
 
 mapx.nnoremap("<leader>dde", "<cmd>lua Snacks.dim.enable()<CR>")
 
