@@ -9,24 +9,38 @@ local plugins = {
 		---@diagnostic disable-next-line: undefined-doc-name
 		---@type snacks.Config
 		opts = {
-			git = { enabled = true },
-			gitbrowse = { enabled = true },
-			dim = { enabled = true },
+			-- git = { enabled = true },
+			-- gitbrowse = { enabled = true },
+			-- dim = { enabled = true },
 			dashboard = require("plugin-configs.snacks-dashboard"),
-			statuscolumn = {
-				enabled = true,
-				left = { "mark", "sign" }, -- priority of signs on the left (high to low)
-				right = { "fold", "git" }, -- priority of signs on the right (high to low)
-				folds = {
-					open = false,        -- show open fold icons
-					git_hl = false,      -- use Git Signs hl for fold icons
-				},
-				git = {
-					patterns = { "GitSign", "MiniDiffSign" },
-				},
-				refresh = 50, -- refresh at most every 50ms
-			},
+			-- statuscolumn = {
+			-- 	enabled = true,
+			-- 	left = { "mark", "sign" }, -- priority of signs on the left (high to low)
+			-- 	right = { "fold", "git" }, -- priority of signs on the right (high to low)
+			-- 	folds = {
+			-- 		open = false,        -- show open fold icons
+			-- 		git_hl = false,      -- use Git Signs hl for fold icons
+			-- 	},
+			-- 	git = {
+			-- 		patterns = { "GitSign", "MiniDiffSign" },
+			-- 	},
+			-- 	refresh = 50, -- refresh at most every 50ms
+			-- },
 		},
+	},
+	{
+		"nvim-neotest/neotest",
+		dependencies = {
+			"marilari88/neotest-vitest",
+			"nvim-neotest/neotest-jest",
+			"nvim-neotest/nvim-nio",
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter"
+		},
+		config = function()
+			require "plugin-configs.neotest"
+		end,
 	},
 	{
 		"folke/flash.nvim",

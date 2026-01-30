@@ -1,4 +1,4 @@
-local mapx = require("mapx").setup()
+local mapx = require("mapx").setup({ global = true, whichkey = true })
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts) -- Set location list with diagnostics
@@ -8,27 +8,33 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts) -- Set location
 -- Run format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]] -- Format on save
 
+
+
 -- Better window swapping
-mapx.nnoremap("<C-h>", "<C-w>h") -- Move to left window
-mapx.nnoremap("<C-j>", "<C-w>j") -- Move to lower window
-mapx.nnoremap("<C-k>", "<C-w>k") -- Move to upper window
-mapx.nnoremap("<C-l>", "<C-w>l") -- Move to right window
+mapx.nnoremap("<C-h>", "<C-w>h", "Move to left window")  -- Move to left window
+mapx.nnoremap("<C-j>", "<C-w>j", "Move to lower window") -- Move to lower windows
+mapx.nnoremap("<C-k>", "<C-w>k", "Move to upper window") -- Move to upper window
+mapx.nnoremap("<C-l>", "<C-w>l", "Move to right window") -- Move to right window
 
 -- Some small tooling
 mapx.noremap('<leader>ww', '<Cmd>set wrap!<CR>', "Word Wrap Toggle") -- E.g: <leader>yy will yank current line to os clipboard
 mapx.nnoremap("<leader>nn", "<Cmd>noh<CR>", "Clear search highlight")
 
-mapx.nnoremap("<leader>dde", "<cmd>lua Snacks.dim.enable()<CR>")
-
 -- Utils
-mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>", "Project manager")                                        -- Open project manager.
+mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>", "Project manager") -- Open project manager.
 
-mapx.nnoremap("<leader>ee", ":Explore<Cr>", "File explorer")                                            -- Open file explorer.
+mapx.nnoremap("<leader>ee", ":Explore<Cr>", "File explorer")
+
+-- Open file explorer.
+mapx.nname("<leader>t", "Telescope and Neotest related mappings")
+
 mapx.nnoremap("<leader>te", ":Telescope file_browser<Cr>", "Telescope - File browser")                  -- Telescope File browser
 mapx.nnoremap("<leader>tE", ":Telescope file_browser path=%:p:h select_buffer=true<Cr>",
 	"Telescope - File browser in current folder")                                                         -- Telescope File browser in current folder
 mapx.nnoremap("<leader>tn", ":NoiceTelescope<Cr>", "Telescope - Notifications")                         -- Telescope Notifications
 mapx.nnoremap("<leader>t:", ":Telescope commands<Cr>", "Telescope - Commands")                          -- Telescope Commands
+mapx.nnoremap("<leader>th", ":Telescope help_tags<Cr>", "Telescope - Help tags")                        -- Telescope Help tags
+mapx.nnoremap("<leader>tk", ":Telescope keymaps<Cr>", "Telescope - Keymaps")                            -- Telescope Keymaps
 mapx.nnoremap("<leader>tm", ":Telescope marks<Cr>", "Telescope - Marks")                                -- Telescope Marks
 mapx.nnoremap("<leader>tu", ":Telescope undo<Cr>", "Telescope - Undos")                                 -- Telescope Undos
 mapx.nnoremap("<leader>tf", ":Telescope find_files<Cr>", "Telescope - Find files")                      -- Telescope find files
@@ -42,9 +48,16 @@ mapx.nnoremap("<leader>tqh", ":Telescope quickfixhistory<Cr>", "Telescope - Quic
 mapx.nnoremap("<leader>tqh", ":Telescope vim_options<Cr>", "Telescope - Vim Options")                   -- Telescope vim options
 
 -- Telescope LSP
-mapx.nnoremap("<leader>tlsw", ":Telescope lsp_workspace_symbols<Cr>", "Telescope - LSP Workspace Symbols") -- Telescope LSP workspace symbols
-mapx.nnoremap("<leader>tlsd", ":Telescope lsp_document_symbols<Cr>", "Telescope - LSP Document Symbols")   -- Telescope LSP document symbol
-mapx.nnoremap("<leader>tltd", ":Telescope lsp_type_definitions<Cr>", "Telescope - LSP Type Definitions")   -- Telescope LSP type definitions
+mapx.nnoremap("<leader>tws", ":Telescope lsp_workspace_symbols<Cr>", "Telescope - LSP Workspace Symbols")  -- Telescope LSP workspace symbols
+mapx.nnoremap("<leader>ts", ":Telescope lsp_document_symbols<Cr>", "Telescope - LSP Document Symbols")     -- Telescope LSP document symbol
+mapx.nnoremap("<leader>ttd", ":Telescope lsp_type_definitions<Cr>", "Telescope - LSP Type Definitions")    -- Telescope LSP type definitions
+
+mapx.nnoremap("<leader>gr", "<cmd>Telescope lsp_references<CR>", "Telescope - LSP References")             -- Telescope LSP references
+mapx.nnoremap("<leader>gd", "<cmd>Telescope lsp_definitions<CR>", "Telescope - LSP Definitions")           -- Telescope LSP definitions
+mapx.nnoremap("<leader>gi", "<cmd>Telescope lsp_implementations<CR>", "Telescope - LSP Implementations")   -- Telescope LSP implementations
+mapx.nnoremap("<leader>gt", "<cmd>Telescope lsp_type_definitions<CR>", "Telescope - LSP Type Definitions") -- Telescope LSP type definitions
+
+
 
 -- LspSaga calls
 mapx.nnoremap("<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")                           -- LspSaga incoming calls
@@ -63,7 +76,16 @@ mapx.nnoremap(
 	"<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>",
 	"Diagnostics - Next ERROR"
 
-)                                                                   -- Go to next ERROR diagnostic
+)
+
+mapx.nname("<leader>tr", "Neotest related mappings")
+mapx.nnoremap("<leader>trn", "<cmd>lua require('neotest').run.run()<CR>", "Neotest - Run Nearest")
+mapx.nnoremap("<leader>trf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Neotest - Run File")
+mapx.nnoremap("<leader>trS", "<cmd>lua require('neotest').run.stop()<CR>", "Neotest - Stop")
+mapx.nnoremap("<leader>trl", "<cmd>lua require('neotest').output_panel.toggle()<CR>", "Neotest - Output Panel Toggle")
+mapx.nnoremap("<leader>trs", "<cmd>lua require('neotest').summary.toggle()<CR>", "Neotest - Summary Toggle")
+
+-- Go to next ERROR diagnostic
 
 mapx.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")        -- Go to definition
 mapx.inoremap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>") -- Signature help in insert mode
@@ -82,26 +104,30 @@ vim.keymap.set({ "n", "x" }, "cc", function()
 	require("tiny-code-action").code_action()
 end, { noremap = true, silent = true }) -- Tiny Code Action code actions
 
+
+mapx.nname("<leader>b", "Bufferline related mappings")
 -- Close and pin buffer
-mapx.nnoremap("<leader>bcc", "<Cmd>BufferClose<CR>", opts)              -- Close current buffer
-mapx.nnoremap("<leader>bc,", "<Cmd>BufferCloseBuffersLeft<CR>", opts)   -- Close buffers to the left
-mapx.nnoremap("<leader>bc.", "<Cmd>BufferCloseBuffersRight<CR>", opts)  -- Close buffers to the right
-mapx.nnoremap("<leader>bco", "<Cmd>BufferCloseAllButCurrent<CR>", opts) -- Close all but current buffer
-mapx.nnoremap("<leader>bv", "<Cmd>BufferPin<CR>", opts)                 -- Pin/unpin buffer
-mapx.nnoremap("<leader>br", "<cmd>lua vim.lsp.buf.rename()<CR>")        -- Rename buffer (LSP)
+mapx.nnoremap("<leader>bcc", "<Cmd>BufferClose<CR>", opts, "Close current buffer")                      -- Close current buffer
+mapx.nnoremap("<leader>bc,", "<Cmd>BufferCloseBuffersLeft<CR>", opts, "Close buffers to the left")      -- Close buffers to the left
+mapx.nnoremap("<leader>bc.", "<Cmd>BufferCloseBuffersRight<CR>", opts, "Close buffers to the right")    -- Close buffers to the right
+mapx.nnoremap("<leader>bco", "<Cmd>BufferCloseAllButCurrent<CR>", opts, "Close all but current buffer") -- Close all but current buffer
+mapx.nnoremap("<leader>bv", "<Cmd>BufferPin<CR>", opts, "Pin/Unpin current buffer")                     -- Pin/Unpin current buffer
+mapx.nnoremap("<leader>br", "<cmd>lua vim.lsp.buf.rename()<CR>", opts, "Rename current buffer")         -- Rename current buffer
 
 -- Switch to previous next buffer
-mapx.nnoremap("<leader>b,", "<Cmd>BufferPrevious<CR>", opts) -- Previous buffer
-mapx.nnoremap("<leader>b.", "<Cmd>BufferNext<CR>", opts)     -- Next buffer
+mapx.nnoremap("<leader>b,", "<Cmd>BufferPrevious<CR>", opts, "Previous buffer") -- Previous buffer
+mapx.nnoremap("<leader>b.", "<Cmd>BufferNext<CR>", opts, "Next buffer")         -- Next buffer
 
 -- Re-order to previous/next
-mapx.nnoremap("<leader>bm,", "<Cmd>BufferMovePrevious<CR>", opts) -- Move buffer to previous position
-mapx.nnoremap("<leader>bm.", "<Cmd>BufferMoveNext<CR>", opts)     -- Move buffer to next position
+mapx.nnoremap("<leader>bm,", "<Cmd>BufferMovePrevious<CR>", opts, "Move buffer to previous position") -- Move buffer to previous position
+mapx.nnoremap("<leader>bm.", "<Cmd>BufferMoveNext<CR>", opts, "Move buffer to next position")         -- Move buffer to next position
 
---
-mapx.nnoremap("<leader>wf", "<Cmd>SessionSearch<CR>", opts)         -- Search sessions
-mapx.nnoremap("<leader>ws", "<Cmd>SessionSave<CR>", opts)           -- Save session
-mapx.nnoremap("<leader>wa", "<Cmd>SessionToggleAutoSave<CR>", opts) -- Toggle autosave session
+mapx.nname("<leader>w", "Session related mappings")
+mapx.nnoremap("<leader>wf", "<Cmd>SessionSearch<CR>", opts, "Search sessions")                 -- Search sessions
+mapx.nnoremap("<leader>ws", "<Cmd>SessionSave<CR>", opts, "Save current session")              -- Save current session
+mapx.nnoremap("<leader>wa", "<Cmd>SessionToggleAutoSave<CR>", opts, "Toggle session autosave") -- Toggle session autosave
+
+mapx.nname("<leader>x", "Trouble Diagnostics")
 
 -- Dashboard
 vim.keymap.set({ "n", "x" }, "aa", function()
