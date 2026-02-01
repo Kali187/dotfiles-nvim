@@ -316,9 +316,6 @@ local plugins = {
 		"folke/which-key.nvim",
 		config = function()
 			require("which-key").setup {
-				win = {
-					title = false
-				},
 				plugins = {
 					marks = true,
 					registers = true

@@ -1,4 +1,4 @@
-local mapx = require("mapx").setup({ global = true, whichkey = true })
+local mapx = require("mapx").setup({ global = true })
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts) -- Set location list with diagnostics
@@ -26,7 +26,7 @@ mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>", "Project manager") -- Open project
 mapx.nnoremap("<leader>ee", ":Explore<Cr>", "File explorer")
 
 -- Open file explorer.
-mapx.nname("<leader>t", "Telescope and Neotest related mappings")
+-- mapx.nname("<leader>t", "Telescope and Neotest related mappings")
 
 mapx.nnoremap("<leader>te", ":Telescope file_browser<Cr>", "Telescope - File browser")                  -- Telescope File browser
 mapx.nnoremap("<leader>tE", ":Telescope file_browser path=%:p:h select_buffer=true<Cr>",
@@ -78,7 +78,7 @@ mapx.nnoremap(
 
 )
 
-mapx.nname("<leader>tr", "Neotest related mappings")
+-- mapx.nname("<leader>tr", "Neotest related mappings")
 mapx.nnoremap("<leader>trn", "<cmd>lua require('neotest').run.run()<CR>", "Neotest - Run Nearest")
 mapx.nnoremap("<leader>trf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Neotest - Run File")
 mapx.nnoremap("<leader>trS", "<cmd>lua require('neotest').run.stop()<CR>", "Neotest - Stop")
@@ -105,7 +105,7 @@ vim.keymap.set({ "n", "x" }, "cc", function()
 end, { noremap = true, silent = true }) -- Tiny Code Action code actions
 
 
-mapx.nname("<leader>b", "Bufferline related mappings")
+-- mapx.nname("<leader>b", "Bufferline related mappings")
 -- Close and pin buffer
 mapx.nnoremap("<leader>bcc", "<Cmd>BufferClose<CR>", opts, "Close current buffer")                      -- Close current buffer
 mapx.nnoremap("<leader>bc,", "<Cmd>BufferCloseBuffersLeft<CR>", opts, "Close buffers to the left")      -- Close buffers to the left
@@ -122,7 +122,7 @@ mapx.nnoremap("<leader>b.", "<Cmd>BufferNext<CR>", opts, "Next buffer")         
 mapx.nnoremap("<leader>bm,", "<Cmd>BufferMovePrevious<CR>", opts, "Move buffer to previous position") -- Move buffer to previous position
 mapx.nnoremap("<leader>bm.", "<Cmd>BufferMoveNext<CR>", opts, "Move buffer to next position")         -- Move buffer to next position
 
-mapx.nname("<leader>w", "Session related mappings")
+-- mapx.nname("<leader>w", "Session related mappings")
 mapx.nnoremap("<leader>wf", "<Cmd>SessionSearch<CR>", opts, "Search sessions")                 -- Search sessions
 mapx.nnoremap("<leader>ws", "<Cmd>SessionSave<CR>", opts, "Save current session")              -- Save current session
 mapx.nnoremap("<leader>wa", "<Cmd>SessionToggleAutoSave<CR>", opts, "Toggle session autosave") -- Toggle session autosave
