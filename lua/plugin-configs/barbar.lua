@@ -2,9 +2,10 @@ require("barbar").setup {
 	animation = true,
 	auto_hide = false,
 	tabpages = true,
+
 	clickable = true,
 	exclude_ft = { "javascript" },
-	exclude_name = { "package.json" },
+	exclude_name = {},
 	focus_on_close = "left",
 	hide = { extensions = true, inactive = false },
 	highlight_alternate = false,
@@ -31,7 +32,7 @@ require("barbar").setup {
 	insert_at_end = true,
 	insert_at_start = false,
 	sidebar_filetypes = {
-		NvimTree = true,
+		-- NvimTree = true,
 		undotree = {
 			text = "undotree",
 			align = "center", -- *optionally* specify an alignment (either 'left', 'center', or 'right')

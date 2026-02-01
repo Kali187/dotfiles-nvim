@@ -9,23 +9,7 @@ local plugins = {
 		---@diagnostic disable-next-line: undefined-doc-name
 		---@type snacks.Config
 		opts = {
-			-- git = { enabled = true },
-			-- gitbrowse = { enabled = true },
-			-- dim = { enabled = true },
 			dashboard = require("plugin-configs.snacks-dashboard"),
-			-- statuscolumn = {
-			-- 	enabled = true,
-			-- 	left = { "mark", "sign" }, -- priority of signs on the left (high to low)
-			-- 	right = { "fold", "git" }, -- priority of signs on the right (high to low)
-			-- 	folds = {
-			-- 		open = false,        -- show open fold icons
-			-- 		git_hl = false,      -- use Git Signs hl for fold icons
-			-- 	},
-			-- 	git = {
-			-- 		patterns = { "GitSign", "MiniDiffSign" },
-			-- 	},
-			-- 	refresh = 50, -- refresh at most every 50ms
-			-- },
 		},
 	},
 	{
@@ -63,42 +47,6 @@ local plugins = {
 		run = ":MasonUpdate" -- :MasonUpdate updates registry contents
 	},
 	{
-		"NickvanDyke/opencode.nvim",
-		dependencies = {
-			-- Recommended for `ask()` and `select()`.
-			-- Required for `snacks` provider.
-			---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
-			{ "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
-		},
-		config = function()
-			---@type opencode.Opts
-			vim.g.opencode_opts = {
-				-- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition" on the type or field.
-			}
-
-			-- Required for `opts.events.reload`.
-			vim.o.autoread = true
-
-			-- Recommended/example keymaps.
-			vim.keymap.set({ "n", "x" }, "<leader>oca", function() require("opencode").ask("@this: ", { submit = true }) end,
-				{ desc = "Ask opencode…" })
-			vim.keymap.set({ "n", "x" }, "<leader>ocx", function() require("opencode").select() end,
-				{ desc = "Execute opencode action…" })
-			vim.keymap.set({ "n", "t" }, "<leader>oct", function() require("opencode").toggle() end,
-				{ desc = "Toggle opencode" })
-
-			vim.keymap.set({ "n", "x" }, "<leader>ocr", function() return require("opencode").operator("@this ") end,
-				{ desc = "Add range to opencode", expr = true })
-			vim.keymap.set("n", "<leader>ocl", function() return require("opencode").operator("@this ") .. "_" end,
-				{ desc = "Add line to opencode", expr = true })
-
-			vim.keymap.set("n", "<leader>ocu", function() require("opencode").command("session.half.page.up") end,
-				{ desc = "Scroll opencode up" })
-			vim.keymap.set("n", "<leader>ocd", function() require("opencode").command("session.half.page.down") end,
-				{ desc = "Scroll opencode down" })
-		end,
-	},
-	{
 		"jghauser/mkdir.nvim"
 	},
 	{
@@ -117,6 +65,17 @@ local plugins = {
 			}
 		end
 	},
+
+	{
+		"romgrk/barbar.nvim",
+		dependencies = { "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+			"kyazdani42/nvim-web-devicons"          -- OPTIONAL: for file icons
+		},
+		config = function()
+			require "plugin-configs.barbar"
+		end,
+		version = "^1.0.0" -- optional: only update when a new 1.x version is release
+	},
 	{
 		"mg979/vim-visual-multi"
 	},
@@ -132,18 +91,9 @@ local plugins = {
 		opts = {}
 	},
 	{
-		"otavioschwanck/arrow.nvim",
-		dependencies = { { "echasnovski/mini.icons" } },
-		opts = {
-			show_icons = true,
-			leader_key = "a;",    -- Recommended to be a single key
-			buffer_leader_key = "a'" -- Per Buffer Mappings
-		}
-	},
-	{
 		"olrtg/nvim-emmet",
 		config = function()
-			vim.keymap.set({ "n", "v" }, "<leader>xe", require("nvim-emmet").wrap_with_abbreviation)
+			vim.keymap.set({ "n", "v" }, "<leader>ee", require("nvim-emmet").wrap_with_abbreviation)
 		end
 	},
 	{
@@ -222,12 +172,6 @@ local plugins = {
 		}
 	},
 	{
-		"gorbit99/codewindow.nvim",
-		config = function()
-			require "plugin-configs.codewindow"
-		end
-	},
-	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		---@module "ibl"
@@ -292,7 +236,12 @@ local plugins = {
 			},
 
 			fuzzy = {
-				implementation = "prefer_rust_with_warning"
+				implementation = "lua",
+				sorts = {
+					'score', -- Primary sort: by fuzzy matching score
+					'sort_text', -- Secondary sort: by sortText field if scores are equal
+					'label', -- Tertiary sort: by label if still tied
+				}
 			}
 		},
 		opts_extend = { "sources.default" }
@@ -397,12 +346,6 @@ local plugins = {
 		config = true -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
 	},
 	{
-		"goolord/alpha-nvim",
-		config = function()
-			require("plugin-configs.dashboard").setup()
-		end
-	},
-	{
 		"rcarriga/nvim-notify",
 		config = function()
 			local notify = require "notify"
@@ -434,16 +377,6 @@ local plugins = {
 			require "plugin-configs.nvim-dap-gui"
 		end
 	},
-	{
-		"romgrk/barbar.nvim",
-		dependencies = { "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
-			"kyazdani42/nvim-web-devicons"          -- OPTIONAL: for file icons
-		},
-		config = function()
-			require "plugin-configs.barbar"
-		end,
-		version = "^1.0.0" -- optional: only update when a new 1.x version is release
-	},
 	{ "theHamsta/nvim-dap-virtual-text"
 	},
 	{
@@ -453,10 +386,6 @@ local plugins = {
 	{
 		"rachartier/tiny-code-action.nvim",
 		dependencies = { { "nvim-lua/plenary.nvim" } -- optional picker via telescope
-			-- { "nvim-telescope/telescope.nvim" },
-			-- optional picker via fzf-lua
-			-- { "ibhagwan/fzf-lua" },
-			-- .. or via snacks
 		},
 		event = "LspAttach",
 		opts = {
@@ -509,23 +438,6 @@ local plugins = {
 		}
 	},
 	{
-		"charludo/projectmgr.nvim",
-		lazy = false, -- important!
-		dependencies = { {
-			"AstroNvim/astrocore",
-			opts = {
-				mappings = {
-					n = {
-						["<Leader>P"] = {
-							"<Cmd>ProjectMgr<CR>",
-							desc = "Open ProjectMgr panel"
-						}
-					}
-				}
-			}
-		} }
-	},
-	{
 		"NeogitOrg/neogit",
 		dependencies = { "nvim-lua/plenary.nvim", -- required
 			"sindrets/diffview.nvim",             -- optional - Diff integration
@@ -565,10 +477,54 @@ local plugins = {
 			desc = "LazyGit"
 		} }
 	},
+
 	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+		"mikavilpas/yazi.nvim",
+		version = "*", -- use the latest stable version
+		event = "VeryLazy",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", lazy = true },
+		},
+		keys = {
+			-- 👇 in this section, choose your own keymappings!
+			{
+				"<leader>yf",
+				mode = { "n", "v" },
+				"<cmd>Yazi<cr>",
+				desc = "Open yazi at the current file",
+			},
+			{
+				-- Open in the current working directory
+				"<leader>yd",
+				"<cmd>Yazi cwd<cr>",
+				desc = "Open the file manager in nvim's working directory",
+			},
+			{
+				"<leader>yy",
+				"<cmd>Yazi toggle<cr>",
+				desc = "Resume the last yazi session",
+			},
+		},
+		---@type YaziConfig | {}
+		opts = {
+			-- if you want to open yazi instead of netrw, see below for more info
+			open_for_directories = false,
+			keymaps = {
+				show_help = "<f1>",
+			},
+		},
+		-- 👇 if you use `open_for_directories=true`, this is recommended
+		init = function()
+			-- mark netrw as loaded so it's not loaded at all.
+			--
+			-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+			vim.g.loaded_netrwPlugin = 1
+		end,
 	},
+	-- {
+	-- 	"nvim-telescope/telescope-file-browser.nvim",
+	-- 	dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+	-- },
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -621,44 +577,14 @@ local plugins = {
 		}
 	},
 	{
-		"utilyre/barbecue.nvim",
-		name = "barbecue",
-		version = "*",
-		dependencies = { "SmiteshP/nvim-navic", "nvim-tree/nvim-web-devicons" -- optional dependency
-		},
-		opts = {
-			-- configurations go here
-			theme = {
-				normal = {
-					fg = "#737aa2",
-					bg = "#060606"
-				},
-				dirname = {
-					fg = "#737aa2"
-				},
-				basename = {
-					bold = true
-				}
-			}
-		}
-	},
-	{
 		"chentoast/marks.nvim",
 		event = "VeryLazy",
-		opts = {}
-	},
-	{
-		'prichrd/netrw.nvim',
 		opts = {}
 	},
 	{
 		"NStefan002/screenkey.nvim",
 		lazy = false,
 		version = "*" -- or branch = "main", to use the latest commit
-	},
-	{
-		"mistricky/codesnap.nvim",
-		build = "make"
 	},
 	{
 		'mawkler/jsx-element.nvim',

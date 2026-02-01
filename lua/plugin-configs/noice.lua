@@ -17,23 +17,31 @@ require("noice").setup {
 	},
 	presets = {
 		bottom_search = false, -- use a classic bottom cmdline for search
+		inc_rename = true,   -- enables an input dialog for inc-rename.nvim
+
+
 		command_palette = {
 			views = {
 				cmdline_popup = {
+					border = {
+						padding = { 1, 1 },
+						color = { bg = "Normal", fg = "Normal" },
+					},
 					position = {
-						row = "50%",
-						col = "50%",
+						row = "100%",
 					},
 					size = {
-						min_width = 60,
-						width = "auto",
+						width = "99%",
 						height = "auto",
 					},
 				},
 				cmdline_popupmenu = {
+					border = {
+						style = "rounded",
+					},
 					position = {
-						row = "67%",
-						col = "50%",
+						row = "99%",
+						col = "0%",
 					},
 				},
 			},

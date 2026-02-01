@@ -8,7 +8,10 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts) -- Set location
 -- Run format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]] -- Format on save
 
-
+mapx.nnoremap("<leader>T,", ":tabnext<CR>", "Next tab")           -- Next tab
+mapx.nnoremap("<leader>T.", ":tabprevious<CR>", "Previous tab")   -- Previous tab
+mapx.nnoremap("<leader>Tn", ":tabnew<CR>", "New tab")             -- New tab
+mapx.nnoremap("<leader>Tc", ":tabclose<CR>", "Close current tab") -- Close current tab
 
 -- Better window swapping
 mapx.nnoremap("<C-h>", "<C-w>h", "Move to left window")  -- Move to left window
@@ -41,7 +44,7 @@ mapx.nnoremap("<leader>tf", ":Telescope find_files<Cr>", "Telescope - Find files
 mapx.nnoremap("<leader>tb", ":Telescope buffers<Cr>", "Telescope - Buffers")                            -- Telescope buffers
 mapx.nnoremap("<leader>tg", ":Telescope live_grep<Cr>", "Telescope - Grep")                             -- Telescope live grep
 mapx.nnoremap("<leader>to", ":Telescope oldfiles<Cr>", "Telescope - Recent Files")                      -- Telescope old files
-mapx.nnoremap("<leader>tc", ":Telescope current_buffer_fuzzy_find<Cr>", "Telescope - Search in buffer") -- Telescope current buffer fuzzy find
+mapx.nnoremap("<leader>ts", ":Telescope current_buffer_fuzzy_find<Cr>", "Telescope - Search in buffer") -- Telescope current buffer fuzzy find
 mapx.nnoremap("<leader>td", ":Telescope diagnostics<Cr>", "Telescope - Diagnostics")                    -- Telescope diagnostics
 mapx.nnoremap("<leader>tqq", ":Telescope quickfix<Cr>", "Telescope - Quickfix")                         -- Telescope quickfix
 mapx.nnoremap("<leader>tqh", ":Telescope quickfixhistory<Cr>", "Telescope - Quickfix History")          -- Telescope quickfix history
@@ -49,7 +52,7 @@ mapx.nnoremap("<leader>tqh", ":Telescope vim_options<Cr>", "Telescope - Vim Opti
 
 -- Telescope LSP
 mapx.nnoremap("<leader>tws", ":Telescope lsp_workspace_symbols<Cr>", "Telescope - LSP Workspace Symbols")  -- Telescope LSP workspace symbols
-mapx.nnoremap("<leader>ts", ":Telescope lsp_document_symbols<Cr>", "Telescope - LSP Document Symbols")     -- Telescope LSP document symbol
+mapx.nnoremap("<leader>tts", ":Telescope lsp_document_symbols<Cr>", "Telescope - LSP Document Symbols")    -- Telescope LSP document symbol
 mapx.nnoremap("<leader>ttd", ":Telescope lsp_type_definitions<Cr>", "Telescope - LSP Type Definitions")    -- Telescope LSP type definitions
 
 mapx.nnoremap("<leader>gr", "<cmd>Telescope lsp_references<CR>", "Telescope - LSP References")             -- Telescope LSP references
@@ -103,7 +106,6 @@ end, { noremap = true, silent = true }) -- Actions Preview code actions
 vim.keymap.set({ "n", "x" }, "cc", function()
 	require("tiny-code-action").code_action()
 end, { noremap = true, silent = true }) -- Tiny Code Action code actions
-
 
 -- mapx.nname("<leader>b", "Bufferline related mappings")
 -- Close and pin buffer

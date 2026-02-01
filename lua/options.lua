@@ -9,6 +9,7 @@ vim.diagnostic.config({
 -- map the leader key
 map("n", " ", "", {})
 vim.g.mapleader = " "
+-- Enable incremental search
 vim.cmd "set inccommand=split"
 o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50" -- block in normal and beam cursor in insert mode
 o.updatetime = 300                                           -- faster completion
@@ -29,7 +30,7 @@ o.conceallevel = 0                          -- so that `` is visible in markdown
 o.cursorline = false                        -- hide the cursor line
 o.number = true
 o.relativenumber = true
-o.cmdheight = 1        -- space for displaying messages/commands
+o.cmdheight = 2        -- space for displaying messages/commands
 o.showmode = true      -- we don't need to see things like -- INSERT -- anymore
 o.showtabline = 1      -- always show tabs
 o.laststatus = 3

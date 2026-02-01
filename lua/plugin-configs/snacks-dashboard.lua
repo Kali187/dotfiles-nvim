@@ -4,8 +4,7 @@ return {
 	preset = {
 		keys = {
 			{ key = "e", icon = "", desc = "New File", action = ":enew" },
-			{ key = "b", icon = "", desc = "Browse Files", action = ":Telescope file_browser" },
-			{ key = "f", icon = "", desc = "Search Files", action = ":Telescope find_files" },
+			{ key = "b", icon = "", desc = "Browse Files", action = ":Yazi" },
 			{ key = "s", icon = "", desc = "Search Text", action = ":Telescope live_grep" },
 			{ key = "c", icon = "", desc = "Configuration", action = ":edit $MYVIMRC" },
 			{ key = "u", icon = "", desc = "Update Plugins", action = ":Lazy update" },
