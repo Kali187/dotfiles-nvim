@@ -16,38 +16,46 @@ require("noice").setup {
 		},
 	},
 	presets = {
-		bottom_search = false, -- use a classic bottom cmdline for search
-		inc_rename = true,   -- enables an input dialog for inc-rename.nvim
-
-
-		command_palette = {
-			views = {
-				cmdline_popup = {
-					border = {
-						padding = { 1, 1 },
-						color = { bg = "Normal", fg = "Normal" },
-					},
-					position = {
-						row = "100%",
-					},
-					size = {
-						width = "99%",
-						height = "auto",
-					},
-				},
-				cmdline_popupmenu = {
-					border = {
-						style = "rounded",
-					},
-					position = {
-						row = "99%",
-						col = "0%",
-					},
-				},
+		bottom_search = false,
+		command_palette = true,
+		long_message_to_split = true,
+		inc_rename = true,
+		lsp_doc_border = true,
+	},
+	cmdline = {
+		enabled = true,       -- enables the Noice cmdline UI
+		view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+		opts = {
+			-- backend = "popup",
+			relative = "editor",
+			position = {
+				row = "45%",
+				col = "50%",
 			},
+			size = {
+				height = "auto",
+				width = "60%",
+			},
+			border = {
+				style = "rounded",
+				padding = { 0, 0 },
+			},
+			winhighlight = "Normal",
+			winblend = 0,
+		}, -- global options for the cmdline. See section on views
+		format = {
+			cmdline = { pattern = "^:", icon = " : 󰜴 ", lang = "vim", title = "Command Line" },
+			search_down = { kind = "search", pattern = "^/", icon = "   󰜴 ", lang = "regex", title = "Search Down" },
+			search_up = { kind = "search", pattern = "^%?", icon = "   󰜴 ", lang = "regex", title = "Search Up" },
+			filter = { pattern = "^:%s*!", icon = " $ 󰜴 ", lang = "bash", title = "Shell Command" },
+			lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "  󰜴 ", lang = "lua", title = "Lua Command" },
+			help = { pattern = "^:%s*he?l?p?%s+", icon = " H? 󰜴", lang = "vim", title = "Help" },
+			input = { view = "cmdline_input", icon = "  󰜴", title = "Input" },
 		},
 	},
-	long_message_to_split = true, -- long messages will be sent to a split
-	inc_rename = true,           -- enables an input dialog for inc-rename.nvim
-	lsp_doc_border = true,       -- add a border to hover docs and signature help
+	popupmenu = {
+		enabled = true, -- enables the Noice popupmenu UI
+		backend = "nui", -- backend to use to show regular cmdline completions
+		kind_icons = {}, -- set to `false` to disable icons
+	},
 }
