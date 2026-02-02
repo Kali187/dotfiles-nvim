@@ -8,8 +8,8 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts) -- Set location
 -- Run format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]] -- Format on save
 
-mapx.nnoremap("<leader>T,", ":tabnext<CR>", "Next tab")           -- Next tab
-mapx.nnoremap("<leader>T.", ":tabprevious<CR>", "Previous tab")   -- Previous tab
+mapx.nnoremap("<leader>T]", ":tabnext<CR>", "Next tab")           -- Next tab
+mapx.nnoremap("<leader>T[", ":tabprevious<CR>", "Previous tab")   -- Previous tab
 mapx.nnoremap("<leader>Tn", ":tabnew<CR>", "New tab")             -- New tab
 mapx.nnoremap("<leader>Tc", ":tabclose<CR>", "Close current tab") -- Close current tab
 
@@ -31,9 +31,9 @@ mapx.nnoremap("<leader>ee", ":Explore<Cr>", "File explorer")
 -- Open file explorer.
 -- mapx.nname("<leader>t", "Telescope and Neotest related mappings")
 
-mapx.nnoremap("<leader>te", ":Telescope file_browser<Cr>", "Telescope - File browser")                  -- Telescope File browser
-mapx.nnoremap("<leader>tE", ":Telescope file_browser path=%:p:h select_buffer=true<Cr>",
-	"Telescope - File browser in current folder")                                                         -- Telescope File browser in current folder
+-- mapx.nnoremap("<leader>te", ":Telescope file_browser<Cr>", "Telescope - File browser")                  -- Telescope File browser
+-- mapx.nnoremap("<leader>tE", ":Telescope file_browser path=%:p:h select_buffer=true<Cr>",
+-- 	"Telescope - File browser in current folder")                                                         -- Telescope File browser in current folder
 mapx.nnoremap("<leader>tn", ":NoiceTelescope<Cr>", "Telescope - Notifications")                         -- Telescope Notifications
 mapx.nnoremap("<leader>t:", ":Telescope commands<Cr>", "Telescope - Commands")                          -- Telescope Commands
 mapx.nnoremap("<leader>th", ":Telescope help_tags<Cr>", "Telescope - Help tags")                        -- Telescope Help tags
@@ -51,24 +51,25 @@ mapx.nnoremap("<leader>tqh", ":Telescope quickfixhistory<Cr>", "Telescope - Quic
 mapx.nnoremap("<leader>tqh", ":Telescope vim_options<Cr>", "Telescope - Vim Options")                   -- Telescope vim options
 
 -- Telescope LSP
-mapx.nnoremap("<leader>tws", ":Telescope lsp_workspace_symbols<Cr>", "Telescope - LSP Workspace Symbols")  -- Telescope LSP workspace symbols
-mapx.nnoremap("<leader>tts", ":Telescope lsp_document_symbols<Cr>", "Telescope - LSP Document Symbols")    -- Telescope LSP document symbol
-mapx.nnoremap("<leader>ttd", ":Telescope lsp_type_definitions<Cr>", "Telescope - LSP Type Definitions")    -- Telescope LSP type definitions
+mapx.nnoremap("<leader>tws", ":Telescope lsp_workspace_symbols<Cr>", "Telescope - LSP Workspace Symbols") -- Telescope LSP workspace symbols
+mapx.nnoremap("<leader>tts", ":Telescope lsp_document_symbols<Cr>", "Telescope - LSP Document Symbols")   -- Telescope LSP document symbol
+mapx.nnoremap("<leader>ttd", ":Telescope lsp_type_definitions<Cr>", "Telescope - LSP Type Definitions")   -- Telescope LSP type definitions
 
-mapx.nnoremap("<leader>gr", "<cmd>Telescope lsp_references<CR>", "Telescope - LSP References")             -- Telescope LSP references
-mapx.nnoremap("<leader>gd", "<cmd>Telescope lsp_definitions<CR>", "Telescope - LSP Definitions")           -- Telescope LSP definitions
-mapx.nnoremap("<leader>gi", "<cmd>Telescope lsp_implementations<CR>", "Telescope - LSP Implementations")   -- Telescope LSP implementations
-mapx.nnoremap("<leader>gt", "<cmd>Telescope lsp_type_definitions<CR>", "Telescope - LSP Type Definitions") -- Telescope LSP type definitions
+mapx.nnoremap("<leader>gr", ":Telescope lsp_references<CR>", "Telescope - LSP References")                -- Telescope LSP references
+mapx.nnoremap("<leader>gd", ":Telescope lsp_definitions<CR>", "Telescope - LSP Definitions")              -- Telescope LSP definitions
+mapx.nnoremap("<leader>gi", ":Telescope lsp_implementations<CR>", "Telescope - LSP Implementations")      -- Telescope LSP implementations
+mapx.nnoremap("<leader>gtd", ":Telescope lsp_type_definitions<CR>", "Telescope - LSP Type Definitions")   -- Telescope LSP type definitions
+mapx.nnoremap("<leader>gds", ":Telescope lsp_document_symbols<CR>", "Telescope - LSP Document Symbols")   -- Telescope LSP document symbols
+mapx.nnoremap("<leader>gws", ":Telescope lsp_workspace_symbols<CR>", "Telescope - LSP Workspace Symbols") -- Telescope LSP workspace symbols
+mapx.nnoremap("<leader>gin", ":Telescope lsp_incoming_calls<CR>", "Telescope - LSP Incoming Calls")       -- Telescope LSP incoming calls
+mapx.nnoremap("<leader>gou", ":Telescope lsp_outgoing_calls<CR>", "Telescope - LSP Outgoing Calls")       -- Telescope LSP outgoing calls
 
+mapx.nnoremap({ "<leader>nm", "nm" }, "<cmd>Noice messages<CR>")                                          -- Open Noice message history
+mapx.nnoremap({ "<leader>nn", "nn" }, "<cmd>Noice dismiss<CR>")                                           -- Open Noice message history
 
-
--- LspSaga calls
-mapx.nnoremap("<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")                           -- LspSaga incoming calls
-mapx.nnoremap("<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")                           -- LspSaga outgoing calls
-
-mapx.nnoremap("<C-A>", "<cmd>LspRestart<CR>")                                            -- Restart LSP
-mapx.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Diagnostics - Previous") -- Go to previous diagnostic
-mapx.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", "Diagnostics - Next")     -- Go to next diagnostics
+mapx.nnoremap("<C-A>", "<cmd>LspRestart<CR>")                                                             -- Restart LSP
+mapx.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Diagnostics - Previous")                  -- Go to previous diagnostic
+mapx.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", "Diagnostics - Next")                      -- Go to next diagnostics
 mapx.nnoremap(
 	"[c",
 	"<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>",
@@ -76,6 +77,17 @@ mapx.nnoremap(
 ) -- Go to previous ERROR diagnostic
 mapx.nnoremap(
 	"]c",
+	"<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>",
+	"Diagnostics - Next ERROR"
+
+)
+mapx.nnoremap(
+	"[e",
+	"<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>",
+	"Diagnostics - Previous ERROR"
+) -- Go to previous ERROR diagnostic
+mapx.nnoremap(
+	"]e",
 	"<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>",
 	"Diagnostics - Next ERROR"
 
@@ -128,8 +140,6 @@ mapx.nnoremap("<leader>bm.", "<Cmd>BufferMoveNext<CR>", opts, "Move buffer to ne
 mapx.nnoremap("<leader>wf", "<Cmd>SessionSearch<CR>", opts, "Search sessions")                 -- Search sessions
 mapx.nnoremap("<leader>ws", "<Cmd>SessionSave<CR>", opts, "Save current session")              -- Save current session
 mapx.nnoremap("<leader>wa", "<Cmd>SessionToggleAutoSave<CR>", opts, "Toggle session autosave") -- Toggle session autosave
-
-mapx.nname("<leader>x", "Trouble Diagnostics")
 
 -- Dashboard
 vim.keymap.set({ "n", "x" }, "aa", function()
