@@ -34,23 +34,37 @@ mapx.nnoremap("<leader>ee", ":Explore<Cr>", "File explorer")
 -- mapx.nnoremap("<leader>te", ":Telescope file_browser<Cr>", "Telescope - File browser")                  -- Telescope File browser
 -- mapx.nnoremap("<leader>tE", ":Telescope file_browser path=%:p:h select_buffer=true<Cr>",
 -- 	"Telescope - File browser in current folder")                                                         -- Telescope File browser in current folder
-mapx.nnoremap("<leader>tn", ":NoiceTelescope<Cr>", "Telescope - Notifications")                         -- Telescope Notifications
-mapx.nnoremap("<leader>t:", ":Telescope commands<Cr>", "Telescope - Commands")                          -- Telescope Commands
-mapx.nnoremap("<leader>th", ":Telescope help_tags<Cr>", "Telescope - Help tags")                        -- Telescope Help tags
-mapx.nnoremap("<leader>tk", ":Telescope keymaps<Cr>", "Telescope - Keymaps")                            -- Telescope Keymaps
-mapx.nnoremap("<leader>tm", ":Telescope marks<Cr>", "Telescope - Marks")                                -- Telescope Marks
-mapx.nnoremap("<leader>tu", ":Telescope undo<Cr>", "Telescope - Undos")                                 -- Telescope Undos
-mapx.nnoremap("<leader>tf", ":Telescope find_files<Cr>", "Telescope - Find files")                      -- Telescope find files
-mapx.nnoremap("<leader>tb", ":Telescope buffers<Cr>", "Telescope - Buffers")                            -- Telescope buffers
-mapx.nnoremap("<leader>tg", ":Telescope live_grep<Cr>", "Telescope - Grep")                             -- Telescope live grep
-mapx.nnoremap("<leader>to", ":Telescope oldfiles<Cr>", "Telescope - Recent Files")                      -- Telescope old files
-mapx.nnoremap("<leader>ts", ":Telescope current_buffer_fuzzy_find<Cr>", "Telescope - Search in buffer") -- Telescope current buffer fuzzy find
-mapx.nnoremap("<leader>td", ":Telescope diagnostics<Cr>", "Telescope - Diagnostics")                    -- Telescope diagnostics
-mapx.nnoremap("<leader>tqq", ":Telescope quickfix<Cr>", "Telescope - Quickfix")                         -- Telescope quickfix
-mapx.nnoremap("<leader>tqh", ":Telescope quickfixhistory<Cr>", "Telescope - Quickfix History")          -- Telescope quickfix history
-mapx.nnoremap("<leader>tqh", ":Telescope vim_options<Cr>", "Telescope - Vim Options")                   -- Telescope vim options
+mapx.nnoremap("<leader>tn", ":NoiceTelescope<Cr>", "Telescope - Notifications") -- Telescope Notifications
 
--- Telescope LSP
+-- FzfLua builtin
+mapx.nnoremap("<leader><leader>", ":FzfLua builtin<Cr>", "FzfLua - Builtin")
+-- FzfLua buffers
+mapx.nnoremap("<leader>bb", ":FzfLua buffers<Cr>", "FzfLua - Buffers")
+mapx.nnoremap("<leader>ff", ":FzfLua files<Cr>", "FzfLua - Files")
+mapx.nnoremap("<leader>fg", ":FzfLua live_grep<Cr>", "FzfLua - Live Grep")
+mapx.nnoremap("<leader>fh", ":FzfLua help_tags<Cr>", "FzfLua - Help Tags")
+mapx.nnoremap("<leader>fm", ":FzfLua marks<Cr>", "FzfLua - Marks")
+mapx.nnoremap("<leader>fo", ":FzfLua oldfiles<Cr>", "FzfLua - Recent Files")
+mapx.nnoremap("<leader>fr", ":FzfLua lsp_references<Cr>", "FzfLua - LSP References")
+mapx.nnoremap("<leader>fs", ":FzfLua lsp_document_symbols<Cr>", "FzfLua - LSP Document Symbols")
+mapx.nnoremap("<leader>ft", ":FzfLua lsp_workspace_symbols<Cr>", "FzfLua - LSP Workspace Symbols")
+-- Telescope General
+
+mapx.nnoremap("<leader>t:", ":Telescope commands<Cr>", "Telescope - Commands")                            -- Telescope Commands
+mapx.nnoremap("<leader>th", ":Telescope help_tags<Cr>", "Telescope - Help tags")                          -- Telescope Help tags
+mapx.nnoremap("<leader>tk", ":Telescope keymaps<Cr>", "Telescope - Keymaps")                              -- Telescope Keymaps
+mapx.nnoremap("<leader>tm", ":Telescope marks<Cr>", "Telescope - Marks")                                  -- Telescope Marks
+mapx.nnoremap("<leader>tu", ":Telescope undo<Cr>", "Telescope - Undos")                                   -- Telescope Undos
+mapx.nnoremap("<leader>tf", ":Telescope find_files<Cr>", "Telescope - Find files")                        -- Telescope find files
+mapx.nnoremap("<leader>tb", ":Telescope buffers<Cr>", "Telescope - Buffers")                              -- Telescope buffers
+mapx.nnoremap("<leader>tg", ":Telescope live_grep<Cr>", "Telescope - Grep")                               -- Telescope live grep
+mapx.nnoremap("<leader>to", ":Telescope oldfiles<Cr>", "Telescope - Recent Files")                        -- Telescope old files
+mapx.nnoremap("<leader>ts", ":Telescope current_buffer_fuzzy_find<Cr>", "Telescope - Search in buffer")   -- Telescope current buffer fuzzy find
+mapx.nnoremap("<leader>td", ":Telescope diagnostics<Cr>", "Telescope - Diagnostics")                      -- Telescope diagnostics
+mapx.nnoremap("<leader>tqq", ":Telescope quickfix<Cr>", "Telescope - Quickfix")                           -- Telescope quickfix
+mapx.nnoremap("<leader>tqh", ":Telescope quickfixhistory<Cr>", "Telescope - Quickfix History")            -- Telescope quickfix history
+mapx.nnoremap("<leader>tqh", ":Telescope vim_options<Cr>", "Telescope - Vim Options")                     -- Telescope vim options
+
 mapx.nnoremap("<leader>tws", ":Telescope lsp_workspace_symbols<Cr>", "Telescope - LSP Workspace Symbols") -- Telescope LSP workspace symbols
 mapx.nnoremap("<leader>tts", ":Telescope lsp_document_symbols<Cr>", "Telescope - LSP Document Symbols")   -- Telescope LSP document symbol
 mapx.nnoremap("<leader>ttd", ":Telescope lsp_type_definitions<Cr>", "Telescope - LSP Type Definitions")   -- Telescope LSP type definitions

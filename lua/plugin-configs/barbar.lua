@@ -1,7 +1,7 @@
 require("barbar").setup {
-	animation = true,
+	animation = false,
 	auto_hide = false,
-	tabpages = true,
+	tabpages = false,
 
 	clickable = true,
 	exclude_ft = { "javascript" },

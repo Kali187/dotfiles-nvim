@@ -23,10 +23,10 @@ require("noice").setup {
 		lsp_doc_border = true,
 	},
 	cmdline = {
-		enabled = true,       -- enables the Noice cmdline UI
-		view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+		enabled = true, -- enables the Noice cmdline UI
+		view = "cmdline", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
 		opts = {
-			-- backend = "popup",
+			backend = "popup",
 			relative = "editor",
 			position = {
 				row = "45%",
@@ -35,13 +35,14 @@ require("noice").setup {
 			size = {
 				height = "auto",
 				width = "60%",
+				max_width = 80,
 			},
 			border = {
 				style = "rounded",
 				padding = { 0, 0 },
 			},
-			winhighlight = "Normal",
-			winblend = 0,
+			-- winhighlight = "Normal",
+			-- winblend = 0,
 		}, -- global options for the cmdline. See section on views
 		format = {
 			cmdline = { pattern = "^:", icon = " : 󰜴 ", lang = "vim", title = "Command Line" },

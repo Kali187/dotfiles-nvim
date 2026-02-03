@@ -37,7 +37,7 @@ local conditions = {
 local config = {
 	options = {
 		always_divide_middle = true,
-		always_show_tabs = true,
+		always_show_tabs = false,
 		-- Disable sections and component separators
 		component_separators = '',
 		section_separators = '*',
@@ -67,11 +67,6 @@ local config = {
 		lualine_z = {},
 		lualine_c = {},
 		lualine_x = {},
-	},
-	tabline = {
-		lualine_a = {
-			'tabs',
-		},
 	},
 }
 

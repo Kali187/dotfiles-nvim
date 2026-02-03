@@ -334,6 +334,7 @@ local plugins = {
 			require "plugin-configs.telescope"
 		end
 	},
+	{ "ahmedkhalf/project.nvim", },
 	{
 		"ldelossa/nvim-dap-projects",
 		config = function()
