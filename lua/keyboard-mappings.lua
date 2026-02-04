@@ -8,114 +8,156 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts) -- Set location
 -- Run format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]] -- Format on save
 
-mapx.nnoremap("<leader>T]", ":tabnext<CR>", "Next tab")           -- Next tab
-mapx.nnoremap("<leader>T[", ":tabprevious<CR>", "Previous tab")   -- Previous tab
-mapx.nnoremap("<leader>Tn", ":tabnew<CR>", "New tab")             -- New tab
-mapx.nnoremap("<leader>Tc", ":tabclose<CR>", "Close current tab") -- Close current tab
+-- tabs
+vim.keymap.set("n", "<leader>Tn", "<cmd>tabnew<CR>",
+	{ noremap = true, silent = true, desc = "New Tab" })          -- New tab
+vim.keymap.set("n", "<leader>Tc", "<cmd>tabclose<CR>",
+	{ noremap = true, silent = true, desc = "Close Current Tab" }) -- Close current tab
+vim.keymap.set("n", "<leader>T]", "<cmd>tabnext<CR>",
+	{ noremap = true, silent = true, desc = "Next Tab" })         -- Next tab
+vim.keymap.set("n", "<leader>T[", "<cmd>tabprevious<CR>",
+	{ noremap = true, silent = true, desc = "Previous Tab" })     -- Previous tab
 
--- Better window swapping
-mapx.nnoremap("<C-h>", "<C-w>h", "Move to left window")  -- Move to left window
-mapx.nnoremap("<C-j>", "<C-w>j", "Move to lower window") -- Move to lower windows
-mapx.nnoremap("<C-k>", "<C-w>k", "Move to upper window") -- Move to upper window
-mapx.nnoremap("<C-l>", "<C-w>l", "Move to right window") -- Move to right window
+-- window swapping
+vim.keymap.set("n", "<C-h>", "<C-w>h",
+	{ noremap = true, silent = true, desc = "Move to Left Window" }) -- Move to left window
+vim.keymap.set("n", "<C-j>", "<C-w>j",
+	{ noremap = true, silent = true, desc = "Move to Lower Window" }) -- Move to lower window
+vim.keymap.set("n", "<C-k>", "<C-w>k",
+	{ noremap = true, silent = true, desc = "Move to Upper Window" }) -- Move to upper window
+vim.keymap.set("n", "<C-l>", "<C-w>l",
+	{ noremap = true, silent = true, desc = "Move to Right Window" }) -- Move to right window
 
--- Some small tooling
-mapx.noremap('<leader>ww', '<Cmd>set wrap!<CR>', "Word Wrap Toggle") -- E.g: <leader>yy will yank current line to os clipboard
-mapx.nnoremap("<leader>nn", "<Cmd>noh<CR>", "Clear search highlight")
+vim.keymap.set("n", "<leader><leader>", "<cmd>FzfLua builtin<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Builtin" })              -- FzfLua builtin
+vim.keymap.set("n", "<leader>bb", "<cmd>FzfLua buffers<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Buffers" })              -- FzfLua buffers
+vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Find Files" })           -- FzfLua find files
+vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Live Grep" })            -- FzfLua live grep
+vim.keymap.set("n", "<leader>fh", "<cmd>FzfLua help_tags<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Help Tags" })            -- FzfLua help tags
+vim.keymap.set("n", "<leader>fm", "<cmd>FzfLua marks<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Marks" })                -- FzfLua marks
+vim.keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Recent Files" })         -- FzfLua recent files
+vim.keymap.set("n", "<leader>fr", "<cmd>FzfLua lsp_references<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP References" })       -- FzfLua LSP references
+vim.keymap.set("n", "<leader>fs", "<cmd>FzfLua lsp_document_symbols<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Document Symbols" }) -- FzfLua LSP document symbols
+vim.keymap.set("n", "<leader>ft", "<cmd>FzfLua lsp_workspace_symbols<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Workspace Symbols" }) -- FzfLua LSP workspace symbols
 
--- Utils
-mapx.nnoremap("<leader>P", ":ProjectMgr<Cr>", "Project manager") -- Open project manager.
+-- Replacing all Telescope mappings with FzfLua ones, also ditchimn mapx
+vim.keymap.set("n", "<leader>t:", "<cmd>FzfLua commands<CR>", { noremap = true, silent = true, desc = "FzfLua Commands" }) -- FzfLua Commands
+vim.keymap.set("n", "<leader>th", "<cmd>FzfLua help_tags<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Help Tags" })                                                            -- FzfLua Help tags
+vim.keymap.set("n", "<leader>tk", "<cmd>FzfLua keymaps<CR>", { noremap = true, silent = true, desc = "FzfLua Keymaps" })   -- FzfLua Keymaps
+vim.keymap.set("n", "<leader>tm", "<cmd>FzfLua marks<CR>", { noremap = true, silent = true, desc = "FzfLua Marks" })       -- FzfLua Marks
+vim.keymap.set("n", "<leader>tu", "<cmd>FzfLua undo<CR>", { noremap = true, silent = true, desc = "FzfLua Undos" })        -- FzfLua Undos
+vim.keymap.set("n", "<leader>tf", "<cmd>FzfLua files<CR>", { noremap = true, silent = true, desc = "FzfLua Find Files" })  -- FzfLua find files
+vim.keymap.set("n", "<leader>tb", "<cmd>FzfLua buffers<CR>", { noremap = true, silent = true, desc = "FzfLua Buffers" })   -- FzfLua buffers
+vim.keymap.set("n", "<leader>to", "<cmd>FzfLua oldfiles<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Recent Files" })                                                         -- FzfLua old files
+vim.keymap.set("n", "<leader>tll", "<cmd>FzfLua loclist<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Location List" })                                                        -- FzfLua location list
+vim.keymap.set("n", "<leader>tj", "<cmd>FzfLua jumps<CR>", { noremap = true, silent = true, desc = "FzfLua Jumps" })       -- FzfLua jumps
 
-mapx.nnoremap("<leader>ee", ":Explore<Cr>", "File explorer")
+-- FzfLua grep
+vim.keymap.set("n", "<leader>tgl", "<cmd>FzfLua live_grep<CR>", { noremap = true, silent = true, desc = "FzfLua Grep" }) -- FzfLua live grep
+vim.keymap.set("n", "<leader>tgs", "<cmd>FzfLua grep_curbuf<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Search in Buffer" })                                                   -- FzfLua grep in current buffer
 
--- Open file explorer.
--- mapx.nname("<leader>t", "Telescope and Neotest related mappings")
+-- FzfLua diagnostics mappings
+vim.keymap.set("n", "<leader>tdd", "<cmd>FzfLua diagnostics_document<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Document Diagnostics" }) -- FzfLua diagnostics
+vim.keymap.set("n", "<leader>tdw", "<cmd>FzfLua diagnostics_workspace<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Workspace Diagnostics" }) -- FzfLua workspace diagnostics
 
--- mapx.nnoremap("<leader>te", ":Telescope file_browser<Cr>", "Telescope - File browser")                  -- Telescope File browser
--- mapx.nnoremap("<leader>tE", ":Telescope file_browser path=%:p:h select_buffer=true<Cr>",
--- 	"Telescope - File browser in current folder")                                                         -- Telescope File browser in current folder
-mapx.nnoremap("<leader>tn", ":NoiceTelescope<Cr>", "Telescope - Notifications") -- Telescope Notifications
+-- FzfLua quickfix
+vim.keymap.set("n", "<leader>tq", "<cmd>FzfLua quickfix<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Quickfix" }) -- FzfLua quickfix
 
--- FzfLua builtin
-mapx.nnoremap("<leader><leader>", ":FzfLua builtin<Cr>", "FzfLua - Builtin")
--- FzfLua buffers
-mapx.nnoremap("<leader>bb", ":FzfLua buffers<Cr>", "FzfLua - Buffers")
-mapx.nnoremap("<leader>ff", ":FzfLua files<Cr>", "FzfLua - Files")
-mapx.nnoremap("<leader>fg", ":FzfLua live_grep<Cr>", "FzfLua - Live Grep")
-mapx.nnoremap("<leader>fh", ":FzfLua help_tags<Cr>", "FzfLua - Help Tags")
-mapx.nnoremap("<leader>fm", ":FzfLua marks<Cr>", "FzfLua - Marks")
-mapx.nnoremap("<leader>fo", ":FzfLua oldfiles<Cr>", "FzfLua - Recent Files")
-mapx.nnoremap("<leader>fr", ":FzfLua lsp_references<Cr>", "FzfLua - LSP References")
-mapx.nnoremap("<leader>fs", ":FzfLua lsp_document_symbols<Cr>", "FzfLua - LSP Document Symbols")
-mapx.nnoremap("<leader>ft", ":FzfLua lsp_workspace_symbols<Cr>", "FzfLua - LSP Workspace Symbols")
--- Telescope General
 
-mapx.nnoremap("<leader>t:", ":Telescope commands<Cr>", "Telescope - Commands")                            -- Telescope Commands
-mapx.nnoremap("<leader>th", ":Telescope help_tags<Cr>", "Telescope - Help tags")                          -- Telescope Help tags
-mapx.nnoremap("<leader>tk", ":Telescope keymaps<Cr>", "Telescope - Keymaps")                              -- Telescope Keymaps
-mapx.nnoremap("<leader>tm", ":Telescope marks<Cr>", "Telescope - Marks")                                  -- Telescope Marks
-mapx.nnoremap("<leader>tu", ":Telescope undo<Cr>", "Telescope - Undos")                                   -- Telescope Undos
-mapx.nnoremap("<leader>tf", ":Telescope find_files<Cr>", "Telescope - Find files")                        -- Telescope find files
-mapx.nnoremap("<leader>tb", ":Telescope buffers<Cr>", "Telescope - Buffers")                              -- Telescope buffers
-mapx.nnoremap("<leader>tg", ":Telescope live_grep<Cr>", "Telescope - Grep")                               -- Telescope live grep
-mapx.nnoremap("<leader>to", ":Telescope oldfiles<Cr>", "Telescope - Recent Files")                        -- Telescope old files
-mapx.nnoremap("<leader>ts", ":Telescope current_buffer_fuzzy_find<Cr>", "Telescope - Search in buffer")   -- Telescope current buffer fuzzy find
-mapx.nnoremap("<leader>td", ":Telescope diagnostics<Cr>", "Telescope - Diagnostics")                      -- Telescope diagnostics
-mapx.nnoremap("<leader>tqq", ":Telescope quickfix<Cr>", "Telescope - Quickfix")                           -- Telescope quickfix
-mapx.nnoremap("<leader>tqh", ":Telescope quickfixhistory<Cr>", "Telescope - Quickfix History")            -- Telescope quickfix history
-mapx.nnoremap("<leader>tqh", ":Telescope vim_options<Cr>", "Telescope - Vim Options")                     -- Telescope vim options
 
-mapx.nnoremap("<leader>tws", ":Telescope lsp_workspace_symbols<Cr>", "Telescope - LSP Workspace Symbols") -- Telescope LSP workspace symbols
-mapx.nnoremap("<leader>tts", ":Telescope lsp_document_symbols<Cr>", "Telescope - LSP Document Symbols")   -- Telescope LSP document symbol
-mapx.nnoremap("<leader>ttd", ":Telescope lsp_type_definitions<Cr>", "Telescope - LSP Type Definitions")   -- Telescope LSP type definitions
+-- mappings for FZFLua and: command_history, global,
 
-mapx.nnoremap("<leader>gr", ":Telescope lsp_references<CR>", "Telescope - LSP References")                -- Telescope LSP references
-mapx.nnoremap("<leader>gd", ":Telescope lsp_definitions<CR>", "Telescope - LSP Definitions")              -- Telescope LSP definitions
-mapx.nnoremap("<leader>gi", ":Telescope lsp_implementations<CR>", "Telescope - LSP Implementations")      -- Telescope LSP implementations
-mapx.nnoremap("<leader>gtd", ":Telescope lsp_type_definitions<CR>", "Telescope - LSP Type Definitions")   -- Telescope LSP type definitions
-mapx.nnoremap("<leader>gds", ":Telescope lsp_document_symbols<CR>", "Telescope - LSP Document Symbols")   -- Telescope LSP document symbols
-mapx.nnoremap("<leader>gws", ":Telescope lsp_workspace_symbols<CR>", "Telescope - LSP Workspace Symbols") -- Telescope LSP workspace symbols
-mapx.nnoremap("<leader>gin", ":Telescope lsp_incoming_calls<CR>", "Telescope - LSP Incoming Calls")       -- Telescope LSP incoming calls
-mapx.nnoremap("<leader>gou", ":Telescope lsp_outgoing_calls<CR>", "Telescope - LSP Outgoing Calls")       -- Telescope LSP outgoing calls
 
-mapx.nnoremap({ "<leader>nm", "nm" }, "<cmd>Noice messages<CR>")                                          -- Open Noice message history
-mapx.nnoremap({ "<leader>nn", "nn" }, "<cmd>Noice dismiss<CR>")                                           -- Open Noice message history
+-- FzfLua LSP mappings
+vim.keymap.set("n", "<leader>tlr", "<cmd>FzfLua lsp_references<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP References" })      -- FzfLua LSP references
+vim.keymap.set("n", "<leader>tld", "<cmd>FzfLua lsp_definitions<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Definitions" })     -- FzfLua LSP definitions
+vim.keymap.set("n", "<leader>tlD", "<cmd>FzfLua lsp_declarations<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Declarations" })    -- FzfLua LSP declarations
+vim.keymap.set("n", "<leader>tlt", "<cmd>FzfLua lsp_type_definitions<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Type Definitions" }) -- FzfLua LSP type definitions
+vim.keymap.set("n", "<leader>tli", "<cmd>FzfLua lsp_implementations<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Implementations" }) -- FzfLua LSP implementations
 
-mapx.nnoremap("<C-A>", "<cmd>LspRestart<CR>")                                                             -- Restart LSP
-mapx.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Diagnostics - Previous")                  -- Go to previous diagnostic
-mapx.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", "Diagnostics - Next")                      -- Go to next diagnostics
-mapx.nnoremap(
-	"[c",
-	"<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>",
-	"Diagnostics - Previous ERROR"
-) -- Go to previous ERROR diagnostic
-mapx.nnoremap(
-	"]c",
-	"<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>",
-	"Diagnostics - Next ERROR"
+vim.keymap.set("n", "<leader>tsw", "<cmd>FzfLua lsp_workspace_symbols<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Workspace Symbols" }) -- FzfLua LSP workspace symbols
+vim.keymap.set("n", "<leader>tsd", "<cmd>FzfLua lsp_document_symbols<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Document Symbols" }) -- FzfLua LSP document symbol
+-- lsp incoming and outgoing calls
+vim.keymap.set("n", "<leader>tci", "<cmd>FzfLua lsp_incoming_calls<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Incoming Calls" }) -- FzfLua LSP incoming calls
+vim.keymap.set("n", "<leader>tco", "<cmd>FzfLua lsp_outgoing_calls<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Outgoing Calls" }) -- FzfLua LSP outgoing calls
 
-)
-mapx.nnoremap(
-	"[e",
-	"<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>",
-	"Diagnostics - Previous ERROR"
-) -- Go to previous ERROR diagnostic
-mapx.nnoremap(
-	"]e",
-	"<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>",
-	"Diagnostics - Next ERROR"
 
-)
+vim.keymap.set("n", "<leader>tlc", "<cmd>FzfLua lsp_code_actions<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Code Actions" })
+vim.keymap.set("n", "<leader>tnm", "<cmd>Noice fzf<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Noice Messages" })
 
--- mapx.nname("<leader>tr", "Neotest related mappings")
-mapx.nnoremap("<leader>trn", "<cmd>lua require('neotest').run.run()<CR>", "Neotest - Run Nearest")
-mapx.nnoremap("<leader>trf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Neotest - Run File")
-mapx.nnoremap("<leader>trS", "<cmd>lua require('neotest').run.stop()<CR>", "Neotest - Stop")
-mapx.nnoremap("<leader>trl", "<cmd>lua require('neotest').output_panel.toggle()<CR>", "Neotest - Output Panel Toggle")
-mapx.nnoremap("<leader>trs", "<cmd>lua require('neotest').summary.toggle()<CR>", "Neotest - Summary Toggle")
+-- Noice mappings
+vim.keymap.set("n", "<leader>nm", "<cmd>Noice messages<CR>",
+	{ noremap = true, silent = true, desc = "Noice Messages" }) -- Open Noice message history
+vim.keymap.set("n", "<leader>nn", "<cmd>Noice dismiss<CR>",
+	{ noremap = true, silent = true, desc = "Noice Dismiss" }) -- Dismiss Noice messages
+vim.keymap.set("n", "<leader>np", "<cmd>Noice popup<CR>",
+	{ noremap = true, silent = true, desc = "Noice Popup" })   -- Open Noice popup
+
+-- LSP mappings
+vim.keymap.set("n", "<C-A>", function()
+	vim.cmd("LspRestart")
+end, { noremap = true, silent = true, desc = "LSP - Restart LSP" }) -- Restart LSP
+
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.goto_prev()
+end, { noremap = true, silent = true, desc = "Diagnostics - Previous" }) -- Go to previous diagnostic
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.goto_next()
+end, { noremap = true, silent = true, desc = "Diagnostics - Next" }) -- Go to next diagnostics
+
+vim.keymap.set("n", "[e", function()
+	vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, { noremap = true, silent = true, desc = "Diagnostics - Previous ERROR" }) -- Go to previous ERROR diagnostic
+vim.keymap.set("n", "]e", function()
+	vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, { noremap = true, silent = true, desc = "Diagnostics - Next ERROR" }) -- Go to next ERROR diagnostic
+
+-- Neotest mappings
+vim.keymap.set("n", "<leader>trn", function()
+	require("neotest").run.run()
+end, { noremap = true, silent = true, desc = "Neotest - Run Nearest" })
+vim.keymap.set("n", "<leader>trf", function()
+	require("neotest").run.run(vim.fn.expand("%"))
+end, { noremap = true, silent = true, desc = "Neotest - Run File" })
+vim.keymap.set("n", "<leader>trS", function()
+	require("neotest").run.stop()
+end, { noremap = true, silent = true, desc = "Neotest - Stop" })
+vim.keymap.set("n", "<leader>trl", function()
+	require("neotest").output_panel.toggle()
+end, { noremap = true, silent = true, desc = "Neotest - Output Panel Toggle" })
+vim.keymap.set("n", "<leader>trs", function()
+	require("neotest").summary.toggle()
+end, { noremap = true, silent = true, desc = "Neotest - Summary Toggle" })
+
 
 -- Go to next ERROR diagnostic
-
 mapx.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")        -- Go to definition
 mapx.inoremap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>") -- Signature help in insert mode
 mapx.nnoremap("do", "<cmd>Lspsaga code_action<CR>", "Code Action")  -- LspSaga code action
@@ -133,27 +175,26 @@ vim.keymap.set({ "n", "x" }, "cc", function()
 	require("tiny-code-action").code_action()
 end, { noremap = true, silent = true }) -- Tiny Code Action code actions
 
--- mapx.nname("<leader>b", "Bufferline related mappings")
--- Close and pin buffer
-mapx.nnoremap("<leader>bcc", "<Cmd>BufferClose<CR>", opts, "Close current buffer")                      -- Close current buffer
-mapx.nnoremap("<leader>bc,", "<Cmd>BufferCloseBuffersLeft<CR>", opts, "Close buffers to the left")      -- Close buffers to the left
-mapx.nnoremap("<leader>bc.", "<Cmd>BufferCloseBuffersRight<CR>", opts, "Close buffers to the right")    -- Close buffers to the right
-mapx.nnoremap("<leader>bco", "<Cmd>BufferCloseAllButCurrent<CR>", opts, "Close all but current buffer") -- Close all but current buffer
-mapx.nnoremap("<leader>bv", "<Cmd>BufferPin<CR>", opts, "Pin/Unpin current buffer")                     -- Pin/Unpin current buffer
-mapx.nnoremap("<leader>br", "<cmd>lua vim.lsp.buf.rename()<CR>", opts, "Rename current buffer")         -- Rename current buffer
+vim.keymap.set("n", "<leader>bcc", "<Cmd>BufferClose<CR>",
+	{ noremap = true, silent = true, desc = "Close current buffer" })        -- Close current buffer
+vim.keymap.set("n", "<leader>bc,", "<Cmd>BufferCloseBuffersLeft<CR>",
+	{ noremap = true, silent = true, desc = "Close buffers to the left" })   -- Close buffers to the left
+vim.keymap.set("n", "<leader>bc.", "<Cmd>BufferCloseBuffersRight<CR>",
+	{ noremap = true, silent = true, desc = "Close buffers to the right" })  -- Close buffers to the right
+vim.keymap.set("n", "<leader>bco", "<Cmd>BufferCloseAllButCurrent<CR>",
+	{ noremap = true, silent = true, desc = "Close all but current buffer" }) -- Close all but current buffer
+vim.keymap.set("n", "<leader>bv", "<Cmd>BufferPin<CR>",
+	{ noremap = true, silent = true, desc = "Pin/Unpin current buffer" })    -- Pin/Unpin current buffer
+vim.keymap.set("n", "<leader>br", "<cmd>lua vim.lsp.buf.rename()<CR>",
+	{ noremap = true, silent = true, desc = "Rename current buffer" })       -- Rename current buffers
 
--- Switch to previous next buffer
-mapx.nnoremap("<leader>b,", "<Cmd>BufferPrevious<CR>", opts, "Previous buffer") -- Previous buffer
-mapx.nnoremap("<leader>b.", "<Cmd>BufferNext<CR>", opts, "Next buffer")         -- Next buffer
+vim.keymap.set("n", "<leader>bm,", "<Cmd>BufferMovePrevious<CR>",
+	{ noremap = true, silent = true, desc = "Move buffer to previous position" })                                           -- Move buffer to previous position
+vim.keymap.set("n", "<leader>bm.", "<Cmd>BufferMoveNext<CR>",
+	{ noremap = true, silent = true, desc = "Move buffer to next position" })                                               -- Move buffer to next position
+vim.keymap.set("n", "<leader>b,", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true, desc = "Previous buffer" }) -- Previous buffer
+vim.keymap.set("n", "<leader>b.", "<Cmd>BufferNext<CR>", { noremap = true, silent = true, desc = "Next buffer" })         -- Next buffers
 
--- Re-order to previous/next
-mapx.nnoremap("<leader>bm,", "<Cmd>BufferMovePrevious<CR>", opts, "Move buffer to previous position") -- Move buffer to previous position
-mapx.nnoremap("<leader>bm.", "<Cmd>BufferMoveNext<CR>", opts, "Move buffer to next position")         -- Move buffer to next position
-
--- mapx.nname("<leader>w", "Session related mappings")
-mapx.nnoremap("<leader>wf", "<Cmd>SessionSearch<CR>", opts, "Search sessions")                 -- Search sessions
-mapx.nnoremap("<leader>ws", "<Cmd>SessionSave<CR>", opts, "Save current session")              -- Save current session
-mapx.nnoremap("<leader>wa", "<Cmd>SessionToggleAutoSave<CR>", opts, "Toggle session autosave") -- Toggle session autosave
 
 -- Dashboard
 vim.keymap.set({ "n", "x" }, "aa", function()
@@ -161,7 +202,7 @@ vim.keymap.set({ "n", "x" }, "aa", function()
 end, { noremap = true, silent = true }) -- Open Snacks dashboard
 
 -- Neogit
-mapx.nnoremap("<leader>ng", "<Cmd>Neogit<CR>", opts) -- Open Neogit
+vim.keymap.set("n", "<leader>ng", "<Cmd>Neogit<CR>", { noremap = true, silent = true, desc = "Neogit - Open Neogit" }) -- Open Neogit
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP actions",
