@@ -1,9 +1,11 @@
 local mapx = require("mapx").setup({ global = true })
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts) -- Set location list with diagnostics
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts) -- Set location list with diagnostics
 
-
+-- Oil mappings
+vim.keymap.set("n", "<leader>-", "<cmd>Oil --float<CR>",
+	{ noremap = true, silent = true, desc = "Open Oil" }) -- Open Oil in a floating window
 
 -- Run format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]] -- Format on save

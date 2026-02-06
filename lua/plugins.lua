@@ -3,6 +3,27 @@ local plugins = {
 	-- The next few plugins are really the IDE feel.
 	{ 'github/copilot.vim' },
 	{
+		'stevearc/oil.nvim',
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			{
+				"nvim-mini/mini.icons",
+				opts = {
+				}
+			}
+		},
+
+		config = function()
+			require "plugin-configs.oil"
+		end,
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+		lazy = false,
+	},
+	{
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
