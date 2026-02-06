@@ -24,6 +24,15 @@ local plugins = {
 		lazy = false,
 	},
 	{
+		"refractalize/oil-git-status.nvim",
+
+		dependencies = {
+			"stevearc/oil.nvim",
+		},
+
+		config = true,
+	},
+	{
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,

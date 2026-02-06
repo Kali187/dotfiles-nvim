@@ -3,6 +3,9 @@ require("oil").setup({
 	columns = {
 		"icon",
 	},
+	win_options = {
+		signcolumn = "yes:2",
+	},
 	delete_to_trash = false,
 	symlink_destination = true,
 	float = {
