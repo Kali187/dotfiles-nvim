@@ -46,10 +46,58 @@ vim.keymap.set("n", "<leader>fo", "<cmd>FzfLua oldfiles<CR>",
 	{ noremap = true, silent = true, desc = "FzfLua Recent Files" })         -- FzfLua recent files
 vim.keymap.set("n", "<leader>fr", "<cmd>FzfLua lsp_references<CR>",
 	{ noremap = true, silent = true, desc = "FzfLua LSP References" })       -- FzfLua LSP references
-vim.keymap.set("n", "<leader>fs", "<cmd>FzfLua lsp_document_symbols<CR>",
+vim.keymap.set("n", "<leader>fsd", "<cmd>FzfLua lsp_document_symbols<CR>",
 	{ noremap = true, silent = true, desc = "FzfLua LSP Document Symbols" }) -- FzfLua LSP document symbols
-vim.keymap.set("n", "<leader>ft", "<cmd>FzfLua lsp_workspace_symbols<CR>",
+vim.keymap.set("n", "<leader>fsw", "<cmd>FzfLua lsp_workspace_symbols<CR>",
 	{ noremap = true, silent = true, desc = "FzfLua LSP Workspace Symbols" }) -- FzfLua LSP workspace symbols
+vim.keymap.set("n", "<leader>fu", "<cmd>FzfLua undo<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Undos" })                -- FzfLua undos
+vim.keymap.set("n", "<leader>fW", "<cmd>FzfLua grep_cWORD<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Words" })                -- FzfLua words
+vim.keymap.set("n", "<leader>fw", "<cmd>FzfLua grep_cword<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Words" })                -- FzfLua words
+vim.keymap.set("n", "<leader>fj", "<cmd>FzfLua jumps<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Jumps" })                -- FzfLua jumps
+vim.keymap.set("n", "<leader>f:", "<cmd>FzfLua commands<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Commands" })             -- FzfLua commands
+-- FzfLua help tags with fh
+vim.keymap.set("n", "<leader>fh", "<cmd>FzfLua help_tags<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Help Tags" }) -- FzfLua help tags
+-- keymaps with fk
+vim.keymap.set("n", "<leader>fk", "<cmd>FzfLua keymaps<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Keymaps" }) -- FzfLua keymaps
+-- loclist with fl
+vim.keymap.set("n", "<leader>fl", "<cmd>FzfLua loclist<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Location List" }) -- FzfLua location list
+
+
+vim.keymap.set("n", "<leader>flr", "<cmd>FzfLua lsp_references<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP References" })      -- FzfLua LSP references
+vim.keymap.set("n", "<leader>fld", "<cmd>FzfLua lsp_definitions<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Definitions" })     -- FzfLua LSP definitions
+vim.keymap.set("n", "<leader>flD", "<cmd>FzfLua lsp_declarations<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Declarations" })    -- FzfLua LSP declarations
+vim.keymap.set("n", "<leader>flt", "<cmd>FzfLua lsp_type_definitions<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Type Definitions" }) -- FzfLua LSP type definitions
+vim.keymap.set("n", "<leader>fli", "<cmd>FzfLua lsp_implementations<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Implementations" }) -- FzfLua LSP implementations
+
+vim.keymap.set("n", "<leader>fsw", "<cmd>FzfLua lsp_workspace_symbols<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Workspace Symbols" }) -- FzfLua LSP workspace symbols
+vim.keymap.set("n", "<leader>fsd", "<cmd>FzfLua lsp_document_symbols<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Document Symbols" }) -- FzfLua LSP document symbol
+-- lsp incoming and outgoing calls
+vim.keymap.set("n", "<leader>fci", "<cmd>FzfLua lsp_incoming_calls<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Incoming Calls" }) -- FzfLua LSP incoming calls
+vim.keymap.set("n", "<leader>fco", "<cmd>FzfLua lsp_outgoing_calls<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Outgoing Calls" }) -- FzfLua LSP outgoing calls
+
+
+vim.keymap.set("n", "<leader>flc", "<cmd>FzfLua lsp_code_actions<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua LSP Code Actions" })
+vim.keymap.set("n", "<leader>fnm", "<cmd>Noice fzf<CR>",
+	{ noremap = true, silent = true, desc = "FzfLua Noice Messages" })
+
 
 -- Replacing all Telescope mappings with FzfLua ones, also ditchimn mapx
 vim.keymap.set("n", "<leader>t:", "<cmd>FzfLua commands<CR>", { noremap = true, silent = true, desc = "FzfLua Commands" }) -- FzfLua Commands
