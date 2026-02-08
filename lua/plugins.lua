@@ -118,7 +118,9 @@ local plugins = {
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "echasnovski/mini.icons" },
-		opts = {}
+		config = function()
+			require "plugin-configs.fzf-lua"
+		end
 	},
 	{
 		"olrtg/nvim-emmet",
