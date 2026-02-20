@@ -1,0 +1,14 @@
+return {
+	root_markers = { 
+		'.prettierrc',
+		'prettierrc.js', 
+		'prettierrc.json', 
+		'.prettierrc.js', 
+		'.prettierrc.json', 
+		'prettier.config.js' 
+	},
+	filetypes = { 'javascript', 'typescript', 'typescript.tsx', 'javascript.jsx',  'html', 'css',   },
+	single_file = true,
+	-- Optional: Enable support for more advanced features
+	--     // See prettier documentation for available options
+}

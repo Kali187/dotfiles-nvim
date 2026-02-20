@@ -2,7 +2,14 @@ local plugins = {
 	-- Editor support.
 	-- The next few plugins are really the IDE feel.
 	{ 'github/copilot.vim' },
-	{
+{
+  'stevearc/conform.nvim',
+  opts = {},
+		config = function()
+			require "plugin-configs.conform"
+		end,
+},	
+  {
 		'stevearc/oil.nvim',
 		---@module 'oil'
 		---@type oil.SetupOpts
@@ -348,7 +355,15 @@ local plugins = {
 			"<cmd>Trouble qflist toggle<cr>",
 			desc = "Quickfix List (Trouble)"
 		} }
-	}, "MunifTanjim/prettier.nvim", {
+	}, 
+
+	-- {
+	-- 	'MunifTanjim/prettier.nvim',
+	-- config = function()
+	-- 	require "plugin-configs.prettier"
+	-- end
+	-- },
+	{
 	"echasnovski/mini.nvim",
 	version = false,
 	config = function()

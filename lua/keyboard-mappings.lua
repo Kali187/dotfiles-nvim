@@ -8,7 +8,7 @@ vim.keymap.set("n", "<leader>-", "<cmd>Oil --float<CR>",
 	{ noremap = true, silent = true, desc = "Open Oil" }) -- Open Oil in a floating window
 
 -- Run format on save
-vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]] -- Format on save
+-- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]] -- Format on save
 
 -- tabs
 vim.keymap.set("n", "<leader>Tn", "<cmd>tabnew<CR>",

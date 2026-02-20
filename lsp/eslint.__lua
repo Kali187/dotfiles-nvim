@@ -7,11 +7,9 @@ return {
 	},
 	filetypes = {
 		"javascript",
-		"javascript.jsx",
 		"javascriptreact",
-		-- "typescript",
-		-- "typescript.tsx",
-		-- "typescriptreact",
+		"typescript",
+		"typescriptreact",
 	},
 	root_markers = {
 		".eslintrc",

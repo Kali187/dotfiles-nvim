@@ -27,6 +27,9 @@ require("mason").setup()
 vim.cmd([[colorscheme kanagawa]])
 
 local function setup_lsp()
+vim.lsp.config('*', {
+  root_markers = { '.git' },
+})
 	local lsp_dir = vim.fn.stdpath("config") .. "/lsp"
 	local lsp_servers = {}
 
@@ -53,3 +56,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.opt.termguicolors = true
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
+
