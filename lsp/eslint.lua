@@ -7,8 +7,10 @@ return {
 	},
 	filetypes = {
 		"javascript",
+		"javascript.jsx",
 		"javascriptreact",
 		"typescript",
+		"typescript.tsx",
 		"typescriptreact",
 	},
 	root_markers = {
