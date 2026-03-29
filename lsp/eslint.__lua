@@ -9,6 +9,10 @@ return {
 		"javascript",
 		"javascriptreact",
 		"typescript",
+		-- "typescript",
+		-- "typescript.tsx",
+		-- "typescriptreact",
+		"typescript.tsx",
 		"typescriptreact",
 	},
 	root_markers = {

@@ -21,11 +21,8 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 	require("cmp_nvim_lsp").default_capabilities()
 )
 
-require("mason-lspconfig").setup_handlers {
-	function(server_name)
-		lspconfig[server_name].setup {}
-	end,
-}
+-- Server configs live in lsp/*.lua, loaded by vim.lsp.enable() in init.lua.
+-- Mason is used only for installing servers; do not auto-setup here.
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 	vim.lsp.handlers.hover, {
