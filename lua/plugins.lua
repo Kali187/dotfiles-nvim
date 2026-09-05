@@ -297,7 +297,7 @@ local plugins = {
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			require("gitsigns").setup {}
+			require "plugin-configs.gitsigns"
 		end
 	},
 	{
