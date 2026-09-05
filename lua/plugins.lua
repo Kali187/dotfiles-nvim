@@ -271,7 +271,23 @@ local plugins = {
 			},
 
 			sources = {
-				default = { 'lsp', 'path', 'snippets', 'buffer' }
+				default = { 'lsp', 'path', 'snippets', 'buffer' },
+				providers = {
+					lsp = {
+						transform_items = function(_, items)
+							local emmet_ids = {}
+							for _, c in ipairs(vim.lsp.get_clients({ name = 'emmet_language_server' })) do
+								emmet_ids[c.id] = true
+							end
+							for _, item in ipairs(items) do
+								if emmet_ids[item.client_id] then
+									item.score_offset = (item.score_offset or 0) + 10
+								end
+							end
+							return items
+						end
+					}
+				}
 			},
 
 			fuzzy = {
