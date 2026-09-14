@@ -1,3 +1,13 @@
+-- Keep the RPC socket path short: the default stdpath("run") lives deep under
+-- /var/folders/.../T/nvim.<user>/<random>/, which pushes the full socket path
+-- (used by fzf-lua's serverstart() at startup) past macOS's ~104-char AF_UNIX
+-- limit and makes fzf-lua's config fail to load with "invalid argument".
+if not vim.env.XDG_RUNTIME_DIR then
+	local run_dir = vim.fn.expand("~/.cache/nvim/run")
+	vim.fn.mkdir(run_dir, "p", "0700")
+	vim.env.XDG_RUNTIME_DIR = run_dir
+end
+
 local options = require "options"
 local plugins = require "plugins"
 
