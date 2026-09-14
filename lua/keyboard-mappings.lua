@@ -210,7 +210,6 @@ end, { noremap = true, silent = true, desc = "Neotest - Summary Toggle" })
 -- Go to next ERROR diagnostic
 mapx.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")        -- Go to definition
 mapx.inoremap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>") -- Signature help in insert mode
-mapx.nnoremap("do", "<cmd>Lspsaga code_action<CR>", "Code Action")  -- LspSaga code action
 mapx.nnoremap(
 	"se",
 	"<cmd>lua vim.diagnostic.open_float()<CR>",
