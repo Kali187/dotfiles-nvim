@@ -1,23 +1,39 @@
-require("nvim-treesitter.configs").setup {
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = true,
-	},
-	auto_install = true,
-	indent = { enable = true },
-	ensure_installed = {
-		"rust",
-	}
+require("nvim-treesitter").setup()
+
+local ensure_installed = {
+	"lua",
+	"vim",
+	"vimdoc",
+	"query",
+	"rust",
+	"typescript",
+	"tsx",
+	"javascript",
+	"python",
+	"go",
+	"css",
+	"json",
+	"yaml",
+	"html",
+	"dockerfile",
+	"bash",
+	"markdown",
+	"markdown_inline",
 }
 
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.elp = {
-	install_info = {
-		url = "/home/dave/www/rust/melodist/tree-sitter-elp/",
-		files = { "src/parser.c" },
-		branch = "main",
-		generate_requires_npm = true,
-		requires_generate_from_grammar = false,
-	},
-	filetype = "elp",
-}
+require("nvim-treesitter").install(ensure_installed)
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = ensure_installed,
+	callback = function()
+		-- Highlighting (native, Neovim-provided)
+		vim.treesitter.start()
+
+		-- Treesitter-based folding
+		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.wo[0][0].foldmethod = "expr"
+
+		-- Treesitter-based indentation (experimental, per nvim-treesitter's own docs)
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end,
+})

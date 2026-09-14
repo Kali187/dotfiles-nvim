@@ -49,7 +49,7 @@ o.ignorecase = true    -- ignore case in search patterns
 o.foldenable = false   -- disable folding; enable with zi
 o.foldmethod = "expr"
 o.signcolumn = "yes"
-o.foldexpr = "nvim_treesitter#foldexpr()"
+o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 o.fillchars = {
 	eob = "·", -- End-of-buffer: ~
 }
