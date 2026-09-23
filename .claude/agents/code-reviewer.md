@@ -34,6 +34,8 @@ By default, review unstaged changes from `git diff` (and staged changes from `gi
 
 **Project guidelines compliance** — verify adherence to explicit rules in `CLAUDE.md`/`AGENTS.md` if one exists: import patterns, framework conventions, language-specific style, error handling, logging, testing practices, naming conventions. Read that file first if present.
 
+**Documentation accuracy** — if the diff touches something `CLAUDE.md`/`INTENT.md` documents (a command, a convention, an architectural claim), check whether those docs are now stale as a result of this change and flag it — not just whether the code itself is correct.
+
 **Bug detection** — logic errors, null/undefined handling, race conditions, memory leaks, security vulnerabilities, performance problems: real bugs that will actually bite, not theoretical ones.
 
 **Code quality** — meaningful duplication, missing critical error handling, inadequate test coverage for the change actually made — not general refactoring taste.
